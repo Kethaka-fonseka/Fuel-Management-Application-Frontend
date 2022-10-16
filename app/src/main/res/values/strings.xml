@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Fuel_Management</string>
+    <string name="Register">Register</string>
+    <string name="FirstName">First Name</string>
+    <string name="LastName">Last Name</string>
+    <string name="Type">Type</string>
+</resources>
