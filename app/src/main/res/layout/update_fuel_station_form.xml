@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/backgroundImg"
+        android:id="@+id/background_img"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:scaleType="centerCrop"
@@ -29,7 +29,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/backgroundImg" />
+        app:layout_constraintTop_toTopOf="@+id/background_img" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -85,7 +85,7 @@
         app:layout_constraintTop_toBottomOf="@+id/fuelArrivalTimeInput" />
 
     <Button
-        android:id="@+id/UpdateFuelStationDetailsButton"
+        android:id="@+id/register_button"
         android:layout_width="351dp"
         android:layout_height="76dp"
         android:layout_marginStart="24dp"

@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/backgroundImg"
+        android:id="@+id/background_img"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:scaleType="centerCrop"
@@ -15,74 +15,88 @@
         app:srcCompat="@drawable/background" />
 
     <EditText
-        android:id="@+id/searchStation"
+        android:id="@+id/search_bar"
         android:layout_width="350dp"
         android:layout_height="55dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="360dp"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="24dp"
         android:background="@drawable/edittext_background"
         android:ems="10"
-        android:hint="E-Mail"
-        android:inputType="textEmailAddress"
+        android:hint="@string/Username"
+        android:inputType="textPersonName"
         android:textAlignment="center"
         android:textColor="#070707"
-        android:textColorHint="@color/black"
+        android:textColorHint="@color/gray"
         android:textSize="25dp"
         android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.461"
+        app:layout_constraintHorizontal_bias="0.538"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/backgroundImg" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
     <EditText
-        android:id="@+id/loginPassword"
+        android:id="@+id/login_password"
         android:layout_width="350dp"
         android:layout_height="59dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="24dp"
         android:background="@drawable/edittext_background"
         android:ems="10"
-        android:hint="Password"
+        android:hint="@string/password"
         android:inputType="textPassword"
         android:textAlignment="center"
         android:textColor="#070707"
-        android:textColorHint="@color/black"
+        android:textColorHint="@color/gray"
         android:textSize="25dp"
         android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.538"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchStation" />
+        app:layout_constraintTop_toBottomOf="@+id/search_bar" />
 
     <Button
-        android:id="@+id/UpdateFuelStationDetailsButton"
+        android:id="@+id/register_button"
         android:layout_width="350dp"
         android:layout_height="60dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="28dp"
         android:layout_marginEnd="24dp"
         android:background="@drawable/login_signup_button"
-        android:text="Login"
+        android:text="@string/login"
         android:textAlignment="center"
-        android:textColor="#B39DDB"
+        android:textColor="@color/white"
         android:textSize="30dp"
+        app:backgroundTint="@color/purple_700"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.461"
+        app:layout_constraintHorizontal_bias="0.538"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/login_password" />
 
     <TextView
-        android:id="@+id/registerHereText"
+        android:id="@+id/login_here_text"
         android:layout_width="wrap_content"
         android:layout_height="45dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
-        android:text="Don't have an Account? Register here"
+        android:text="@string/register_here"
         android:textColor="@color/white"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/UpdateFuelStationDetailsButton" />
+        app:layout_constraintTop_toBottomOf="@+id/register_button" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="323dp"
+        android:layout_height="338dp"
+        android:layout_marginTop="28dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/background_img"
+        app:srcCompat="@drawable/logo_fuel" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

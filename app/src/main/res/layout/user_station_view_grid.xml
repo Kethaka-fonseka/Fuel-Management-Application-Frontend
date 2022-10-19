@@ -7,7 +7,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ImageView
-        android:id="@+id/backgroundImg"
+        android:id="@+id/background_img"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:scaleType="centerCrop"
@@ -18,7 +18,7 @@
         tools:layout_editor_absoluteX="0dp" />
 
     <EditText
-        android:id="@+id/searchStation"
+        android:id="@+id/search_bar"
         android:layout_width="350dp"
         android:layout_height="40dp"
         android:layout_marginStart="24dp"
@@ -27,15 +27,29 @@
         android:background="@drawable/edittext_background"
         android:ems="10"
         android:hint="  Search"
+        android:inputType="textPersonName"
         android:textAlignment="viewStart"
         android:textColor="#070707"
-        android:textColorHint="@color/black"
+        android:textColorHint="@color/gray"
         android:textSize="25dp"
-        android:inputType="textPersonName"
         android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.461"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/backgroundImg" />
+        app:layout_constraintTop_toTopOf="@+id/background_img" />
+
+    <ListView
+        android:id="@+id/station_view_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="24dp"
+        app:layout_constraintBottom_toBottomOf="@+id/background_img"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/search_bar"
+        app:layout_constraintVertical_bias="0.05" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
