@@ -31,103 +31,104 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getSupportActionBar().hide();
 
-        FirstName = findViewById(R.id.edt_FirstName);
-
-        LastName = findViewById(R.id.edt_LastName);
-
-        Type = findViewById(R.id.edt_Type);
-
-        Register_Btn = findViewById(R.id.btn_Register);
-
-        Register_Btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {;
-            UserServices userServices = new UserServices(MainActivity.this);
-
-           /*
-           //For Get User By Id
-           userServices.getUserByID(FirstName.getText().toString(), new UserServices.GetUserByIdResponse() {
-                @Override
-                public void onError(String message) {
-                    Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
-                }
-
-                @Override
-                public void onResponse(UserModel user) {
-                    Toast.makeText(MainActivity.this, user.getFirstName().toString(), Toast.LENGTH_SHORT).show();
-                }
-            });*/
-
-               /*
-               //For get All Users
-               userServices.getAllUsers(new UserServices.GetAllUsersResponse() {
-                    @Override
-                    public void onError(String message) {
-                        Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
-                    }
-
-                    @Override
-                    public void onResponse(List<UserModel> user) {
-                        Toast.makeText(MainActivity.this, user.get(0).getFirstName().toString(), Toast.LENGTH_SHORT).show();
-                    }
-                });*/
-
-
-               /*
-               //For Add User
-               UserModel user = new UserModel();
-                user.setFirstName(FirstName.getText().toString());
-                user.setLastName(LastName.getText().toString());
-                user.setType(Type.getText().toString());
-
-                userServices.addNewUser(user, new UserServices.AddUserResponse() {
-                    @Override
-                    public void onError(String message) {
-                        Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
-                    }
-
-                    @Override
-                    public void onResponse(String successMessage) {
-                        Toast.makeText(MainActivity.this, successMessage, Toast.LENGTH_SHORT).show();
-                    }
-                });
-*/
-              /*
-
-               //For Update Data
-               UserModel user = new UserModel();
-                user.setId("634c234f7863d0e188f242a0");
-                user.setFirstName(FirstName.getText().toString());
-                user.setLastName(LastName.getText().toString());
-                user.setType(Type.getText().toString());
-                userServices.UpdateExitingUser(user, new UserServices.UpdateUserResponse() {
-                    @Override
-                    public void onError(String message) {
-                        Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
-                    }
-
-                    @Override
-                    public void onResponse(String successMessage) {
-                        Toast.makeText(MainActivity.this, successMessage, Toast.LENGTH_SHORT).show();
-                    }
-                });*/
-
-
-                //For Delete
-                userServices.deleteUser("634c234f7863d0e188f242a0", new UserServices.DeleteUserResponse() {
-                    @Override
-                    public void onError(String message) {
-                        Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
-                    }
-
-                    @Override
-                    public void onResponse(String successMessage) {
-                        Toast.makeText(MainActivity.this, successMessage, Toast.LENGTH_SHORT).show();
-                    }
-                });
-
-            }
-        });
+//        FirstName = findViewById(R.id.edt_FirstName);
+//
+//        LastName = findViewById(R.id.edt_LastName);
+//
+//        Type = findViewById(R.id.edt_Type);
+//
+//        Register_Btn = findViewById(R.id.btn_Register);
+//
+//        Register_Btn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {;
+//            UserServices userServices = new UserServices(MainActivity.this);
+//
+//           /*
+//           //For Get User By Id
+//           userServices.getUserByID(FirstName.getText().toString(), new UserServices.GetUserByIdResponse() {
+//                @Override
+//                public void onError(String message) {
+//                    Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
+//                }
+//
+//                @Override
+//                public void onResponse(UserModel user) {
+//                    Toast.makeText(MainActivity.this, user.getFirstName().toString(), Toast.LENGTH_SHORT).show();
+//                }
+//            });*/
+//
+//               /*
+//               //For get All Users
+//               userServices.getAllUsers(new UserServices.GetAllUsersResponse() {
+//                    @Override
+//                    public void onError(String message) {
+//                        Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
+//                    }
+//
+//                    @Override
+//                    public void onResponse(List<UserModel> user) {
+//                        Toast.makeText(MainActivity.this, user.get(0).getFirstName().toString(), Toast.LENGTH_SHORT).show();
+//                    }
+//                });*/
+//
+//
+//               /*
+//               //For Add User
+//               UserModel user = new UserModel();
+//                user.setFirstName(FirstName.getText().toString());
+//                user.setLastName(LastName.getText().toString());
+//                user.setType(Type.getText().toString());
+//
+//                userServices.addNewUser(user, new UserServices.AddUserResponse() {
+//                    @Override
+//                    public void onError(String message) {
+//                        Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
+//                    }
+//
+//                    @Override
+//                    public void onResponse(String successMessage) {
+//                        Toast.makeText(MainActivity.this, successMessage, Toast.LENGTH_SHORT).show();
+//                    }
+//                });
+//*/
+//              /*
+//
+//               //For Update Data
+//               UserModel user = new UserModel();
+//                user.setId("634c234f7863d0e188f242a0");
+//                user.setFirstName(FirstName.getText().toString());
+//                user.setLastName(LastName.getText().toString());
+//                user.setType(Type.getText().toString());
+//                userServices.UpdateExitingUser(user, new UserServices.UpdateUserResponse() {
+//                    @Override
+//                    public void onError(String message) {
+//                        Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
+//                    }
+//
+//                    @Override
+//                    public void onResponse(String successMessage) {
+//                        Toast.makeText(MainActivity.this, successMessage, Toast.LENGTH_SHORT).show();
+//                    }
+//                });*/
+//
+//
+//                //For Delete
+//                userServices.deleteUser("634c234f7863d0e188f242a0", new UserServices.DeleteUserResponse() {
+//                    @Override
+//                    public void onError(String message) {
+//                        Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
+//                    }
+//
+//                    @Override
+//                    public void onResponse(String successMessage) {
+//                        Toast.makeText(MainActivity.this, successMessage, Toast.LENGTH_SHORT).show();
+//                    }
+//                });
+//
+//            }
+//        });
     }
 }

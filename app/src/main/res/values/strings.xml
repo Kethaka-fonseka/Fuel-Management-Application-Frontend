@@ -4,4 +4,15 @@
     <string name="FirstName">First Name</string>
     <string name="LastName">Last Name</string>
     <string name="Type">Type</string>
+    <string name="Username">Username</string>
+    <string name="Email">Email</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="register_here">Don\'t have an Account? Register here</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="conform_password">Conform Password</string>
+    <string name="login_here_txt">Already have an Account? Login here</string>
+    <string name="register_as_user_btn">Register as user</string>
+    <string name="register_as_user">Register as User</string>
+    <string name="register_as_station_owner">Register as Station Owner</string>
 </resources>
