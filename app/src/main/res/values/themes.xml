@@ -14,7 +14,7 @@
         <!-- Customize your theme here. -->
     </style>
 <!--    splash screeen-->
-    <style name = "SplashScreen" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name = "No_Action_Bar" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="android:windowBackground">@drawable/background_spashscreen</item>
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
     </style>

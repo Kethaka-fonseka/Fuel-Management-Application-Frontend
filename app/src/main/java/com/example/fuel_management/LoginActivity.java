@@ -4,23 +4,50 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.basgeekball.awesomevalidation.AwesomeValidation;
+import com.basgeekball.awesomevalidation.ValidationStyle;
+import com.basgeekball.awesomevalidation.utility.RegexTemplate;
+
+import org.json.JSONException;
+
 public class LoginActivity extends AppCompatActivity {
-    private Button userlogin_btn;
-    private TextView register_here_txt;
+
+    //Initialize variables
+    private EditText edt_userName, edt_password;
+    private Button btn_login;
+    private TextView txt_registerHere;
+    private AwesomeValidation awesomeValidation;
+    private UserService userService;
 
    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_form);
 
-        userlogin_btn =(Button)findViewById(R.id.register_button);
-        register_here_txt =(TextView)findViewById(R.id.login_here_text);
+        //Assign Variables
+       edt_userName = findViewById(R.id.Edt_Login_Username);
+       edt_password = findViewById(R.id.Edt_Login_Password);
+       btn_login =(Button)findViewById(R.id.Btn_Login);
+       txt_registerHere =(TextView)findViewById(R.id.Txt_Login_RegisterHere);
+       userService = new UserService(LoginActivity.this);
 
-        register_here_txt.setOnClickListener(new View.OnClickListener() {
+       //Initialize the validation object
+       awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
+
+       //Add validation for username
+       awesomeValidation.addValidation(this,R.id.Edt_Login_Username, RegexTemplate.NOT_EMPTY, R.string.Invalid_userName);
+
+       //Add Validation for password
+       awesomeValidation.addValidation(this,R.id.Edt_Login_Password, ".{6,}", R.string.Invalid_password);
+
+
+       txt_registerHere.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(LoginActivity.this,RegisterAsActivity.class);
@@ -28,12 +55,48 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        userlogin_btn.setOnClickListener(new View.OnClickListener() {
+       btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(LoginActivity.this, UserHomeActivity.class);
-                startActivity(intent);
+               if(awesomeValidation.validate()){
+                   userService.userLogin(edt_userName.getText().toString(), edt_password.getText().toString(), new UserService.UserLoginResponse() {
+                       @Override
+                       public void onError(String message) {
+                           edt_userName.setText("");
+                           edt_password.setText("");
+                           Toast.makeText(LoginActivity.this, message, Toast.LENGTH_SHORT).show();
+                       }
+
+                       @Override
+                       public void onResponse(String token) {
+                           Toast.makeText(LoginActivity.this, token, Toast.LENGTH_SHORT).show();
+                           try {
+                               userService.createUserSession(token);
+                           } catch (JSONException e) {
+                               e.printStackTrace();
+                           }
+                           Intent intent=new Intent(LoginActivity.this, UserHomeActivity.class);
+                           startActivity(intent);
+                       }
+                   });
+               }
             }
         });
+    }
+
+    //Create on start method
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        //Checking whether user logged in or not
+        //Already Logged user will move to Home Screen
+        SessionManager sessionManager = new SessionManager(LoginActivity.this);
+        String isUserLoggedIn = sessionManager.getSession();
+
+        if (!isUserLoggedIn.equals("NO")){
+            Intent intent=new Intent(LoginActivity.this, UserHomeActivity.class);
+            startActivity(intent);
+        }
     }
 }

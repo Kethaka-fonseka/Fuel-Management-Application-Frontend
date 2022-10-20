@@ -18,12 +18,10 @@
         tools:layout_editor_absoluteX="0dp" />
 
     <EditText
-        android:id="@+id/search_bar"
+        android:id="@+id/Edt_Login_Username"
         android:layout_width="350dp"
         android:layout_height="40dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/edittext_background"
         android:ems="10"
         android:hint="  Search"
@@ -34,9 +32,9 @@
         android:textSize="25dp"
         android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.461"
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/background_img" />
+        app:layout_constraintTop_toBottomOf="@+id/Btn_UserHome_Logout" />
 
     <ListView
         android:id="@+id/station_view_list"
@@ -49,7 +47,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/search_bar"
+        app:layout_constraintTop_toBottomOf="@+id/Edt_Login_Username"
         app:layout_constraintVertical_bias="0.05" />
+
+    <Button
+        android:id="@+id/Btn_UserHome_Logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:text="@string/logout"
+        android:fontFamily="@font/lazy_dog"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+      />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -16,8 +16,8 @@ public class RegisterAsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register_as_form);
 
-        register_as_user_btn =(Button)findViewById(R.id.register_as_user_btn);
-        register_as_owner_btn =(Button)findViewById(R.id.register_as_station_owner_btn);
+        register_as_user_btn =(Button)findViewById(R.id.Btn_RegisterAs_User);
+        register_as_owner_btn =(Button)findViewById(R.id.Btn_RegisterAs_Owner);
 
         register_as_user_btn.setOnClickListener(new View.OnClickListener() {
             @Override

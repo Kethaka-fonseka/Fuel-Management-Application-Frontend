@@ -1,3 +1,4 @@
+/*
 package com.example.fuel_management;
 
 import android.content.Context;
@@ -45,7 +46,9 @@ public class UserServices {
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url,null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-           /*  Toast.makeText(context, response.toString(), Toast.LENGTH_SHORT).show();*/
+           */
+/*  Toast.makeText(context, response.toString(), Toast.LENGTH_SHORT).show();*//*
+
 
                 //get the array of json objects
                 try {
@@ -58,7 +61,9 @@ public class UserServices {
 
                     JSONObject receivedUserData = (JSONObject) jsonArray.get(0);
 
-                   /* Toast.makeText(context, receivedUserData.getString("firstName"), Toast.LENGTH_SHORT).show();*/
+                   */
+/* Toast.makeText(context, receivedUserData.getString("firstName"), Toast.LENGTH_SHORT).show();*//*
+
                     user.setId(receivedUserData.getString("id"));
                     user.setFirstName(receivedUserData.getString("firstName"));
                     user.setLastName(receivedUserData.getString("lastName"));
@@ -267,3 +272,4 @@ public class UserServices {
         RequestHandler.getInstance(context).addToRequestQueue(request);
     }
 }
+*/

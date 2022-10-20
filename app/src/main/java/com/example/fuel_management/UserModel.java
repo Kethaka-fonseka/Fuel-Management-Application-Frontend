@@ -1,13 +1,24 @@
 package com.example.fuel_management;
 
+//This model contain information related to the user
 public class UserModel {
 
+    //User ID
     private String Id;
 
+    //User First Name
     private String firstName;
 
+    //User Last Name
     private String lastName;
 
+    //User User Name
+    private String userName;
+
+    //User Email Address
+    private String email;
+
+    //User Type
     private String type;
 
     public String getId() {
@@ -32,6 +43,22 @@ public class UserModel {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getType() {
