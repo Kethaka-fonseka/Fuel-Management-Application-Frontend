@@ -1,4 +1,4 @@
-package com.example.fuel_management;
+package com.example.fuel_management.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,7 +15,7 @@ public class SplashScreen extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                startActivity(new Intent(SplashScreen.this,LoginActivity.class));
+                startActivity(new Intent(SplashScreen.this, LoginActivity.class));
             }
         },1000);
     }

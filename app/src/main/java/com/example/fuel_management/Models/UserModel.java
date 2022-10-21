@@ -1,4 +1,4 @@
-package com.example.fuel_management;
+package com.example.fuel_management.Models;
 
 //This model contain information related to the user
 public class UserModel {

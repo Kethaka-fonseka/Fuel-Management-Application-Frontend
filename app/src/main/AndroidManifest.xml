@@ -15,33 +15,33 @@
         android:theme="@style/Theme.Fuel_Management"
         tools:targetApi="31">
         <activity
-            android:name=".UserEditFormActivity"
+            android:name=".Activities.UserEditFormActivity"
             android:exported="true"/>
         <activity
-            android:name=".RegisterAsActivity"
+            android:name=".Activities.RegisterAsActivity"
             android:exported="true"
             android:theme="@style/No_Action_Bar"/>
         <activity
-            android:name=".StationOwnerHomeActivity"
+            android:name=".Activities.StationOwnerHomeActivity"
             android:exported="true"/>
         <activity
-            android:name=".UserHomeActivity"
+            android:name=".Activities.UserHomeActivity"
             android:exported="true"
             android:theme="@style/No_Action_Bar"/>
         <activity
-            android:name=".RegisterActivity"
+            android:name=".Activities.RegisterActivity"
             android:exported="true"
             android:theme="@style/No_Action_Bar"/>
         <activity
-            android:name=".LoginActivity"
+            android:name=".Activities.LoginActivity"
             android:exported="true"
             android:theme="@style/No_Action_Bar"/>
         <activity
-            android:name=".MainActivity"
+            android:name=".Activities.MainActivity"
             android:exported="true"/>
         <!-- splash screen-->
         <activity
-            android:name=".SplashScreen"
+            android:name=".Activities.SplashScreen"
             android:exported="true"
             android:theme="@style/No_Action_Bar">
             <intent-filter>

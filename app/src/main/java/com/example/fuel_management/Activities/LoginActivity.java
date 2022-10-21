@@ -1,4 +1,4 @@
-package com.example.fuel_management;
+package com.example.fuel_management.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,8 +13,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.basgeekball.awesomevalidation.utility.RegexTemplate;
+import com.example.fuel_management.R;
+import com.example.fuel_management.SQLite.DatabaseHelper;
+import com.example.fuel_management.Services.UserService;
+import com.example.fuel_management.Session.SessionManager;
 
 import org.json.JSONException;
+
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -24,6 +29,7 @@ public class LoginActivity extends AppCompatActivity {
     private TextView txt_registerHere;
     private AwesomeValidation awesomeValidation;
     private UserService userService;
+    private DatabaseHelper databaseHelper;
 
    @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +42,7 @@ public class LoginActivity extends AppCompatActivity {
        btn_login =(Button)findViewById(R.id.Btn_Login);
        txt_registerHere =(TextView)findViewById(R.id.Txt_Login_RegisterHere);
        userService = new UserService(LoginActivity.this);
+       databaseHelper = new DatabaseHelper(LoginActivity.this);
 
        //Initialize the validation object
        awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
@@ -50,7 +57,7 @@ public class LoginActivity extends AppCompatActivity {
        txt_registerHere.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(LoginActivity.this,RegisterAsActivity.class);
+                Intent intent=new Intent(LoginActivity.this, RegisterAsActivity.class);
                 startActivity(intent);
             }
         });
@@ -69,14 +76,18 @@ public class LoginActivity extends AppCompatActivity {
 
                        @Override
                        public void onResponse(String token) {
-                           Toast.makeText(LoginActivity.this, token, Toast.LENGTH_SHORT).show();
                            try {
-                               userService.createUserSession(token);
+                               //Store login credentials to SQLite database
+                               boolean success = databaseHelper.insert(edt_userName.getText().toString(),edt_password.getText().toString());
+                               if(success){
+                                   Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                                   userService.createUserSession(token);
+                                   Intent intent=new Intent(LoginActivity.this, UserHomeActivity.class);
+                                   startActivity(intent);
+                               }
                            } catch (JSONException e) {
                                e.printStackTrace();
                            }
-                           Intent intent=new Intent(LoginActivity.this, UserHomeActivity.class);
-                           startActivity(intent);
                        }
                    });
                }

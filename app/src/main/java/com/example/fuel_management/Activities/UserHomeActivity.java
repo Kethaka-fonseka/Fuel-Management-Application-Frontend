@@ -1,15 +1,17 @@
-package com.example.fuel_management;
+package com.example.fuel_management.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.AdapterView;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.fuel_management.R;
+import com.example.fuel_management.Session.SessionManager;
 
 public class UserHomeActivity extends AppCompatActivity {
 
@@ -32,7 +34,7 @@ public class UserHomeActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(UserHomeActivity.this,UserEditFormActivity.class);
+                Intent intent = new Intent(UserHomeActivity.this, UserEditFormActivity.class);
                 startActivity(intent);
             }
         });
@@ -45,7 +47,7 @@ public class UserHomeActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Toast.makeText(UserHomeActivity.this, "WWWWWW", Toast.LENGTH_SHORT).show();
                 sessionManager.removeSession();
-                Intent intent=new Intent(UserHomeActivity.this,LoginActivity.class);
+                Intent intent=new Intent(UserHomeActivity.this, LoginActivity.class);
                 startActivity(intent);
             }
         });

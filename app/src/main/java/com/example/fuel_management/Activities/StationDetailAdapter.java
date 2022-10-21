@@ -1,4 +1,4 @@
-package com.example.fuel_management;
+package com.example.fuel_management.Activities;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+
+import com.example.fuel_management.R;
 
 public class StationDetailAdapter extends BaseAdapter {
     Context context;

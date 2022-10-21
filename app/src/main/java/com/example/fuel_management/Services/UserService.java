@@ -1,8 +1,6 @@
-package com.example.fuel_management;
+package com.example.fuel_management.Services;
 
 import android.content.Context;
-import android.util.Log;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -10,6 +8,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
+import com.example.fuel_management.Activities.RequestHandler;
+import com.example.fuel_management.Session.SessionManager;
+import com.example.fuel_management.Models.UserModel;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -29,7 +30,7 @@ public class UserService {
 
     //New user register ot the application
 
-    interface  RegisterNewUserResponse{
+    public interface  RegisterNewUserResponse{
         void onError(String message);
 
         void onResponse(String successMessage);
@@ -46,7 +47,9 @@ public class UserService {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                registerNewUserResponse.onError(error.toString());
+                String errorData = new String(error.networkResponse.data);
+
+                registerNewUserResponse.onError(errorData);
             }
         }){
             @Override
@@ -89,7 +92,7 @@ public class UserService {
 //Login to the application
 
  //This interface handle responses
-    interface  UserLoginResponse{
+ public interface  UserLoginResponse{
        void onError(String message);
 
       void onResponse(String token);
@@ -106,7 +109,8 @@ public class UserService {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                userLoginResponse.onError("Login Failed!!!");
+                String errorData = new String(error.networkResponse.data);
+                userLoginResponse.onError(errorData);
             }
         }){
             @Override

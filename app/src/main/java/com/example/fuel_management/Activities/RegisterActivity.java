@@ -1,4 +1,4 @@
-package com.example.fuel_management;
+package com.example.fuel_management.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,6 +14,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.basgeekball.awesomevalidation.utility.RegexTemplate;
+import com.example.fuel_management.Models.UserModel;
+import com.example.fuel_management.R;
+import com.example.fuel_management.Services.UserService;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -65,7 +68,7 @@ public class RegisterActivity extends AppCompatActivity {
         txt_login_here.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(RegisterActivity.this,LoginActivity.class);
+                Intent intent=new Intent(RegisterActivity.this, LoginActivity.class);
                 startActivity(intent);
             }
         });
@@ -89,7 +92,7 @@ public class RegisterActivity extends AppCompatActivity {
                     userService.registerNewUserUser(user, edt_password.getText().toString(), new UserService.RegisterNewUserResponse() {
                         @Override
                         public void onError(String message) {
-                            Toast.makeText(RegisterActivity.this, message, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(RegisterActivity.this, message.toString(), Toast.LENGTH_SHORT).show();
                         }
 
                         @Override

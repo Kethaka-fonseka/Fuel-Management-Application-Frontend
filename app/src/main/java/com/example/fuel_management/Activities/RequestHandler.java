@@ -1,4 +1,4 @@
-package com.example.fuel_management;
+package com.example.fuel_management.Activities;
 
 import android.content.Context;
 

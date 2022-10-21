@@ -19,7 +19,7 @@
 
             <ImageView
                 android:id="@+id/background_img"
-                android:layout_width="411dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
                 app:layout_constraintBottom_toBottomOf="parent"
