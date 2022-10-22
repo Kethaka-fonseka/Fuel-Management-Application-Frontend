@@ -17,13 +17,26 @@
         app:srcCompat="@drawable/background"
         tools:layout_editor_absoluteX="0dp" />
 
+    <Button
+        android:id="@+id/Btn_UserHome_Logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:fontFamily="@font/lazy_dog"
+        android:text="@string/logout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <EditText
-        android:id="@+id/Edt_Login_Username"
-        android:layout_width="350dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="16dp"
+        android:id="@+id/Edt_Search_User_Station"
+        android:layout_width="260dp"
+        android:layout_height="39dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
         android:background="@drawable/edittext_background"
         android:ems="10"
+        android:fontFamily="@font/lazy_dog"
         android:hint="  Search"
         android:inputType="textPersonName"
         android:textAlignment="viewStart"
@@ -31,37 +44,36 @@
         android:textColorHint="@color/gray"
         android:textSize="25dp"
         android:textStyle="italic"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintEnd_toStartOf="@+id/Btn_UserHome_Logout"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Btn_UserHome_Logout" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <ListView
+<!--    <ListView-->
+<!--        android:id="@+id/ListView_User_Station_View_List"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="24dp"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:layout_marginEnd="24dp"-->
+<!--        app:layout_constraintBottom_toBottomOf="@+id/background_img"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="1.0"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/Edt_Login_Username"-->
+<!--        android:dividerHeight="5dp"-->
+<!--        app:layout_constraintVertical_bias="0.05" />-->
+
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/ListView_User_Station_View_List"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="24dp"
-        app:layout_constraintBottom_toBottomOf="@+id/background_img"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Edt_Login_Username"
-        android:dividerHeight="5dp"
-        app:layout_constraintVertical_bias="0.05" />
-
-    <Button
-        android:id="@+id/Btn_UserHome_Logout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:text="@string/logout"
-        android:fontFamily="@font/lazy_dog"
+        android:layout_marginTop="24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-      />
+        app:layout_constraintTop_toBottomOf="@+id/Edt_Search_User_Station"
+        app:layout_constraintVertical_bias="0.0" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

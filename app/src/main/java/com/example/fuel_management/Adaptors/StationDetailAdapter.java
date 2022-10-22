@@ -15,7 +15,7 @@ public class StationDetailAdapter extends BaseAdapter {
     int listImages[];
     LayoutInflater inflater;
 
-    public StationDetailAdapter(Context context,String [] listStation){
+    public StationDetailAdapter(Context context, String [] listStation){
         this.context = context;
         this.listStation = listStation;
         inflater = LayoutInflater.from(context);
