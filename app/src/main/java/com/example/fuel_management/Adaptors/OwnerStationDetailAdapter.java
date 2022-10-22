@@ -1,4 +1,4 @@
-package com.example.fuel_management.Activities;
+package com.example.fuel_management.Adaptors;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,13 +9,13 @@ import android.widget.TextView;
 
 import com.example.fuel_management.R;
 
-public class StationDetailAdapter extends BaseAdapter {
+public class OwnerStationDetailAdapter extends BaseAdapter {
     Context context;
     String listStation[];
     int listImages[];
     LayoutInflater inflater;
 
-    public StationDetailAdapter(Context context,String [] listStation){
+    public OwnerStationDetailAdapter(Context context,String [] listStation){
         this.context = context;
         this.listStation = listStation;
         inflater = LayoutInflater.from(context);
@@ -38,8 +38,8 @@ public class StationDetailAdapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View convertView, ViewGroup viewGroup) {
-        convertView = inflater.inflate(R.layout.station_detail,null);
-        TextView textView = (TextView) convertView.findViewById(R.id.fuel_station_name);
+        convertView = inflater.inflate(R.layout.station_detail_owner_card,null);
+        TextView textView = (TextView) convertView.findViewById(R.id.Txt_Owner_Card_Station_Name);
         textView.setText(listStation[i]);
         return convertView;
     }

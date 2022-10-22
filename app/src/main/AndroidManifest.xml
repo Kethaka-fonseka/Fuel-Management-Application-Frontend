@@ -15,6 +15,12 @@
         android:theme="@style/Theme.Fuel_Management"
         tools:targetApi="31">
         <activity
+            android:name=".Activities.FillingStationUpdateActivity"
+            android:exported="true"/>
+        <activity
+            android:name=".Activities.FillingStationRegisterActivity"
+            android:exported="true"/>
+        <activity
             android:name=".Activities.UserEditFormActivity"
             android:exported="true"/>
         <activity
