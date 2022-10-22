@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.fuel_management.Adaptors.StationDetailAdapter;
 import com.example.fuel_management.R;
 import com.example.fuel_management.Session.SessionManager;
 
@@ -27,7 +28,7 @@ public class UserHomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.user_station_view_grid);
-        listView = (ListView)findViewById(R.id.station_view_list);
+        listView = (ListView)findViewById(R.id.ListView_User_Station_View_List);
         StationDetailAdapter stationDetailAdapter = new StationDetailAdapter(getApplicationContext(),stationList);
         listView.setAdapter(stationDetailAdapter);
         listView.setClickable(true);

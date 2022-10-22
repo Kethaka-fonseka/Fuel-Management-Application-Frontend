@@ -22,5 +22,22 @@
     <string name="Invalid_password">Please  Enter Valid Password</string>
     <string name="Invalid_confirmPassword">Password Does Not Match</string>
     <string name="logout">Logout</string>
+    <string name="Topic_Shed_Owner_Register">Station Owner Register</string>
+    <string name="petrol">Petrol</string>
+    <string name="Diesel">Diesel</string>
+    <string name="StationName">Station Name</string>
+    <string name="Btn_Register_Station">Register Station</string>
+    <string name="Update_Register_Station">Update Station</string>
+    <string name="Fuel_Arrival_Time">Fuel Arrival Time</string>
+    <string name="Fuel_Finish_Time">Fuel Finish Time</string>
+    <string name="Filling_Station_Register">Filling Station Register</string>
+    <string name="Filling_Station_Update">Filling Station Update</string>
+    <string name="Add_New">Add New</string>
+    <string name="Cancel">Cancel</string>
+    <string-array name="locations">
+        <item>Colombo</item>
+        <item>Kalutara</item>
+        <item>Gampaha</item>
+    </string-array>
 
 </resources>
