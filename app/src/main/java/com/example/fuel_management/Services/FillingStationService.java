@@ -76,14 +76,14 @@ public class FillingStationService {
                 JSONObject jsonBody = new JSONObject();
                 try {
                     //This is basically mapping filling station data to json body
-                   for( FuelModel fuel : stationModel.getFuelTypes()){
-                       JSONObject fuelType = new JSONObject();
-                       fuelType.put("fuelName",fuel.getFuelName());
-                       fuelType.put("status", fuel.getStatus());
-                       //Toast.makeText(context, fuelType.toString(), Toast.LENGTH_SHORT).show();
-                       fuelTypes.add(fuelType);
-                   }
-                   //covert fuel list to json array type
+                    for( FuelModel fuel : stationModel.getFuelTypes()){
+                        JSONObject fuelType = new JSONObject();
+                        fuelType.put("fuelName",fuel.getFuelName());
+                        fuelType.put("status", fuel.getStatus());
+                        //Toast.makeText(context, fuelType.toString(), Toast.LENGTH_SHORT).show();
+                        fuelTypes.add(fuelType);
+                    }
+                    //covert fuel list to json array type
                     JSONArray fuelJsonArray = new JSONArray(fuelTypes);
 
                     jsonBody.put("name", stationModel.getName());
@@ -188,6 +188,44 @@ public class FillingStationService {
             @Override
             public void onErrorResponse(VolleyError error) {
                 deleteFillingStationResponse.onError(error.toString());
+            }
+        });
+        RequestHandler.getInstance(context).addToRequestQueue(request);
+    }
+
+    //Get all method for filling station
+    public interface  GetAllFillingStationsByUserResponse{
+        void onError(String message);
+
+        void onResponse(ArrayList<FillingStationModel> fillingStationModelArrayList);
+    }
+
+    public void getFillingStationDetails(GetAllFillingStationsByUserResponse fillingStationNewResponse){
+        String url = FILLING_STATION_API_URL;
+        JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                try {
+                    JSONArray jsonArray = response;
+                    ArrayList<FillingStationModel> fillingStationModelArray = new ArrayList<>();
+                    for(int i=0;i<jsonArray.length();i++){
+                        JSONObject fillingStation = jsonArray.getJSONObject(i);
+                        FillingStationModel fillingStationModel = new FillingStationModel();
+                        fillingStationModel.setName(fillingStation.getString("name"));
+                        fillingStationModel.setOwner(fillingStation.getString("owner"));
+                        fillingStationModel.setLocation(fillingStation.getString("location"));
+                        fillingStationModelArray.add(fillingStationModel);
+                    }
+                    fillingStationNewResponse.onResponse(fillingStationModelArray);
+                }catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                String errorData = new String(error.networkResponse.data);
+                fillingStationNewResponse.onError(errorData);
             }
         });
         RequestHandler.getInstance(context).addToRequestQueue(request);

@@ -41,6 +41,11 @@ public class UserHomeDetailAdaptor extends RecyclerView.Adapter<UserHomeDetailAd
         this.fillingStationModelList = fillingStationModelList;
     }
 
+    public void setFilteredList(List<FillingStationModel> filteredList){
+        this.fillingStationModelList = filteredList;
+        notifyDataSetChanged();
+    }
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -58,8 +63,6 @@ public class UserHomeDetailAdaptor extends RecyclerView.Adapter<UserHomeDetailAd
     public void onBindViewHolder(@NonNull UserHomeDetailAdaptor.ViewHolder holder, int position) {
         // Get the data model based on position
         FillingStationModel fillingStationModel = fillingStationModelList.get(position);
-        System.out.println("fillingStationModel===>"+fillingStationModel.getFuelTypes());
-        holder.fuelType.setText(fillingStationModel.getFuelTypes());
         holder.stationName.setText(fillingStationModel.getName());
         holder.locationName.setText(fillingStationModel.getOwner());
     }
@@ -82,7 +85,6 @@ public class UserHomeDetailAdaptor extends RecyclerView.Adapter<UserHomeDetailAd
             // to access the context from any ViewHolder instance.
             super(itemView);
             stationName = (TextView) itemView.findViewById(R.id.Txt_User_Card_Station_Name);
-            fuelType = (TextView) itemView.findViewById(R.id.Txt_User_Card_Fuel_Type);
             locationName = (TextView) itemView.findViewById(R.id.Txt_User_Card_Location);
 
             itemView.setOnClickListener(new View.OnClickListener() {

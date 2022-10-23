@@ -14,17 +14,6 @@ public class FillingStationModel {
 
     private String location;
 
-    //User Type
-    private String type;
-
-    public FillingStationModel( String name, String owner, String fuelTypes, String email, String type) {
-        this.name = name;
-        this.owner = owner;
-        this.fuelTypes = fuelTypes;
-        this.email = email;
-        this.type = type;
-    }
-
     public String getId() {
         return Id;
     }
