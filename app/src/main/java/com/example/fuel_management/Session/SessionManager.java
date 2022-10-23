@@ -33,10 +33,16 @@ public class SessionManager {
 
     }
 
-    //This will return session for the user
-    public String  getSession(){
+    //This will return session Id for the user
+    public String getSessionID(){
       return sharedPreferences.getString(SESSION_ID,"NO");
     }
+
+    //This will return session type for the user
+    public String getSessionType(){
+        return sharedPreferences.getString(SESSION_TYPE,"");
+    }
+
 
     //Remove the session stored when user logout
     public void removeSession(){

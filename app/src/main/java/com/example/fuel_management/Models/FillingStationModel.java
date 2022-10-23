@@ -1,21 +1,56 @@
 package com.example.fuel_management.Models;
 
+import java.util.List;
+
 public class FillingStationModel {
 
     private String Id;
 
-    //User First Name
     private String name;
 
-    //User Last Name
     private String owner;
 
-    //User User Name
-    private String fuelTypes;
+    private List<FuelModel> fuelTypes;
 
-    //User Email Address
-    private String email;
+    private String location;
 
-    //User Type
-    private String type;
+    public String getId() {
+        return Id;
+    }
+
+    public void setId(String id) {
+        Id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getOwner() {
+        return owner;
+    }
+
+    public void setOwner(String owner) {
+        this.owner = owner;
+    }
+
+    public List<FuelModel> getFuelTypes() {
+        return fuelTypes;
+    }
+
+    public void setFuelTypes(List<FuelModel> fuelTypes) {
+        this.fuelTypes = fuelTypes;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
 }
