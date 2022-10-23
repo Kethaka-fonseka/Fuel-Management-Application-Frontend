@@ -15,54 +15,50 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/background"
-        tools:layout_editor_absoluteX="49dp" />
+        tools:layout_editor_absoluteX="0dp" />
 
     <EditText
         android:id="@+id/Edt_Owner_Station_Search"
         android:layout_width="278dp"
         android:layout_height="42dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/edittext_background"
         android:ems="10"
+        android:fontFamily="@font/lazy_dog"
         android:hint="  Search"
+        android:drawableRight="@drawable/ic__search_icon"
         android:inputType="textPersonName"
-        android:textAlignment="viewStart"
+        android:textAlignment="center"
         android:textColor="#070707"
         android:textColorHint="@color/gray"
         android:textSize="25dp"
-        android:fontFamily="@font/lazy_dog"
         android:textStyle="italic"
-        app:layout_constraintEnd_toStartOf="@+id/Btn_Add_New"
-        app:layout_constraintHorizontal_bias="0.111"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <ListView
-        android:id="@+id/ListView_Owner_Station_View_List"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="24dp"
-        app:layout_constraintBottom_toBottomOf="@+id/background_img"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Edt_Owner_Station_Search"
-        android:dividerHeight="5dp"
-        app:layout_constraintVertical_bias="0.05" />
 
     <Button
         android:id="@+id/Btn_Add_New"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="12dp"
         android:fontFamily="@font/lazy_dog"
         android:text="@string/Add_New"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/Edt_Owner_Station_Search"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/RecyclerView_Owner_Home"
+        android:layout_width="368dp"
+        android:layout_height="558dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/background_img"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Edt_Owner_Station_Search"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

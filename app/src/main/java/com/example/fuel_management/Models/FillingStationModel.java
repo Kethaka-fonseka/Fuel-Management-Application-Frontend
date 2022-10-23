@@ -1,22 +1,18 @@
 package com.example.fuel_management.Models;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class FillingStationModel {
 
     private String Id;
 
-    //User First Name
     private String name;
 
-    //User Last Name
     private String owner;
 
-    //User User Name
-    private String fuelTypes;
+    private List<FuelModel> fuelTypes;
 
-    //User Email Address
-    private String email;
+    private String location;
 
     //User Type
     private String type;
@@ -53,39 +49,19 @@ public class FillingStationModel {
         this.owner = owner;
     }
 
-    public String getFuelTypes() {
+    public List<FuelModel> getFuelTypes() {
         return fuelTypes;
     }
 
-    public void setFuelTypes(String fuelTypes) {
+    public void setFuelTypes(List<FuelModel> fuelTypes) {
         this.fuelTypes = fuelTypes;
     }
 
-    public String getEmail() {
-        return email;
+    public String getLocation() {
+        return location;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    private static int lastContactId = 0;
-
-    public static ArrayList<FillingStationModel> createContactsList(int numContacts) {
-        ArrayList<FillingStationModel> contacts = new ArrayList<FillingStationModel>();
-
-        for (int i = 0; i <= numContacts; i++) {
-            contacts.add(new FillingStationModel("panadura","erer","sdsd","sd","sd"));
-        }
-
-        return contacts;
+    public void setLocation(String location) {
+        this.location = location;
     }
 }
