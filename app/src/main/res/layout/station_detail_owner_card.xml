@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="205dp">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/Card_OwnerHomeScreen_Recycleview"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         app:cardCornerRadius="8dp"
@@ -37,47 +38,35 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
+                android:layout_marginTop="16dp"
                 android:layout_weight="1"
                 android:text="Station Name"
                 android:textSize="20dp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.56"
                 app:layout_constraintStart_toEndOf="@+id/fuel_image_station"
                 app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/Txt_Owner_Card_Fuel_Type"
-                android:layout_width="182dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_marginTop="24dp"
-                android:layout_weight="1"
-                android:text="Fuel Type at station"
-                android:textSize="20dp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="@+id/Txt_Owner_Card_Station_Name"
-                app:layout_constraintTop_toBottomOf="@+id/Txt_Owner_Card_Station_Name" />
 
             <TextView
                 android:id="@+id/Txt_Owner_Card_Location"
                 android:layout_width="182dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
+                android:layout_marginBottom="84dp"
                 android:layout_weight="1"
                 android:text="locaton"
                 android:textSize="20dp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/Txt_Owner_Card_Fuel_Type"
-                app:layout_constraintTop_toBottomOf="@+id/Txt_Owner_Card_Fuel_Type"
-                app:layout_constraintVertical_bias="0.333" />
+                app:layout_constraintStart_toStartOf="@+id/Txt_Owner_Card_Station_Name" />
 
             <Button
                 android:id="@+id/Btn_Owner_Card_Delete_Station"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="88dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginStart="44dp"
+                android:layout_marginTop="24dp"
                 android:text="Delete"
                 app:layout_constraintStart_toStartOf="@+id/Txt_Owner_Card_Location"
                 app:layout_constraintTop_toBottomOf="@+id/Txt_Owner_Card_Location" />
@@ -86,4 +75,4 @@
 
     </androidx.cardview.widget.CardView>
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

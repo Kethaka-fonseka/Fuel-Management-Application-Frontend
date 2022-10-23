@@ -2,10 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.fuel_management">
-  <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
-        android:usesCleartextTraffic="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
@@ -13,45 +14,49 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Fuel_Management"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
             android:name=".Activities.FillingStationUpdateActivity"
-            android:exported="true"/>
+            android:exported="true"
+            android:theme="@style/No_Action_Bar" />
         <activity
             android:name=".Activities.FillingStationRegisterActivity"
-            android:exported="true"/>
+            android:exported="true"
+            android:theme="@style/No_Action_Bar" />
         <activity
             android:name=".Activities.UserEditFormActivity"
-            android:exported="true"/>
+            android:exported="true" />
         <activity
             android:name=".Activities.RegisterAsActivity"
             android:exported="true"
-            android:theme="@style/No_Action_Bar"/>
+            android:theme="@style/No_Action_Bar" />
         <activity
             android:name=".Activities.StationOwnerHomeActivity"
-            android:exported="true"/>
+            android:exported="true"
+            android:theme="@style/No_Action_Bar" />
         <activity
             android:name=".Activities.UserHomeActivity"
             android:exported="true"
-            android:theme="@style/No_Action_Bar"/>
+            android:theme="@style/No_Action_Bar" />
         <activity
             android:name=".Activities.RegisterActivity"
             android:exported="true"
-            android:theme="@style/No_Action_Bar"/>
+            android:theme="@style/No_Action_Bar" />
         <activity
             android:name=".Activities.LoginActivity"
             android:exported="true"
-            android:theme="@style/No_Action_Bar"/>
+            android:theme="@style/No_Action_Bar" />
         <activity
             android:name=".Activities.MainActivity"
-            android:exported="true"/>
-        <!-- splash screen-->
+            android:exported="true" /> <!-- splash screen -->
         <activity
             android:name=".Activities.SplashScreen"
             android:exported="true"
             android:theme="@style/No_Action_Bar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

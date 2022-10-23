@@ -30,6 +30,7 @@ public class LoginActivity extends AppCompatActivity {
     private AwesomeValidation awesomeValidation;
     private UserService userService;
     private DatabaseHelper databaseHelper;
+    private SessionManager sessionManager;
 
    @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +44,7 @@ public class LoginActivity extends AppCompatActivity {
        txt_registerHere =(TextView)findViewById(R.id.Txt_Login_RegisterHere);
        userService = new UserService(LoginActivity.this);
        databaseHelper = new DatabaseHelper(LoginActivity.this);
+       sessionManager = new SessionManager(this);
 
        //Initialize the validation object
        awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
@@ -82,8 +84,8 @@ public class LoginActivity extends AppCompatActivity {
                                if(success){
                                    Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
                                    userService.createUserSession(token);
-                                   Intent intent=new Intent(LoginActivity.this, UserHomeActivity.class);
-                                   startActivity(intent);
+                                   loginOnUserType();
+
                                }
                            } catch (JSONException e) {
                                e.printStackTrace();
@@ -95,6 +97,20 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+    private void loginOnUserType() {
+     sessionManager = new SessionManager(LoginActivity.this);
+       String type = sessionManager.getSessionType();
+        Intent intent;
+        if (type.equals("owner")) {
+            intent = new Intent(LoginActivity.this, StationOwnerHomeActivity.class);
+        }else{
+
+            intent = new Intent(LoginActivity.this, UserHomeActivity.class);
+        }
+        startActivity(intent);
+
+    }
+
     //Create on start method
     @Override
     protected void onStart() {
@@ -102,12 +118,11 @@ public class LoginActivity extends AppCompatActivity {
 
         //Checking whether user logged in or not
         //Already Logged user will move to Home Screen
-        SessionManager sessionManager = new SessionManager(LoginActivity.this);
-        String isUserLoggedIn = sessionManager.getSession();
+        sessionManager = new SessionManager(LoginActivity.this);
+        String isUserLoggedIn = sessionManager.getSessionID();
 
         if (!isUserLoggedIn.equals("NO")){
-            Intent intent=new Intent(LoginActivity.this, UserHomeActivity.class);
-            startActivity(intent);
+            loginOnUserType();
         }
     }
 }
