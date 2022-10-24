@@ -48,4 +48,8 @@ public class SessionManager {
     public void removeSession(){
         editor.putString(SESSION_ID,"NO").commit();
     }
+
+    public String getSessionUsername(){
+        return sharedPreferences.getString(SESSION_USERNAME,"");
+    }
 }

@@ -37,22 +37,10 @@ public class UserHomeActivity extends AppCompatActivity {
     private SearchView searchView;
     private SessionManager sessionManager;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.user_station_view_grid);
-//        listView = (ListView)findViewById(R.id.ListView_User_Station_View_List);
-//        StationDetailAdapter stationDetailAdapter = new StationDetailAdapter(getApplicationContext(),stationList);
-//        listView.setAdapter(stationDetailAdapter);
-//        listView.setClickable(true);
-//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//                Intent intent = new Intent(UserHomeActivity.this, UserEditFormActivity.class);
-//                startActivity(intent);
-//            }
-//        });
         FillingStationService fillingStationService = new FillingStationService(UserHomeActivity.this);
         fillingStationService.getFillingStationDetails(new FillingStationService.GetAllFillingStationsByUserResponse() {
             @Override
@@ -64,20 +52,17 @@ public class UserHomeActivity extends AppCompatActivity {
             @Override
             public void onResponse(ArrayList<FillingStationModel> fillingStationModelArrayList) {
                 Toast.makeText(UserHomeActivity.this, "Content Successful", Toast.LENGTH_SHORT).show();
-                System.out.println("message.toString()");
-                System.out.println("sdsdsdsd");
                 RecyclerView recyclerView = findViewById(R.id.ListView_User_Station_View_List);
                 UserHomeDetailAdaptor adaptor = new UserHomeDetailAdaptor(UserHomeActivity.this,fillingStationModelArrayList);
                 recyclerView.setAdapter(adaptor);
                 recyclerView.setLayoutManager(new LinearLayoutManager(UserHomeActivity.this));
-                adaptor.setOnItemClickListener(new UserHomeDetailAdaptor.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(View itemView) {
-
-                        Intent intent = new Intent(UserHomeActivity.this, UserEditFormActivity.class);
-                        startActivity(intent);
-                    }
-                });
+//                adaptor.setOnItemClickListener(new UserHomeDetailAdaptor.OnItemClickListener() {
+//                    @Override
+//                    public void onItemClick(View itemView) {
+//                        Intent intent = new Intent(UserHomeActivity.this, UserEditFormActivity.class);
+//                        startActivity(intent);
+//                    }
+//                });
                 searchFillingStation(fillingStationModelArrayList,adaptor);
 
             }
@@ -95,9 +80,6 @@ public class UserHomeActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-
-
     }
 
     private void searchFillingStation(ArrayList<FillingStationModel> fillingStationModelArrayList,UserHomeDetailAdaptor adaptor) {

@@ -25,7 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FillingStationService {
-    public static final String FILLING_STATION_API_URL = "http://10.0.2.2:5234/api/fillingStations/";
+    public static final String FILLING_STATION_API_URL = "https://8c05-2402-d000-8104-fb5f-5c9b-d7bc-a6ed-7233.in.ngrok.io/api/fillingStations/";
     public static final String STATIONS = "stations";
     Context context;
 
@@ -112,8 +112,6 @@ public class FillingStationService {
 
         void onResponse(List<FillingStationModel> stations);
     }
-
-
 
     public void GetAllFillingStationsByOwner(String owner, GetAllFillingStationsByOwnerResponse getAllFillingStationsByOwnerResponse){
         String url = FILLING_STATION_API_URL;
@@ -214,6 +212,18 @@ public class FillingStationService {
                         fillingStationModel.setName(fillingStation.getString("name"));
                         fillingStationModel.setOwner(fillingStation.getString("owner"));
                         fillingStationModel.setLocation(fillingStation.getString("location"));
+
+                        JSONArray fuelTypesInJsonArray = fillingStation.getJSONArray("fuelTypes");
+                        List<FuelModel> fuelTypes = new ArrayList<>();
+
+                        for(int j=0; j<fuelTypesInJsonArray.length();j++){
+                            JSONObject fuelType = (JSONObject) fuelTypesInJsonArray.get(j);
+                            FuelModel fuel =new FuelModel();
+                            fuel.setFuelName(fuelType.getString("fuelName"));
+                            fuel.setStatus(fuelType.getString("status"));
+                            fuelTypes.add(fuel);
+                        }
+                        fillingStationModel.setFuelTypes(fuelTypes);
                         fillingStationModelArray.add(fillingStationModel);
                     }
                     fillingStationNewResponse.onResponse(fillingStationModelArray);
@@ -224,8 +234,7 @@ public class FillingStationService {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                String errorData = new String(error.networkResponse.data);
-                fillingStationNewResponse.onError(errorData);
+                fillingStationNewResponse.onError(error.toString());
             }
         });
         RequestHandler.getInstance(context).addToRequestQueue(request);
