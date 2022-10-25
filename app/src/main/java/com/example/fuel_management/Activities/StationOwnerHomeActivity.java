@@ -1,9 +1,15 @@
 package com.example.fuel_management.Activities;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -11,6 +17,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -45,6 +52,7 @@ public class StationOwnerHomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.owner_station_view_grid);
+        overridePendingTransition(1, 1);
 
         //Assign values
         fillingStationService = new FillingStationService(this);
@@ -52,7 +60,6 @@ public class StationOwnerHomeActivity extends AppCompatActivity {
         sessionManager = new SessionManager(this);
         edt_search =findViewById(R.id.Edt_Owner_Station_Search);
 
-        initData();
 
         //Button for adding new filling station
         btn_add_new = (Button) findViewById(R.id.Btn_Add_New);
@@ -65,7 +72,7 @@ public class StationOwnerHomeActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                adapter.getFilter().filter(s);
+            //   adapter.getFilter().filter(s);
             }
 
             @Override
@@ -105,7 +112,6 @@ public class StationOwnerHomeActivity extends AppCompatActivity {
     //setting properties for the recycler view
     private void initRecylerView() {
         recyclerView = findViewById(R.id.RecyclerView_Owner_Home);
-        Toast.makeText(this, "pakayaaaaaaaaaaa", Toast.LENGTH_SHORT).show();
         layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(RecyclerView.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
@@ -113,9 +119,69 @@ public class StationOwnerHomeActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
     }
+    private void exitApplicationDialog(Context context) {
+        // Create the object of AlertDialog Builder class
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+
+        // Set the message show for the Alert time
+        builder.setMessage(R.string.Want_to_exit);
+
+        // Set Alert Title
+        builder.setTitle(R.string.Alert);
+
+        // Set Cancelable false for when the user clicks on the outside the Dialog Box then it will remain show
+        builder.setCancelable(false);
+
+        // Set the positive button with yes name Lambda OnClickListener method is use of DialogInterface interface.
+        builder.setPositiveButton(R.string.exit_app, (DialogInterface.OnClickListener) (dialog, which) -> {
+            //this.finishAffinity();
+            finish();
+
+        });
+
+        // Set the Negative button with No name Lambda OnClickListener method is use of DialogInterface interface.
+        builder.setNegativeButton(R.string.Cancel, (DialogInterface.OnClickListener) (dialog, which) -> {
+            // If user click no then dialog box is canceled.
+            dialog.cancel();
+        });
+
+        // Create the Alert dialog
+        AlertDialog alertDialog = builder.create();
+        // Show the Alert Dialog box
+        alertDialog.show();
+    }
 
     @Override
     protected void onStart() {
         super.onStart();
+        initData();
     }
+
+    @Override
+    public void onBackPressed() {
+        exitApplicationDialog(this);
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.Menu_Logout) {
+            sessionManager.removeSession();
+            Intent intent=new Intent(StationOwnerHomeActivity.this, LoginActivity.class);
+            startActivity(intent);
+        }
+        if (id == R.id.Menu_Exit) {
+            finish();
+        }
+       return  super.onOptionsItemSelected(item);
+    }
+
 }

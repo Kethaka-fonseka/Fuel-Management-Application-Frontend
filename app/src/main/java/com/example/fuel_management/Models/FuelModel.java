@@ -1,19 +1,15 @@
 package com.example.fuel_management.Models;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class FuelModel {
+public class FuelModel implements Serializable {
     //Name of the fuel type
     public String fuelName;
 
     //Fuel status
     public String status;
 
-    //Fuel arrival time
-    public Date FuelArrivalTime;
-
-    //Fuel finish time
-    public Date FuelFinishTime;
 
     public String getFuelName() {
         return fuelName;
@@ -31,19 +27,4 @@ public class FuelModel {
         this.status = status;
     }
 
-    public Date getFuelArrivalTime() {
-        return FuelArrivalTime;
-    }
-
-    public void setFuelArrivalTime(Date fuelArrivalTime) {
-        FuelArrivalTime = fuelArrivalTime;
-    }
-
-    public Date getFuelFinishTime() {
-        return FuelFinishTime;
-    }
-
-    public void setFuelFinishTime(Date fuelFinishTime) {
-        FuelFinishTime = fuelFinishTime;
-    }
 }
