@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Fuel_Management</string>
+    <string name="app_name">Fuel Buddy</string>
     <string name="Register">Register</string>
     <string name="FirstName">Firstname</string>
     <string name="LastName">Lastname</string>
@@ -36,6 +36,23 @@
     <string name="Cancel">Cancel</string>
     <string name="Message">Do you want to delete this station?</string>
     <string name="Alert">Alert !</string>
+    <string name="Update_station">Update Fuel Station Details</string>
+    <string name="title_placeholder">Title</string>
+    <string name="location">Station Location</string>
+    <string name="arrival_time">Arrival Time</string>
+    <string name="finish_time">Finish Time</string>
+    <string name="finish">Finished</string>
+    <string name="available">Available</string>
+    <string name="fuel_status">Fuel Status Of the Filling Station.</string>
+    <string name="fuel_types">Fuel Types</string>
+    <string name="Filling_Station_Update_Title">Update Filling Station</string>
+    <string name="update">Update Now</string>
+    <string name="update_date_here">Click here to update date</string>
+    <string name="update_time_here">"Click here to update time "</string>
+    <string name="Want_to_exit">Are you want to exit this app?</string>
+    <string name="exit_app">Exit</string>
+    <string name="Delete">Delete</string>
+    <string name="invalid_station_name">This field cant be empty</string>
     <string name="Search_here">Search here ......</string>
     <string name="Location">Location</string>
     <string name="Fuel_Type_Petrol">Petrol Finished</string>

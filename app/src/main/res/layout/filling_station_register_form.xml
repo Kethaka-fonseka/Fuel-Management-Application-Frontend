@@ -31,7 +31,7 @@
                 app:srcCompat="@drawable/background" />
 
             <TextView
-                android:id="@+id/Text_Filling_Station_Register"
+                android:id="@+id/Txt_StationRegister_Title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
@@ -65,7 +65,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.461"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/Text_Filling_Station_Register" />
+                app:layout_constraintTop_toBottomOf="@+id/Txt_StationRegister_Title" />
 
             <LinearLayout
                 android:id="@+id/linearLayout"
@@ -103,13 +103,14 @@
             </LinearLayout>
 
             <Spinner
-                android:id="@+id/Spinner_Location"
+                android:id="@+id/Spinner_RegisterStation_Location"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="84dp"
                 android:layout_marginEnd="24dp"
                 android:textAlignment="center"
+                android:background="@color/design_default_color_on_primary"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -134,7 +135,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/Btn__Filling_Station_Register_Cancel"
                 app:layout_constraintHorizontal_bias="0.764"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/Spinner_Location" />
+                app:layout_constraintTop_toBottomOf="@+id/Spinner_RegisterStation_Location" />
 
             <Button
                 android:id="@+id/Btn__Filling_Station_Register_Cancel"
@@ -152,7 +153,7 @@
                 android:textStyle="bold"
                 app:backgroundTint="@color/red"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/Spinner_Location" />
+                app:layout_constraintTop_toBottomOf="@+id/Spinner_RegisterStation_Location" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

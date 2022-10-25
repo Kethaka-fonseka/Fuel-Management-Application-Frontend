@@ -1,8 +1,10 @@
 package com.example.fuel_management.Models;
 
+import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.List;
 
-public class FillingStationModel {
+public class FillingStationModel implements Serializable {
 
     private String Id;
 
@@ -13,6 +15,11 @@ public class FillingStationModel {
     private List<FuelModel> fuelTypes;
 
     private String location;
+
+    private LocalDateTime  fuelArrivalTime;
+
+    private LocalDateTime  fuelFinishTime;
+
 
     public String getId() {
         return Id;
@@ -52,5 +59,21 @@ public class FillingStationModel {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public LocalDateTime getFuelArrivalTime() {
+        return fuelArrivalTime;
+    }
+
+    public void setFuelArrivalTime(LocalDateTime fuelArrivalTime) {
+        this.fuelArrivalTime = fuelArrivalTime;
+    }
+
+    public LocalDateTime getFuelFinishTime() {
+        return fuelFinishTime;
+    }
+
+    public void setFuelFinishTime(LocalDateTime fuelFinishTime) {
+        this.fuelFinishTime = fuelFinishTime;
     }
 }
