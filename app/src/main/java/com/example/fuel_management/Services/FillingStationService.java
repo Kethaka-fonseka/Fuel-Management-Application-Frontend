@@ -21,17 +21,19 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 
 public class FillingStationService {
     public static final String FILLING_STATION_API_URL = "http://10.0.2.2:5234/api/fillingStations/";
     public static final String STATIONS = "stations";
+    public ZoneId zone = ZoneId.of("Asia/Colombo");
     Context context;
 
     //Filling station service constructor
     public FillingStationService(Context context) {
-
         this.context = context;
     }
 
@@ -89,6 +91,8 @@ public class FillingStationService {
                     jsonBody.put("name", stationModel.getName());
                     jsonBody.put("owner", stationModel.getOwner());
                     jsonBody.put("location",stationModel.getLocation());
+                    jsonBody.put("fuelArrivalTime", LocalDateTime.now().plusHours(5).plusMinutes(30));
+                    jsonBody.put("fuelFinishTime", LocalDateTime.now().plusHours(5).plusMinutes(30));
                     jsonBody.put("fuelTypes", fuelJsonArray);
                     requestBody = jsonBody.toString();
                     Log.d("KEthaka",requestBody);
@@ -135,6 +139,9 @@ public class FillingStationService {
                         station.setName(receivedStationData.getString("name"));
                         station.setLocation(receivedStationData.getString("location"));
                         station.setOwner(receivedStationData.getString("owner"));
+                        station.setFuelArrivalTime(LocalDateTime.parse(receivedStationData.getString("fuelArrivalTime").substring(0,19)));
+                        station.setFuelFinishTime(LocalDateTime.parse(receivedStationData.getString("fuelFinishTime").substring(0,19)));
+
 
                         JSONArray fuelTypesInJsonArray = receivedStationData.getJSONArray("fuelTypes");
                         List<FuelModel> fuelTypes = new ArrayList<>();
@@ -192,4 +199,80 @@ public class FillingStationService {
         });
         RequestHandler.getInstance(context).addToRequestQueue(request);
     }
+
+
+    //Update filling station details
+    //Add new filling station by the user
+    public interface  UpdateFillingStationDetailsResponse{
+        void onError(String message);
+
+        void onResponse(String successMessage);
+    }
+
+
+    public void UpdateFillingStationDetails(FillingStationModel stationModel, UpdateFillingStationDetailsResponse updateFillingStationDetailsResponse){
+        String url = FILLING_STATION_API_URL+stationModel.getId();
+        StringRequest request = new StringRequest(Request.Method.PUT, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                updateFillingStationDetailsResponse.onResponse(response);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(context, "running error", Toast.LENGTH_SHORT).show();
+                String errorData = new String(error.networkResponse.data);
+
+                updateFillingStationDetailsResponse.onError(errorData);
+            }
+        }){
+            @Override
+            public String getBodyContentType() {
+
+                return "application/json; charset=utf-8";
+            }
+            @Override
+            public byte[] getBody() {
+                //Request body contain the data tobe pass to the API.
+                String requestBody = null;
+
+                //Create list to store fuel types
+                List fuelTypes = new ArrayList<FuelModel>();
+
+                //This contain all the data need to be send in Json Object format
+                JSONObject jsonBody = new JSONObject();
+                try {
+                    //This is basically mapping filling station data to json body
+                    for( FuelModel fuel : stationModel.getFuelTypes()){
+                        JSONObject fuelType = new JSONObject();
+                        fuelType.put("fuelName",fuel.getFuelName());
+                        fuelType.put("status", fuel.getStatus());
+                        //Toast.makeText(context, fuelType.toString(), Toast.LENGTH_SHORT).show();
+                        fuelTypes.add(fuelType);
+                    }
+                    //covert fuel list to json array type
+                    JSONArray fuelJsonArray = new JSONArray(fuelTypes);
+
+                    jsonBody.put("id",stationModel.getId());
+                    jsonBody.put("name", stationModel.getName());
+                    jsonBody.put("owner", stationModel.getOwner());
+                    jsonBody.put("location",stationModel.getLocation());
+                    jsonBody.put("fuelArrivalTime",stationModel.getFuelArrivalTime().plusHours(5).plusMinutes(30));
+                    jsonBody.put("fuelFinishTime", stationModel.getFuelFinishTime().plusHours(5).plusMinutes(30));
+                    jsonBody.put("fuelTypes", fuelJsonArray);
+                    requestBody = jsonBody.toString();
+                    Log.d("KEthaka",requestBody);
+                    return requestBody == null ? null : requestBody.getBytes("utf-8");
+                } catch (JSONException | UnsupportedEncodingException e) {
+                    VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", requestBody, "utf-8");
+                    return null;
+                }
+
+
+
+            }
+        };
+        RequestHandler.getInstance(context).addToRequestQueue(request);
+    }
+
 }

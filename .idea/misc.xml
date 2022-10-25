@@ -7,7 +7,12 @@
         <entry key="..\:/AndroidStudioProjects/EAD-Assignment/Fuel-Management-Application-Frontend/app/src/main/res/font/lazy_dog.xml" value="0.25555555555555554" />
         <entry key="..\:/AndroidStudioProjects/EAD-Assignment/Fuel-Management-Application-Frontend/app/src/main/res/layout/activity_dialog_box.xml" value="0.2109375" />
         <entry key="..\:/AndroidStudioProjects/EAD-Assignment/Fuel-Management-Application-Frontend/app/src/main/res/layout/activity_main.xml" value="0.19907407407407407" />
-        <entry key="..\:/AndroidStudioProjects/EAD-Assignment/Fuel-Management-Application-Frontend/app/src/main/res/layout/filling_station_register_form.xml" value="0.23125" />
+        <entry key="..\:/AndroidStudioProjects/EAD-Assignment/Fuel-Management-Application-Frontend/app/src/main/res/layout/activity_update_filling_station.xml" value="0.264" />
+        <entry key="..\:/AndroidStudioProjects/EAD-Assignment/Fuel-Management-Application-Frontend/app/src/main/res/layout/activity_view_station.xml" value="0.4" />
+        <entry key="..\:/AndroidStudioProjects/EAD-Assignment/Fuel-Management-Application-Frontend/app/src/main/res/layout/card_fuel_type.xml" value="0.4" />
+        <entry key="..\:/AndroidStudioProjects/EAD-Assignment/Fuel-Management-Application-Frontend/app/src/main/res/layout/content_scrolling.xml" value="0.18854166666666666" />
+        <entry key="..\:/AndroidStudioProjects/EAD-Assignment/Fuel-Management-Application-Frontend/app/src/main/res/layout/filling_station_register_form.xml" value="0.1" />
+        <entry key="..\:/AndroidStudioProjects/EAD-Assignment/Fuel-Management-Application-Frontend/app/src/main/res/layout/filling_station_update_form.xml" value="0.1" />
         <entry key="..\:/AndroidStudioProjects/EAD-Assignment/Fuel-Management-Application-Frontend/app/src/main/res/layout/login_form.xml" value="0.152" />
         <entry key="..\:/AndroidStudioProjects/EAD-Assignment/Fuel-Management-Application-Frontend/app/src/main/res/layout/owner_station_view_grid.xml" value="0.2" />
         <entry key="..\:/AndroidStudioProjects/EAD-Assignment/Fuel-Management-Application-Frontend/app/src/main/res/layout/register_as_form.xml" value="0.19907407407407407" />
@@ -15,10 +20,12 @@
         <entry key="..\:/AndroidStudioProjects/EAD-Assignment/Fuel-Management-Application-Frontend/app/src/main/res/layout/station_detail.xml" value="0.19907407407407407" />
         <entry key="..\:/AndroidStudioProjects/EAD-Assignment/Fuel-Management-Application-Frontend/app/src/main/res/layout/station_detail_owner_card.xml" value="0.25052083333333336" />
         <entry key="..\:/AndroidStudioProjects/EAD-Assignment/Fuel-Management-Application-Frontend/app/src/main/res/layout/station_detail_user_card.xml" value="0.25052083333333336" />
-        <entry key="..\:/AndroidStudioProjects/EAD-Assignment/Fuel-Management-Application-Frontend/app/src/main/res/layout/update_fuel_station_form.xml" value="0.19907407407407407" />
+        <entry key="..\:/AndroidStudioProjects/EAD-Assignment/Fuel-Management-Application-Frontend/app/src/main/res/layout/update_fuel_station_form.xml" value="0.2" />
         <entry key="..\:/AndroidStudioProjects/EAD-Assignment/Fuel-Management-Application-Frontend/app/src/main/res/layout/user_edit_form.xml" value="0.19907407407407407" />
         <entry key="..\:/AndroidStudioProjects/EAD-Assignment/Fuel-Management-Application-Frontend/app/src/main/res/layout/user_station_view_grid.xml" value="0.264" />
+        <entry key="..\:/AndroidStudioProjects/EAD-Assignment/Fuel-Management-Application-Frontend/app/src/main/res/menu/main_menu.xml" value="0.19635416666666666" />
         <entry key="..\:/AndroidStudioProjects/EAD-Assignment/Fuel-Management-Application-Frontend/app/src/main/res/menu/menu_search.xml" value="0.1765625" />
+        <entry key="..\:/AndroidStudioProjects/EAD-Assignment/Fuel-Management-Application-Frontend/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.194" />
         <entry key="..\:/AndroidStudioProjects/Fuel_Management/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/Projects/EAD/Fuel-Management-Application-Frontend/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.165" />
         <entry key="..\:/Projects/EAD/Fuel-Management-Application-Frontend/app/src/main/res/drawable/background_button.xml" value="0.306" />

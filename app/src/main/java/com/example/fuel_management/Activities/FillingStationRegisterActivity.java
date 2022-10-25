@@ -14,6 +14,9 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.basgeekball.awesomevalidation.AwesomeValidation;
+import com.basgeekball.awesomevalidation.ValidationStyle;
+import com.basgeekball.awesomevalidation.utility.RegexTemplate;
 import com.example.fuel_management.Models.FillingStationModel;
 import com.example.fuel_management.Models.FuelModel;
 import com.example.fuel_management.R;
@@ -31,9 +34,10 @@ public class FillingStationRegisterActivity extends AppCompatActivity implements
     private List<String> fuelNames;
     private FillingStationModel fillingStation;
     private List<FuelModel> fuels;
-    private Button btn_register_station;
+    private Button btn_register_station, btn_cancel;
     private EditText txt_stationName;
     private SessionManager sessionManager;
+    private AwesomeValidation awesomeValidation;
     private FillingStationService fillingStationService;
 
     @Override
@@ -41,7 +45,7 @@ public class FillingStationRegisterActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.filling_station_register_form);
 
-        locationSpinner = (Spinner) findViewById(R.id.Spinner_Location);
+        locationSpinner = (Spinner) findViewById(R.id.Spinner_RegisterStation_Location);
         ArrayAdapter<String> locationSpinnerAdapter = new ArrayAdapter<String>(
                 FillingStationRegisterActivity.this,android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.locations));
         locationSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -52,39 +56,56 @@ public class FillingStationRegisterActivity extends AppCompatActivity implements
         btn_register_station = findViewById(R.id.Btn__Filling_Station_Register_Register);
         checkBox_Diesel = findViewById(R.id.Checkbox_Diesel);
         checkBox_Petrol = findViewById(R.id.Checkbox_Petrol);
+        btn_cancel = findViewById(R.id.Btn__Filling_Station_Register_Cancel);
         txt_stationName = findViewById(R.id.Edit_Add_Station_Name);
         fillingStation= new FillingStationModel();
         fuelNames  = new ArrayList<String>();
         fuels = new ArrayList<FuelModel>();
         fillingStationService = new FillingStationService(this);
         locationSpinner.setOnItemSelectedListener(this);
+        awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
 
+
+        //validate  station name field
+        awesomeValidation.addValidation(this, R.id.Edit_Add_Station_Name, RegexTemplate.NOT_EMPTY, R.string.invalid_station_name);
 
         btn_register_station.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Adding selected fuel Fuel type array list
                 createFuelArray();
-                fillingStation.setName(txt_stationName.getText().toString());
-                fillingStation.setFuelTypes(fuels);
-                fillingStation.setOwner(sessionManager.getSessionID());
+               if(!fuels.isEmpty() && awesomeValidation.validate()){
+                   fillingStation.setName(txt_stationName.getText().toString());
+                   fillingStation.setFuelTypes(fuels);
+                   fillingStation.setOwner(sessionManager.getSessionID());
 
-               fillingStationService.AddNewFillingStation(fillingStation, new FillingStationService.AddNewFillingStationResponse() {
-                   @Override
-                   public void onError(String message) {
-                       Toast.makeText(FillingStationRegisterActivity.this, message, Toast.LENGTH_SHORT).show();
-                   }
+                   fillingStationService.AddNewFillingStation(fillingStation, new FillingStationService.AddNewFillingStationResponse() {
+                       @Override
+                       public void onError(String message) {
+                           Toast.makeText(FillingStationRegisterActivity.this, message, Toast.LENGTH_SHORT).show();
+                       }
 
-                   @Override
-                   public void onResponse(String successMessage) {
-                       Toast.makeText(FillingStationRegisterActivity.this, "Filling station Added Successfully", Toast.LENGTH_SHORT).show();
-                       Intent intent=new Intent(FillingStationRegisterActivity.this, StationOwnerHomeActivity.class);
-                       startActivity(intent);
-                   }
-               });
+                       @Override
+                       public void onResponse(String successMessage) {
+                           Toast.makeText(FillingStationRegisterActivity.this, "Filling station Added Successfully", Toast.LENGTH_SHORT).show();
+                           Intent intent=new Intent(FillingStationRegisterActivity.this, StationOwnerHomeActivity.class);
+                           startActivity(intent);
+                       }
+                   });
+               }
+               else{
+                   Toast.makeText(FillingStationRegisterActivity.this, "You need to check at least one fuel type to continue", Toast.LENGTH_LONG).show();
+               }
             }
         });
+  //Cancel the activity
 
+        btn_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
 
 

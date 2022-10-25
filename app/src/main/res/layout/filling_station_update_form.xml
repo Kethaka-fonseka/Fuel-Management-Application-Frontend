@@ -7,11 +7,7 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="match_parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -24,183 +20,217 @@
                 android:scaleType="centerCrop"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0"
+                app:layout_constraintVertical_bias="1.0"
                 app:srcCompat="@drawable/background" />
 
             <TextView
-                android:id="@+id/Text_Filling_Station_Update"
+                android:id="@+id/Txt_UpdateStation_Title"
                 android:layout_width="wrap_content"
+
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="36dp"
-                android:layout_marginEnd="24dp"
+                android:layout_marginTop="44dp"
                 android:fontFamily="@font/lazy_dog"
-                android:text="@string/Filling_Station_Update"
-                android:textColor="@color/black"
-                android:textSize="40dp"
+                android:text="@string/Filling_Station_Update_Title"
+                android:textSize="40sp"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <EditText
-                android:id="@+id/Edit_Update_Station_Name"
-                android:layout_width="350dp"
-                android:layout_height="55dp"
-                android:layout_marginStart="24dp"
+            <TextView
+                android:id="@+id/Txt_UpdateStation_Name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
                 android:layout_marginTop="48dp"
-                android:layout_marginEnd="24dp"
+                android:fontFamily="@font/lazy_dog"
+                android:text="@string/StationName"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/Txt_UpdateStation_Title" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="80dp"
+                android:fontFamily="@font/lazy_dog"
+                android:text="@string/location"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/Txt_UpdateStation_Name"
+                app:layout_constraintTop_toBottomOf="@+id/Txt_UpdateStation_Name" />
+
+            <EditText
+                android:id="@+id/Edt_UpdateStation_Name"
+                android:layout_width="205dp"
+                android:layout_height="27dp"
+                android:layout_marginStart="36dp"
                 android:background="@drawable/edittext_background"
                 android:ems="10"
                 android:fontFamily="@font/lazy_dog"
-                android:hint="@string/StationName"
                 android:inputType="textPersonName"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textColorHint="@color/gray"
-                android:textSize="34sp"
-                android:textStyle="italic"
+                android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.461"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/Text_Filling_Station_Update" />
-
-            <LinearLayout
-                android:id="@+id/linearLayout"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="60dp"
-                android:layout_marginEnd="24dp"
-                android:orientation="horizontal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/Edit_Update_Station_Name">
-
-                <CheckBox
-                    android:id="@+id/Checkbox_Diesel"
-                    android:layout_width="182dp"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/lazy_dog"
-                    android:onClick="onCheckboxClicked"
-                    android:text="@string/Diesel"
-                    android:textAlignment="center"
-                    android:textSize="34dp" />
-
-                <CheckBox
-                    android:id="@+id/Checkbox_Petrol"
-                    android:layout_width="223dp"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/lazy_dog"
-                    android:onClick="onCheckboxClicked"
-                    android:text="@string/petrol"
-                    android:textAlignment="center"
-                    android:textSize="34dp"
-                    tools:layout_editor_absoluteX="182dp"
-                    tools:layout_editor_absoluteY="244dp" />
-            </LinearLayout>
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/Txt_UpdateStation_Name"
+                app:layout_constraintTop_toTopOf="@+id/Txt_UpdateStation_Name" />
 
             <Spinner
-                android:id="@+id/Spinner_Location_Filling_Station_Update"
-                android:layout_width="match_parent"
-                android:layout_height="55dp"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="52dp"
-                android:layout_marginEnd="24dp"
-                android:textAlignment="center"
+                android:id="@+id/Spinner_UpdateStation_Location"
+                android:layout_width="211dp"
+                android:layout_height="49dp"
+                android:layout_marginStart="32dp"
+                android:background="@color/design_default_color_on_primary"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/textView4"
+                app:layout_constraintTop_toTopOf="@+id/textView4" />
 
-            <EditText
-                android:id="@+id/Edit_Update_Fuel_Arrival_Time"
-                android:layout_width="350dp"
-                android:layout_height="55dp"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="60dp"
-                android:layout_marginEnd="24dp"
-                android:background="@drawable/edittext_background"
-                android:ems="10"
+            <TextView
+                android:id="@+id/Txt_UpdateStation_FuelType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="88dp"
                 android:fontFamily="@font/lazy_dog"
-                android:hint="@string/Fuel_Arrival_Time"
-                android:inputType="datetime"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textColorHint="@color/gray"
-                android:textSize="34sp"
-                android:textStyle="italic"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.461"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/Spinner_Location_Filling_Station_Update" />
+                android:text="@string/fuel_types"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/textView4"
+                app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
-            <EditText
-                android:id="@+id/Edit_Update_Fuel_Finish_Time"
-                android:layout_width="350dp"
-                android:layout_height="55dp"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="60dp"
-                android:layout_marginEnd="24dp"
-                android:background="@drawable/edittext_background"
-                android:ems="10"
+            <CheckBox
+                android:id="@+id/Checkbox_UpdateStation_Petrol"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="60dp"
                 android:fontFamily="@font/lazy_dog"
-                android:hint="@string/Fuel_Finish_Time"
-                android:inputType="textPersonName"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textColorHint="@color/gray"
-                android:textSize="34sp"
-                android:textStyle="italic"
+                android:onClick="onCheckboxClicked"
+                android:text="@string/petrol"
+                android:textSize="20sp"
+                app:layout_constraintStart_toEndOf="@+id/Txt_UpdateStation_FuelType"
+                app:layout_constraintTop_toTopOf="@+id/Txt_UpdateStation_FuelType" />
+
+            <CheckBox
+                android:id="@+id/Checkbox_UpdateStation_Diesel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:fontFamily="@font/lazy_dog"
+                android:onClick="onCheckboxClicked"
+                android:text="@string/Diesel"
+                android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.461"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/Edit_Update_Fuel_Arrival_Time" />
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/Checkbox_UpdateStation_Petrol"
+                app:layout_constraintTop_toTopOf="@+id/Checkbox_UpdateStation_Petrol" />
+
+            <TextView
+                android:id="@+id/Txt_updateStation_Arrival"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="108dp"
+                android:fontFamily="@font/lazy_dog"
+                android:text="@string/Fuel_Arrival_Time"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/Txt_UpdateStation_FuelType"
+                app:layout_constraintTop_toBottomOf="@+id/Txt_UpdateStation_FuelType" />
+
+            <TextView
+                android:id="@+id/Txt_UpdateStation_Finish"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="84dp"
+                android:fontFamily="@font/lazy_dog"
+                android:text="@string/Fuel_Finish_Time"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/Txt_updateStation_Arrival"
+                app:layout_constraintTop_toBottomOf="@+id/Txt_updateStation_Arrival" />
 
             <Button
-                android:id="@+id/Btn_Filling_Station_Update_Update"
-                android:layout_width="173dp"
-                android:layout_height="51dp"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="48dp"
+                android:id="@+id/Btn_UpdateStation_Update"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="48dp"
+                android:layout_marginBottom="124dp"
                 android:background="@drawable/login_signup_button"
                 android:fontFamily="@font/lazy_dog"
-                android:text="@string/Update_Register_Station"
-                android:textAlignment="center"
-                android:textAllCaps="true"
-                android:textColor="@color/white"
-                android:textSize="15sp"
-                android:textStyle="bold"
+                android:text="@string/update"
+                android:textSize="24sp"
                 app:backgroundTint="@color/green"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/Edit_Update_Fuel_Finish_Time" />
+                app:layout_constraintTop_toBottomOf="@+id/Txt_UpdateStation_Finish"
+                app:layout_constraintVertical_bias="0.61" />
 
             <Button
-                android:id="@+id/Btn_Filling_Station_Update_Cancel"
-                android:layout_width="173dp"
-                android:layout_height="51dp"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="48dp"
-                android:layout_marginEnd="24dp"
+                android:id="@+id/Btn_UpdateStation_Cancle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:background="@drawable/login_signup_button"
                 android:fontFamily="@font/lazy_dog"
                 android:text="@string/Cancel"
-                android:textAlignment="center"
-                android:textAllCaps="true"
-                android:textColor="@color/white"
-                android:textSize="15sp"
-                android:textStyle="bold"
+                android:textSize="24sp"
                 app:backgroundTint="@color/red"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/Btn_Filling_Station_Update_Update"
-                app:layout_constraintTop_toBottomOf="@+id/Edit_Update_Fuel_Finish_Time" />
+                app:layout_constraintStart_toEndOf="@+id/Btn_UpdateStation_Update"
+                app:layout_constraintTop_toTopOf="@+id/Btn_UpdateStation_Update" />
 
+            <TextView
+                android:id="@+id/Txt_FuelArrival_DatePicker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:text="TextView"
+                android:tooltipText="@string/update_date_here"
+                app:layout_constraintStart_toEndOf="@+id/Txt_updateStation_Arrival"
+                app:layout_constraintTop_toTopOf="@+id/Txt_updateStation_Arrival" />
+
+            <TextView
+                android:id="@+id/Txt_FuelArrival_TimePicker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="44dp"
+                android:text="TextView"
+                android:tooltipText="@string/update_time_here"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/Txt_FuelArrival_DatePicker"
+                app:layout_constraintTop_toTopOf="@+id/Txt_FuelArrival_DatePicker" />
+
+            <TextView
+                android:id="@+id/Txt_FuelFinish_DatePicker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:text="TextView"
+                android:tooltipText="@string/update_date_here"
+                app:layout_constraintStart_toEndOf="@+id/Txt_UpdateStation_Finish"
+                app:layout_constraintTop_toTopOf="@+id/Txt_UpdateStation_Finish" />
+
+            <TextView
+                android:id="@+id/Txt_FuelFinish_TimePicker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                android:tooltipText="@string/update_time_here"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.441"
+                app:layout_constraintStart_toEndOf="@+id/Txt_FuelFinish_DatePicker"
+                app:layout_constraintTop_toTopOf="@+id/Txt_FuelFinish_DatePicker" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

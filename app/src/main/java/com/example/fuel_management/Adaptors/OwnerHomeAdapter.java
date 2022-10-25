@@ -17,12 +17,14 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.fuel_management.Activities.FillingStationRegisterActivity;
 import com.example.fuel_management.Activities.StationOwnerHomeActivity;
 import com.example.fuel_management.Models.FillingStationModel;
+import com.example.fuel_management.Models.FuelModel;
 import com.example.fuel_management.R;
 import com.example.fuel_management.Services.FillingStationService;
+import com.example.fuel_management.Activities.ViewStationActivity;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,13 +54,28 @@ public class OwnerHomeAdapter extends RecyclerView.Adapter<OwnerHomeAdapter.View
      String stationName = stationList.get(position).getName();
      String stationLocation = stationList.get(position).getLocation();
      String stationID = stationList.get(position).getId();
+     String owner = stationList.get(position).getOwner();
+     LocalDateTime arrivalTime = stationList.get(position).getFuelArrivalTime();
+     LocalDateTime finishTime = stationList.get(position).getFuelFinishTime();
 
+     List<FuelModel> fuelTypes = stationList.get(position).getFuelTypes();
+
+     //Create FillingStation Object
+        FillingStationModel fillingStationModel =new FillingStationModel();
+        fillingStationModel.setName(stationName);
+        fillingStationModel.setOwner(owner);
+        fillingStationModel.setId(stationID);
+        fillingStationModel.setLocation(stationLocation);
+        fillingStationModel.setFuelTypes(fuelTypes);
+        fillingStationModel.setFuelArrivalTime(arrivalTime);
+        fillingStationModel.setFuelFinishTime(finishTime);
         //Create a listener for the card view
      holder.cardView.setOnClickListener(new View.OnClickListener() {
          @Override
          public void onClick(View view) {
-             Toast.makeText(view.getContext(), "Clicked", Toast.LENGTH_SHORT).show();
-             Toast.makeText(view.getContext(),stationID.toString(), Toast.LENGTH_SHORT).show();
+             Intent intent=new Intent(view.getContext(), ViewStationActivity.class);
+             intent.putExtra("station",fillingStationModel);
+             view.getContext().startActivity(intent);
          }
      });
      //Create a listener for the delete button

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.fuel_management">
+    package="com.example.fuel_management" >
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -15,10 +15,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Fuel_Management"
         android:usesCleartextTraffic="true"
-        tools:targetApi="31">
+        tools:targetApi="31" >
+        <activity
+            android:name=".Activities.ViewStationActivity"
+            android:exported="false"
+            android:noHistory="true"
+            android:theme="@style/No_Action_Bar"/>
         <activity
             android:name=".Activities.FillingStationUpdateActivity"
             android:exported="true"
+            android:noHistory="true"
             android:theme="@style/No_Action_Bar" />
         <activity
             android:name=".Activities.FillingStationRegisterActivity"
@@ -34,7 +40,7 @@
         <activity
             android:name=".Activities.StationOwnerHomeActivity"
             android:exported="true"
-            android:theme="@style/No_Action_Bar" />
+            />
         <activity
             android:name=".Activities.UserHomeActivity"
             android:exported="true"
@@ -46,6 +52,7 @@
         <activity
             android:name=".Activities.LoginActivity"
             android:exported="true"
+            android:noHistory="true"
             android:theme="@style/No_Action_Bar" />
         <activity
             android:name=".Activities.MainActivity"
@@ -53,7 +60,8 @@
         <activity
             android:name=".Activities.SplashScreen"
             android:exported="true"
-            android:theme="@style/No_Action_Bar">
+            android:noHistory="true"
+            android:theme="@style/No_Action_Bar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
