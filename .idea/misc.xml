@@ -41,7 +41,10 @@
         <entry key="..\:/Projects/EAD/Fuel-Management-Application-Frontend/app/src/main/res/drawable/splash_screen.xml" value="0.3635" />
         <entry key="..\:/Projects/EAD/Fuel-Management-Application-Frontend/app/src/main/res/drawable/user_station_view_grid.xml" value="0.306" />
         <entry key="..\:/Projects/EAD/Fuel-Management-Application-Frontend/app/src/main/res/layout/activity_main.xml" value="0.1762917933130699" />
+        <entry key="..\:/Projects/EAD/Fuel-Management-Application-Frontend/app/src/main/res/layout/filling_station_register_form.xml" value="0.26358695652173914" />
+        <entry key="..\:/Projects/EAD/Fuel-Management-Application-Frontend/app/src/main/res/layout/filling_station_update_form.xml" value="0.31875" />
         <entry key="..\:/Projects/EAD/Fuel-Management-Application-Frontend/app/src/main/res/layout/login_form.xml" value="0.2563405797101449" />
+        <entry key="..\:/Projects/EAD/Fuel-Management-Application-Frontend/app/src/main/res/layout/owner_station_view_grid.xml" value="0.2595108695652174" />
         <entry key="..\:/Projects/EAD/Fuel-Management-Application-Frontend/app/src/main/res/layout/register_as_form.xml" value="0.24635416666666668" />
         <entry key="..\:/Projects/EAD/Fuel-Management-Application-Frontend/app/src/main/res/layout/register_form.xml" value="0.21800327332242225" />
         <entry key="..\:/Projects/EAD/Fuel-Management-Application-Frontend/app/src/main/res/layout/station_detail.xml" value="0.33061594202898553" />
@@ -50,6 +53,7 @@
         <entry key="..\:/Projects/EAD/Fuel-Management-Application-Frontend/app/src/main/res/layout/update_fuel_station_form.xml" value="0.3061594202898551" />
         <entry key="..\:/Projects/EAD/Fuel-Management-Application-Frontend/app/src/main/res/layout/user_edit.xml" value="0.3061594202898551" />
         <entry key="..\:/Projects/EAD/Fuel-Management-Application-Frontend/app/src/main/res/layout/user_edit_form.xml" value="0.3061594202898551" />
+        <entry key="..\:/Projects/EAD/Fuel-Management-Application-Frontend/app/src/main/res/layout/user_join_queue_popup.xml" value="0.264" />
         <entry key="..\:/Projects/EAD/Fuel-Management-Application-Frontend/app/src/main/res/layout/user_queue_edit_form.xml" value="0.264" />
         <entry key="..\:/Projects/EAD/Fuel-Management-Application-Frontend/app/src/main/res/layout/user_station_view_grid.xml" value="0.264" />
         <entry key="..\:/Projects/EAD/Fuel-Management-Application-Frontend/app/src/main/res/layout/user_view.xml" value="0.3061594202898551" />

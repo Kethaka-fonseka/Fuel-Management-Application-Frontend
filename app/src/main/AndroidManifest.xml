@@ -22,6 +22,10 @@
             android:noHistory="true"
             android:theme="@style/No_Action_Bar"/>
         <activity
+            android:name=".Activities.UserJoinQueuePopUpActivity"
+            android:exported="true"
+            android:theme="@style/Pop_up" />
+        <activity
             android:name=".Activities.FillingStationUpdateActivity"
             android:exported="true"
             android:noHistory="true"

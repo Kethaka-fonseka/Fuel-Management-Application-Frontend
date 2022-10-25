@@ -53,7 +53,7 @@ public class UserHomeActivity extends AppCompatActivity {
             public void onResponse(ArrayList<FillingStationModel> fillingStationModelArrayList) {
                 Toast.makeText(UserHomeActivity.this, "Content Successful", Toast.LENGTH_SHORT).show();
                 RecyclerView recyclerView = findViewById(R.id.ListView_User_Station_View_List);
-                UserHomeDetailAdaptor adaptor = new UserHomeDetailAdaptor(UserHomeActivity.this,fillingStationModelArrayList);
+                UserHomeDetailAdaptor adaptor = new UserHomeDetailAdaptor(UserHomeActivity.this,fillingStationModelArrayList,sessionManager);
                 recyclerView.setAdapter(adaptor);
                 recyclerView.setLayoutManager(new LinearLayoutManager(UserHomeActivity.this));
 //                adaptor.setOnItemClickListener(new UserHomeDetailAdaptor.OnItemClickListener() {

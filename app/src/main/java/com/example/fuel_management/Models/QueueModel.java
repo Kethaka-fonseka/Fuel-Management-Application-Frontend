@@ -1,12 +1,21 @@
 package com.example.fuel_management.Models;
 
 public class QueueModel {
+    public String id;
     public String customer;
     public String fillingStation ;
     public String vehicleType ;
     public String arrivalTime ;
     public String deparTime ;
     public String status ;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getCustomer() {
         return customer;

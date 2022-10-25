@@ -27,7 +27,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FillingStationService {
-    public static final String FILLING_STATION_API_URL = "http://10.0.2.2:5234/api/fillingStations/";
+    public static final String FILLING_STATION_API_URL = "https://94be-2402-d000-8104-fb5f-5c9b-d7bc-a6ed-7233.in.ngrok.io/api/fillingStations/";
     public static final String STATIONS = "stations";
     public ZoneId zone = ZoneId.of("Asia/Colombo");
     Context context;
@@ -272,6 +272,54 @@ public class FillingStationService {
 
             }
         };
+        RequestHandler.getInstance(context).addToRequestQueue(request);
+    }
+
+      public interface  GetAllFillingStationsByUserResponse{
+        void onError(String message);
+
+        void onResponse(ArrayList<FillingStationModel> fillingStationModelArrayList);
+    }
+
+    public void getFillingStationDetails(GetAllFillingStationsByUserResponse fillingStationNewResponse){
+        String url = FILLING_STATION_API_URL;
+        JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                try {
+                    JSONArray jsonArray = response;
+                    ArrayList<FillingStationModel> fillingStationModelArray = new ArrayList<>();
+                    for(int i=0;i<jsonArray.length();i++){
+                        JSONObject fillingStation = jsonArray.getJSONObject(i);
+                        FillingStationModel fillingStationModel = new FillingStationModel();
+                        fillingStationModel.setName(fillingStation.getString("name"));
+                        fillingStationModel.setOwner(fillingStation.getString("owner"));
+                        fillingStationModel.setLocation(fillingStation.getString("location"));
+
+                        JSONArray fuelTypesInJsonArray = fillingStation.getJSONArray("fuelTypes");
+                        List<FuelModel> fuelTypes = new ArrayList<>();
+
+                        for(int j=0; j<fuelTypesInJsonArray.length();j++){
+                            JSONObject fuelType = (JSONObject) fuelTypesInJsonArray.get(j);
+                            FuelModel fuel =new FuelModel();
+                            fuel.setFuelName(fuelType.getString("fuelName"));
+                            fuel.setStatus(fuelType.getString("status"));
+                            fuelTypes.add(fuel);
+                        }
+                        fillingStationModel.setFuelTypes(fuelTypes);
+                        fillingStationModelArray.add(fillingStationModel);
+                    }
+                    fillingStationNewResponse.onResponse(fillingStationModelArray);
+                }catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                fillingStationNewResponse.onError(error.toString());
+            }
+        });
         RequestHandler.getInstance(context).addToRequestQueue(request);
     }
 

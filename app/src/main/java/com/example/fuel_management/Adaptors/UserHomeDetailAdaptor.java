@@ -19,6 +19,7 @@ import com.example.fuel_management.Activities.UserHomeActivity;
 import com.example.fuel_management.Models.FillingStationModel;
 import com.example.fuel_management.R;
 import com.example.fuel_management.Services.FillingStationService;
+import com.example.fuel_management.Session.SessionManager;
 
 import java.util.List;
 
@@ -27,10 +28,12 @@ public class UserHomeDetailAdaptor extends RecyclerView.Adapter<UserHomeDetailAd
     private List<FillingStationModel> fillingStationModelList;
     private FillingStationService fillingStationService;
     private Context context;
+    private SessionManager sessionManager;
 
-    public UserHomeDetailAdaptor(Context context,List<FillingStationModel> fillingStationModelList) {
+    public UserHomeDetailAdaptor(Context context,List<FillingStationModel> fillingStationModelList,SessionManager sessionManager) {
         this.context=context;
         this.fillingStationModelList = fillingStationModelList;
+        this.sessionManager=sessionManager;
     }
 
 //    // Define the listener interface

@@ -25,7 +25,7 @@ import java.util.List;
 
 public class QueueService {
 
-    public static final String QUEUE_API_URL = "https://8c05-2402-d000-8104-fb5f-5c9b-d7bc-a6ed-7233.in.ngrok.io/api/queues/";
+    public static final String QUEUE_API_URL = "https://94be-2402-d000-8104-fb5f-5c9b-d7bc-a6ed-7233.in.ngrok.io/api/queues/";
 
     Context context;
 
@@ -62,7 +62,8 @@ public class QueueService {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                getQueueLengthByStationResponse.onError(error.toString());
+                String errorData = new String(error.networkResponse.data);
+                getQueueLengthByStationResponse.onError(errorData);
             }
         });
         RequestHandler.getInstance(context).addToRequestQueue(request);
@@ -101,7 +102,7 @@ public class QueueService {
     public interface AddCustomerToQueueResponse{
         void onError(String message);
 
-        void onResponse(String successMessage);
+        void onResponse(JSONObject response);
     }
 
     public void addCustomerToQueueByStation(QueueModel queueModel, AddCustomerToQueueResponse addCustomerToQueueResponse){
@@ -109,7 +110,7 @@ public class QueueService {
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                addCustomerToQueueResponse.onResponse(response.toString());
+                addCustomerToQueueResponse.onResponse(response);
             }
         }, new Response.ErrorListener() {
             @Override
@@ -131,6 +132,7 @@ public class QueueService {
                     queueData.put("vehicleType",queueModel.getVehicleType());
                     queueData.put("status",queueModel.getStatus());
                     requestBody = queueData.toString();
+                    System.out.println("requestBody===>"+requestBody);
                     return requestBody == null ? null : requestBody.getBytes("utf-8");
                 } catch (JSONException | UnsupportedEncodingException e) {
                     VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", requestBody, "utf-8");
@@ -148,8 +150,8 @@ public class QueueService {
     }
 
     public void updateCustomerToQueueByStation(QueueModel queueModel, UpdateCustomerToQueueResponse updateCustomerToQueueResponse){
-        String url = QUEUE_API_URL;
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, null, new Response.Listener<JSONObject>() {
+        String url = QUEUE_API_URL+queueModel.id;
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.PUT, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 updateCustomerToQueueResponse.onResponse(response.toString());
@@ -169,11 +171,15 @@ public class QueueService {
                 String requestBody = null;
                 JSONObject queueData = new JSONObject();
                 try {
+                    queueData.put("id",queueModel.getId());
                     queueData.put("customer",queueModel.getCustomer());
                     queueData.put("fillingStation",queueModel.getFillingStation());
                     queueData.put("vehicleType",queueModel.getVehicleType());
                     queueData.put("status",queueModel.getStatus());
+                    queueData.put("arrivalTime",queueModel.getArrivalTime());
+                    queueData.put("deparTime",queueModel.getDeparTime());
                     requestBody = queueData.toString();
+                    System.out.println("requestBody===>"+requestBody);
                     return requestBody == null ? null : requestBody.getBytes("utf-8");
                 } catch (JSONException | UnsupportedEncodingException e) {
                     VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", requestBody, "utf-8");
@@ -181,6 +187,40 @@ public class QueueService {
                 }
             }
         };
+        RequestHandler.getInstance(context).addToRequestQueue(request);
+    }
+
+    public interface QetQueueByIdResponse{
+        void onError(String message);
+        void onResponse(QueueModel queueModel);
+    }
+
+    public void getQueueByIdService(String id,QetQueueByIdResponse getQueueByIdResponse){
+        String url = QUEUE_API_URL + id;
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    QueueModel queueModel = new QueueModel();
+                    queueModel.setId(response.getString("id"));
+                    queueModel.setCustomer(response.getString("customer"));
+                    queueModel.setFillingStation(response.getString("fillingStation"));
+                    queueModel.setVehicleType(response.getString("vehicleType"));
+                    queueModel.setArrivalTime(response.getString("arrivalTime"));
+                    queueModel.setDeparTime(response.getString("deparTime"));
+                    queueModel.setStatus(response.getString("status"));
+                    getQueueByIdResponse.onResponse(queueModel);
+                }catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                String errorData = new String(error.networkResponse.data);
+                getQueueByIdResponse.onError(errorData);
+            }
+        });
         RequestHandler.getInstance(context).addToRequestQueue(request);
     }
 
