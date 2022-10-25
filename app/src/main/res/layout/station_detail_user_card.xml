@@ -4,17 +4,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp"
+    >
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/CardView_Station_Detail_User_card"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         app:cardCornerRadius="8dp"
         app:cardElevation="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
+        app:layout_constraintTop_toTopOf="parent"
+        >
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -23,53 +27,82 @@
 
             <ImageView
                 android:id="@+id/fuel_image_station"
-                android:layout_width="130dp"
-                android:layout_height="130dp"
-                android:layout_marginLeft="20dp"
+                android:layout_width="161dp"
+                android:layout_height="163dp"
+                android:layout_marginStart="16dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.513"
                 app:srcCompat="@drawable/ioc" />
 
             <TextView
                 android:id="@+id/Txt_User_Card_Station_Name"
                 android:layout_width="181dp"
-                android:layout_height="54dp"
+                android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="24dp"
                 android:layout_weight="1"
+                android:fontFamily="@font/lazy_dog"
                 android:text="Station Name"
-                android:textSize="20dp"
+                android:textSize="30dp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/fuel_image_station"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/Txt_User_Card_Fuel_Type"
+                android:id="@+id/Txt_User_Card_Location"
                 android:layout_width="182dp"
-                android:layout_height="58dp"
+                android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
+                android:layout_marginTop="12dp"
                 android:layout_weight="1"
-                android:text="Length"
+                android:fontFamily="@font/lazy_dog"
+                android:text="@string/Location"
                 android:textSize="20dp"
                 android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/Txt_User_Card_Station_Name"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/Txt_User_Card_Station_Name"
                 app:layout_constraintTop_toBottomOf="@+id/Txt_User_Card_Station_Name" />
 
             <TextView
-                android:id="@+id/Txt_User_Card_Location"
+                android:id="@+id/Txt_User_Card_Fuel_Type_Petrol"
                 android:layout_width="182dp"
-                android:layout_height="58dp"
+                android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:layout_marginBottom="4dp"
+                android:layout_marginTop="24dp"
                 android:layout_weight="1"
-                android:text="Station Name"
+                android:fontFamily="@font/lazy_dog"
+                android:text="@string/Fuel_Type_Petrol"
                 android:textSize="20dp"
+
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/Txt_User_Card_Fuel_Type"
-                app:layout_constraintTop_toBottomOf="@+id/Txt_User_Card_Fuel_Type" />
+                app:layout_constraintEnd_toEndOf="@+id/Txt_User_Card_Location"
+                app:layout_constraintStart_toStartOf="@+id/Txt_User_Card_Location"
+                app:layout_constraintTop_toBottomOf="@+id/Txt_User_Card_Location" />
+
+            <TextView
+                android:id="@+id/Txt_User_Card_Fuel_Type_Diesel"
+                android:layout_width="182dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="20dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/lazy_dog"
+                android:text="@string/Fuel_Type_Diesel"
+                android:textSize="20dp"
+
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/Txt_User_Card_Fuel_Type_Petrol"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/Txt_User_Card_Fuel_Type_Petrol"
+                app:layout_constraintTop_toBottomOf="@+id/Txt_User_Card_Fuel_Type_Petrol" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

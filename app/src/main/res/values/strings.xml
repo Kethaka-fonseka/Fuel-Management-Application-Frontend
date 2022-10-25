@@ -53,10 +53,28 @@
     <string name="exit_app">Exit</string>
     <string name="Delete">Delete</string>
     <string name="invalid_station_name">This field cant be empty</string>
+    <string name="Search_here">Search here ......</string>
+    <string name="Location">Location</string>
+    <string name="Fuel_Type_Petrol">Petrol Finished</string>
+    <string name="Fuel_Type_Diesel">Diesel Finished</string>
+    <string name="Time_Waiting_In_Queue">The time waiting in queue</string>
+    <string name="Car_Count">Car Count</string>
+    <string name="Van_Count">Van Count</string>
+    <string name="Bike_Count">Bike Count</string>
+    <string name="ThreeWheel_Count">Three Wheel Count</string>
+    <string name="Heading_User_Join_Queue_Popup">Enter Your Vehicle Details</string>
+    <string name="Txt_Vehicle_Selection_User_Join_Queue_Popup">Select Vehicle Type</string>
+    <string name="Save">Save</string>
     <string-array name="locations">
         <item>Colombo</item>
         <item>Kalutara</item>
         <item>Gampaha</item>
+    </string-array>
+    <string-array name="vehicleType">
+        <item>Car</item>
+        <item>Van</item>
+        <item>Bike</item>
+        <item>Three Wheeler</item>
     </string-array>
 
 </resources>

@@ -20,7 +20,7 @@ import java.util.Base64;
 
 //This class Includes All Methods related to access the API
 public class UserService {
-    public static final String USER_API_URL = "http://10.0.2.2:5234/api/users/";
+    public static final String USER_API_URL = "https://94be-2402-d000-8104-fb5f-5c9b-d7bc-a6ed-7233.in.ngrok.io/api/users/";
     Context context;
 
     //User service constructor
@@ -159,6 +159,5 @@ public void createUserSession(String token) throws JSONException {
     sessionManager.saveSession(payload);
 
 }
-
 
 }
