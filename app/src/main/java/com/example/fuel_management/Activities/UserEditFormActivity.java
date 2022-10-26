@@ -174,34 +174,6 @@ public class UserEditFormActivity extends AppCompatActivity {
         }
     }
 
-    //back button press method
-    @Override
-    public void onBackPressed() {
-        String sessionStatus = sessionManager.getQueueSessionStatus();
-        if (sessionStatus.contains("NO")) {
-            finish();
-        }else{
-            exitApplicationDialog(this);
-        }
-    }
-
-    //back button press dialog box
-    private void exitApplicationDialog(Context context) {
-        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(context);
-        builder.setMessage(R.string.Want_to_exit_this_queue);
-        builder.setTitle(R.string.Alert);
-        builder.setCancelable(false);
-        builder.setPositiveButton(R.string.exit_app, (DialogInterface.OnClickListener) (dialog, which) -> {
-            exitQueue(sessionManager,queueService,"Exit");
-            finish();
-        });
-        builder.setNegativeButton(R.string.Cancel, (DialogInterface.OnClickListener) (dialog, which) -> {
-            dialog.cancel();
-        });
-        android.app.AlertDialog alertDialog = builder.create();
-        alertDialog.show();
-    }
-
     //get the queue details by id
     private QueueModel getQueueById(QueueService queueService,String queueId){
         QueueModel resQueueModel = null;
@@ -223,7 +195,7 @@ public class UserEditFormActivity extends AppCompatActivity {
         queueService.updateCustomerToQueueByStation(queueModel,new QueueService.UpdateCustomerToQueueResponse(){
             @Override
             public void onError(String message) {
-                Toast.makeText(UserEditFormActivity.this, message, Toast.LENGTH_LONG).show();
+                Toast.makeText(UserEditFormActivity.this, "You exited from queue, Have a nice Day", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(UserEditFormActivity.this,UserHomeActivity.class);
                 startActivity(intent);
                 sessionManager.removeQueueSession();
@@ -231,7 +203,7 @@ public class UserEditFormActivity extends AppCompatActivity {
 
             @Override
             public void onResponse(String successMessage) {
-                Toast.makeText(UserEditFormActivity.this, "Have a nice Day", Toast.LENGTH_LONG).show();
+                Toast.makeText(UserEditFormActivity.this, "You exited from queue, Have a nice Day", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(UserEditFormActivity.this,UserHomeActivity.class);
                 startActivity(intent);
                 sessionManager.removeQueueSession();

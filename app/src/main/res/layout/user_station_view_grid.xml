@@ -59,13 +59,12 @@
         android:layout_height="48dp"
         android:layout_marginStart="28dp"
         android:layout_marginTop="16dp"
-        android:background="@drawable/login_signup_button"
         android:actionBarWidgetTheme="@color/black"
+        android:background="@drawable/search_view_txt_field"
         app:iconifiedByDefault="false"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/background_img"
-        app:queryHint="@string/Search_here"
-        />
+        app:queryHint="@string/Search_here" />
 
     <Button
         android:id="@+id/Btn_UserHome_Logout"
