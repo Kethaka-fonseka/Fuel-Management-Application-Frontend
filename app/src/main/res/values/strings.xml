@@ -57,7 +57,7 @@
     <string name="Location">Location</string>
     <string name="Fuel_Type_Petrol">Petrol Finished</string>
     <string name="Fuel_Type_Diesel">Diesel Finished</string>
-    <string name="Time_Waiting_In_Queue">The time waiting in queue</string>
+    <string name="Time_Waiting_In_Queue">* You are the first person in the queue</string>
     <string name="Car_Count">Car Count</string>
     <string name="Van_Count">Van Count</string>
     <string name="Bike_Count">Bike Count</string>
@@ -66,6 +66,7 @@
     <string name="Txt_Vehicle_Selection_User_Join_Queue_Popup">Select Vehicle Type</string>
     <string name="Save">Save</string>
     <string name="empty">No Filling Stations to display.</string>
+    <string name="Want_to_exit_this_queue">Are you want to exit from this queue?</string>
     <string-array name="locations">
         <item>Colombo</item>
         <item>Kalutara</item>

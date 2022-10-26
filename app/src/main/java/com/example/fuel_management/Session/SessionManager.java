@@ -74,14 +74,10 @@ public class SessionManager {
         editor.putString(SESSION_QUEUE_ID,id).commit();
         editor.putString(SESSION_QUEUE_STATUS,status).commit();
         editor.putString(SESSION_CUSTOMER,customer).commit();
-//        editor.putString(SESSION_QUEUE_FILLING_STATION,fillingStation).commit();
+        editor.putString(SESSION_QUEUE_FILLING_STATION,fillingStation).commit();
         editor.putString(SESSION_QUEUE_VEHICLE_TYPE,vehicleType).commit();
         editor.putString(SESSION_QUEUE_ARRIVAL_TIME,arrivalTime).commit();
         editor.putString(SESSION_QUEUE_DEPART_TIME,deparTime).commit();
-    }
-
-    public void saveFillingStation(String stationName) {
-        editor.putString(SESSION_QUEUE_FILLING_STATION,stationName).commit();
     }
 
     public String getQueueSessionID(){
@@ -115,6 +111,7 @@ public class SessionManager {
     public void removeQueueSession(){
         editor.putString(SESSION_QUEUE_ID,"NO").commit();
         editor.putString(SESSION_QUEUE_STATUS,"NO").commit();
+        editor.putString(SESSION_CUSTOMER,"NO").commit();
         editor.putString(SESSION_QUEUE_FILLING_STATION,"NO").commit();
         editor.putString(SESSION_QUEUE_VEHICLE_TYPE,"NO").commit();
         editor.putString(SESSION_QUEUE_ARRIVAL_TIME,"NO").commit();

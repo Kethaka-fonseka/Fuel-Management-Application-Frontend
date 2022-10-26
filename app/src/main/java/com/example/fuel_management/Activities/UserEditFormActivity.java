@@ -1,5 +1,7 @@
 package com.example.fuel_management.Activities;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -26,6 +28,7 @@ public class UserEditFormActivity extends AppCompatActivity {
     TextView heading_txt,time_txt,txt_car_count,txt_van_count,txt_bike_count,txt_wheel_count;
     Button btn_joined_to_queue,btn_exit_from_queue,btn_exit_after_queue;
     private SessionManager sessionManager;
+    private QueueService queueService;
 
     private AlertDialog.Builder joinedQueueDialogBuilder;
     private AlertDialog dialogQue;
@@ -34,6 +37,8 @@ public class UserEditFormActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.user_queue_edit_form);
+
+        //get intent details
         Intent intent = getIntent();
         String statName = intent.getStringExtra("fillingStatName");
         sessionManager = new SessionManager(this);
@@ -58,30 +63,29 @@ public class UserEditFormActivity extends AppCompatActivity {
         queueService.getQueueLengthByStation(statName, new QueueService.GetQueueLengthByStationResponse() {
             @Override
             public void onError(String message) {
-                txt_car_count.setText("Car cont ="+String.valueOf(0));
-                txt_van_count.setText("Car cont ="+String.valueOf(0));
-                txt_bike_count.setText("Bike cont ="+String.valueOf(0));
-                txt_wheel_count.setText("Three Wheel cont ="+String.valueOf(0));
+                txt_car_count.setText(String.valueOf(0));
+                txt_van_count.setText(String.valueOf(0));
+                txt_bike_count.setText(String.valueOf(0));
+                txt_wheel_count.setText(String.valueOf(0));
             }
 
             @Override
             public void onResponse(List<VehicleTypeDTO> vehicleTypes) {
-                System.out.println("sddsd"+vehicleTypes.get(0).getVehicleType());
                 if(vehicleTypes.size()>0) {
                     for (int i = 0; i < vehicleTypes.size(); i++) {
                         System.out.println("0");
                         if (vehicleTypes.get(i).getVehicleType().contains("Car")) {
                             System.out.println("1");
-                            txt_car_count.setText("Car cont ="+String.valueOf(vehicleTypes.get(i).getTotal()));
+                            txt_car_count.setText(String.valueOf(vehicleTypes.get(i).getTotal()));
                         } else if (vehicleTypes.get(i).getVehicleType().contains("Van")) {
                             System.out.println("2");
-                            txt_van_count.setText("Van cont ="+String.valueOf(vehicleTypes.get(i).getTotal()));
+                            txt_van_count.setText(String.valueOf(vehicleTypes.get(i).getTotal()));
                         } else if (vehicleTypes.get(i).getVehicleType().contains("Bike")) {
                             System.out.println("3");
-                            txt_bike_count.setText("Bike cont ="+String.valueOf(vehicleTypes.get(i).getTotal()));
+                            txt_bike_count.setText(String.valueOf(vehicleTypes.get(i).getTotal()));
                         } else if (vehicleTypes.get(i).getVehicleType().contains("ThreeWheel")) {
                             System.out.println("4");
-                            txt_wheel_count.setText("Three Wheel cont ="+String.valueOf(vehicleTypes.get(i).getTotal()));
+                            txt_wheel_count.setText(String.valueOf(vehicleTypes.get(i).getTotal()));
                         }
                     }
                 }
@@ -92,16 +96,16 @@ public class UserEditFormActivity extends AppCompatActivity {
         queueService.getTimeWaitingAtQueueByStation(statName, new QueueService.GetTimeWaitingAtQueueByStationResponse() {
             @Override
             public void onError(String message) {
-                time_txt.setText("Queue time is Hour "+0+" Minute "+0+" Seconds "+0);
+                time_txt.setText("* You are the first person in the queue");
             }
 
             @Override
             public void onResponse(TimeFormatDTO timeFormat) {
-                time_txt.setText("Queue time is Hour "+timeFormat.getHours()+" Minute "+timeFormat.getMinutes()+" Seconds "+timeFormat.getSeconds());
+                time_txt.setText("* Queue time is Hour "+timeFormat.getHours()+" Minute "+timeFormat.getMinutes()+" Seconds "+timeFormat.getSeconds());
             }
         });
 
-        //        Join buttons services
+        //Join buttons
         btn_joined_to_queue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -109,57 +113,83 @@ public class UserEditFormActivity extends AppCompatActivity {
 //                createNewJoinedQueueDialog();
 //                UserJoinQueuePopUpActivity userJoinQueuePopUpActivity = new UserJoinQueuePopUpActivity();
 //                userJoinQueuePopUpActivity.createNewJoinedQueueDialog(UserEditFormActivity.this);
-                Intent intent = new Intent(UserEditFormActivity.this,UserJoinQueuePopUpActivity.class);
-                intent.putExtra("fillingStatName",statName);
-                startActivity(intent);
+                String status = sessionManager.getQueueSessionStatus();
+                System.out.println("status===>"+status);
+                if(status.contains("NO")){
+                    Intent intent = new Intent(UserEditFormActivity.this,UserJoinQueuePopUpActivity.class);
+                    intent.putExtra("fillingStatName",statName);
+                    startActivity(intent);
+                }else{
+                    Toast.makeText(UserEditFormActivity.this, "You are already join to queue", Toast.LENGTH_LONG).show();
+                }
             }
         });
 
         btn_exit_from_queue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String queueSessionID = sessionManager.getQueueSessionID();
-                if(queueSessionID!=null){
-                    String status = sessionManager.getQueueSessionStatus();
-                    String fillingStation = sessionManager.getQueueFillingStation();
-                    String vehicleType = sessionManager.getQueueVehicleType();
-                    String customer = sessionManager.getQueueCustomer();
-                    String arrivalTime = sessionManager.getQueueArrivalTime();
-                    String departTime= sessionManager.getQueueDepartTime();
-                    QueueModel queueModel = new QueueModel();
-                    queueModel.setId(queueSessionID);
-                    queueModel.setStatus(status);
-                    queueModel.setFillingStation(fillingStation);
-                    queueModel.setCustomer(customer);
-                    queueModel.setVehicleType(vehicleType);
-                    queueModel.setArrivalTime(arrivalTime);
-                    queueModel.setDeparTime(departTime);
-                    exitToQueue(queueService,queueModel,"Exit");
-                }
+                exitQueue(sessionManager,queueService,"Exit");
             }
         });
 
         btn_exit_after_queue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String queueSessionID = sessionManager.getQueueSessionID();
-                if(queueSessionID!=null){
-                    String status = sessionManager.getQueueSessionStatus();
-                    String fillingStation = sessionManager.getQueueFillingStation();
-                    String vehicleType = sessionManager.getQueueVehicleType();
-                    String arrivalTime = sessionManager.getQueueArrivalTime();
-                    String departTime= sessionManager.getQueueDepartTime();
-                    QueueModel queueModel = new QueueModel();
-                    queueModel.setId(queueSessionID);
-                    queueModel.setStatus(status);
-                    queueModel.setFillingStation(fillingStation);
-                    queueModel.setVehicleType(vehicleType);
-                    queueModel.setArrivalTime(arrivalTime);
-                    queueModel.setDeparTime(departTime);
-                    exitToQueue(queueService,queueModel,"Pumped");
-                }
+                exitQueue(sessionManager,queueService,"Pumped");
             }
         });
+    }
+
+    //method to call exit queue service
+    private void exitQueue(SessionManager sessionManager,QueueService queueService, String status) {
+        String queueSessionID = sessionManager.getQueueSessionID();
+        if (queueSessionID != null) {
+            String fillingStation = sessionManager.getQueueFillingStation();
+            String sessionStatus = sessionManager.getQueueSessionStatus();
+            String vehicleType = sessionManager.getQueueVehicleType();
+            String customer = sessionManager.getQueueCustomer();
+            String arrivalTime = sessionManager.getQueueArrivalTime();
+            String departTime = sessionManager.getQueueDepartTime();
+            QueueModel queueModel = new QueueModel();
+            queueModel.setId(queueSessionID);
+            queueModel.setStatus(status);
+            queueModel.setFillingStation(fillingStation);
+            queueModel.setCustomer(customer);
+            queueModel.setVehicleType(vehicleType);
+            queueModel.setArrivalTime(arrivalTime);
+            queueModel.setDeparTime(departTime);
+            if (sessionStatus.contains("NO")) {
+                Toast.makeText(UserEditFormActivity.this, "You are not joined to queue", Toast.LENGTH_LONG).show();
+            } else {
+                exitToQueue(queueService, queueModel, status);
+            }
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        String sessionStatus = sessionManager.getQueueSessionStatus();
+        if (sessionStatus.contains("NO")) {
+            finish();
+        }else{
+            exitApplicationDialog(this);
+        }
+    }
+
+    private void exitApplicationDialog(Context context) {
+        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(context);
+        builder.setMessage(R.string.Want_to_exit_this_queue);
+        builder.setTitle(R.string.Alert);
+        builder.setCancelable(false);
+        builder.setPositiveButton(R.string.exit_app, (DialogInterface.OnClickListener) (dialog, which) -> {
+            exitQueue(sessionManager,queueService,"Exit");
+            finish();
+        });
+        builder.setNegativeButton(R.string.Cancel, (DialogInterface.OnClickListener) (dialog, which) -> {
+            dialog.cancel();
+        });
+        android.app.AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
 
     private QueueModel getQueueById(QueueService queueService,String queueId){
@@ -176,6 +206,7 @@ public class UserEditFormActivity extends AppCompatActivity {
         return resQueueModel;
     }
 
+    //method to call exit queue service
     private void exitToQueue(QueueService queueService,QueueModel queueModel,String status) {
         queueModel.setStatus(status);
         queueService.updateCustomerToQueueByStation(queueModel,new QueueService.UpdateCustomerToQueueResponse(){
