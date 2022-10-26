@@ -20,7 +20,7 @@ import java.util.Base64;
 
 //This class Includes All Methods related to access the API
 public class UserService {
-    public static final String USER_API_URL = "http://10.0.2.2:5234/api/users/";
+    public static final String USER_API_URL = ConnectionSettings.CONNECTION_URL+ "users/";
     Context context;
 
     //User service constructor
