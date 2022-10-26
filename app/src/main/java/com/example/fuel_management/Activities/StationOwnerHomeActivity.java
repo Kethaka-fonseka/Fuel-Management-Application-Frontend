@@ -15,6 +15,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -29,6 +30,7 @@ import com.example.fuel_management.Models.FillingStationModel;
 import com.example.fuel_management.R;
 import com.example.fuel_management.Services.FillingStationService;
 import com.example.fuel_management.Session.SessionManager;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,7 +48,9 @@ public class StationOwnerHomeActivity extends AppCompatActivity {
     private OwnerHomeAdapter adapter;
     private FillingStationService fillingStationService;
     private SessionManager sessionManager;
+    private ConstraintLayout layout;
     private EditText edt_search;
+    private TextView txt_emptyView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +59,7 @@ public class StationOwnerHomeActivity extends AppCompatActivity {
         overridePendingTransition(1, 1);
 
         //Assign values
+        txt_emptyView =findViewById(R.id.Txt_EmptyView);
         fillingStationService = new FillingStationService(this);
         stationList = new ArrayList<FillingStationModel>();
         sessionManager = new SessionManager(this);
@@ -72,7 +77,7 @@ public class StationOwnerHomeActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-            //   adapter.getFilter().filter(s);
+               adapter.getFilter().filter(s);
             }
 
             @Override
@@ -104,6 +109,14 @@ public class StationOwnerHomeActivity extends AppCompatActivity {
             public void onResponse(List<FillingStationModel> stations) {
                  stationList = stations;
                  initRecylerView();
+                 if(stationList.isEmpty()){
+                     txt_emptyView.setVisibility(View.VISIBLE);
+                     recyclerView.setVisibility(View.GONE);
+                 }
+                 else {
+                     txt_emptyView.setVisibility(View.GONE);
+                     recyclerView.setVisibility(View.VISIBLE);
+                 }
 
             }
         });
