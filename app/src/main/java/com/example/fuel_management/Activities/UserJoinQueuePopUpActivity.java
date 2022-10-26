@@ -128,6 +128,4 @@ public class UserJoinQueuePopUpActivity extends AppCompatActivity {
             }
         });
     }
-
-
 }

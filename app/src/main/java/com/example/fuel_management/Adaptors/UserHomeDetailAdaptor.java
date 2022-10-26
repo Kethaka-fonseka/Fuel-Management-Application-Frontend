@@ -2,6 +2,7 @@ package com.example.fuel_management.Adaptors;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,19 +44,6 @@ public class UserHomeDetailAdaptor extends RecyclerView.Adapter<UserHomeDetailAd
         this.sessionManager=sessionManager;
     }
 
-//    // Define the listener interface
-//    public interface OnItemClickListener {
-//        void onItemClick(View itemView);
-//    }
-//
-//    // Define listener member variable
-//    public OnItemClickListener listener;
-//
-//    // Define the method that allows the parent activity or fragment to define the listener
-//    public void setOnItemClickListener(OnItemClickListener listener) {
-//        this.listener = listener;
-//    }
-
     //Method for set filtered filling station objects
     public void setFilteredList(List<FillingStationModel> filteredList){
         this.fillingStationModelList = filteredList;
@@ -74,20 +62,23 @@ public class UserHomeDetailAdaptor extends RecyclerView.Adapter<UserHomeDetailAd
     @Override
     public void onBindViewHolder(@NonNull UserHomeDetailAdaptor.ViewHolder holder, int position) {
         // Get the data model based on position
+        String sessionFilStation = sessionManager.getQueueFillingStation();
         FillingStationModel fillingStationModel = fillingStationModelList.get(position);
         if(fillingStationModel.getFuelTypes().size()>0){
             for(int i =0 ; i<fillingStationModel.getFuelTypes().size();i++){
-                System.out.println("dsff");
                 if(fillingStationModel.getFuelTypes().get(i).getFuelName().contains("Pet")){
-                    System.out.println("dsff");
                     holder.petrolStatus.setText("Petrol "+fillingStationModel.getFuelTypes().get(i).getStatus());
                 }else if (fillingStationModel.getFuelTypes().get(i).getFuelName().contains("Di")){
-                    System.out.println("dfgfgf");
                     holder.dieselStatus.setText("Diesel "+fillingStationModel.getFuelTypes().get(i).getStatus());
                 }
             }
         }
-        holder.stationName.setText(fillingStationModel.getName());
+        if(sessionFilStation.equals(fillingStationModel.getName())){
+            holder.stationName.setText(fillingStationModel.getName());
+            holder.stationName.setTextColor(Color.GREEN);
+        }else{
+            holder.stationName.setText(fillingStationModel.getName());
+        }
         holder.locationName.setText(fillingStationModel.getLocation());
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
