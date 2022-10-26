@@ -27,7 +27,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FillingStationService {
-    public static final String FILLING_STATION_API_URL = "https://94be-2402-d000-8104-fb5f-5c9b-d7bc-a6ed-7233.in.ngrok.io/api/fillingStations/";
+    public static final String FILLING_STATION_API_URL = "http://10.0.2.2:5234/api/fillingStations/";
     public static final String STATIONS = "stations";
     public ZoneId zone = ZoneId.of("Asia/Colombo");
     Context context;
@@ -120,7 +120,7 @@ public class FillingStationService {
 
 
     public void GetAllFillingStationsByOwner(String owner, GetAllFillingStationsByOwnerResponse getAllFillingStationsByOwnerResponse){
-        String url = FILLING_STATION_API_URL;
+        String url = FILLING_STATION_API_URL+"owner/"+owner;
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
