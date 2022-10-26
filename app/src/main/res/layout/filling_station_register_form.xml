@@ -45,12 +45,12 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+
             <EditText
                 android:id="@+id/Edit_Add_Station_Name"
                 android:layout_width="350dp"
                 android:layout_height="55dp"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="60dp"
+                android:layout_marginTop="40dp"
                 android:layout_marginEnd="24dp"
                 android:background="@drawable/edittext_background"
                 android:ems="10"
@@ -63,65 +63,30 @@
                 android:textSize="34sp"
                 android:textStyle="italic"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.461"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/Txt_StationRegister_Title" />
-
-            <LinearLayout
-                android:id="@+id/linearLayout"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="60dp"
-                android:layout_marginEnd="24dp"
-                android:orientation="horizontal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/Edit_Add_Station_Name">
-
-                <CheckBox
-                    android:id="@+id/Checkbox_Diesel"
-                    android:layout_width="182dp"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/lazy_dog"
-                    android:onClick="onCheckboxClicked"
-                    android:text="@string/Diesel"
-                    android:textAlignment="center"
-                    android:textSize="34dp" />
-
-                <CheckBox
-                    android:id="@+id/Checkbox_Petrol"
-                    android:layout_width="223dp"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/lazy_dog"
-                    android:onClick="onCheckboxClicked"
-                    android:text="@string/petrol"
-                    android:textAlignment="center"
-                    android:textSize="34dp"
-                    tools:layout_editor_absoluteX="182dp"
-                    tools:layout_editor_absoluteY="244dp" />
-            </LinearLayout>
+                app:layout_constraintHorizontal_bias="0.428"
+                app:layout_constraintStart_toStartOf="@+id/Txt_RegisterStation_Name"
+                app:layout_constraintTop_toBottomOf="@+id/Txt_RegisterStation_Name" />
 
             <Spinner
                 android:id="@+id/Spinner_RegisterStation_Location"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
                 android:layout_marginStart="24dp"
-                android:layout_marginTop="84dp"
+                android:layout_marginTop="48dp"
                 android:layout_marginEnd="24dp"
-                android:textAlignment="center"
                 android:background="@color/design_default_color_on_primary"
+                android:textAlignment="center"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+                app:layout_constraintTop_toBottomOf="@+id/Txt_RegisterStation_Location" />
 
             <Button
                 android:id="@+id/Btn__Filling_Station_Register_Register"
                 android:layout_width="173dp"
                 android:layout_height="51dp"
                 android:layout_marginStart="24dp"
-                android:layout_marginTop="124dp"
+                android:layout_marginTop="72dp"
                 android:layout_marginEnd="24dp"
                 android:background="@drawable/login_signup_button"
                 android:fontFamily="@font/lazy_dog"
@@ -133,7 +98,7 @@
                 android:textStyle="bold"
                 app:backgroundTint="@color/green"
                 app:layout_constraintEnd_toStartOf="@+id/Btn__Filling_Station_Register_Cancel"
-                app:layout_constraintHorizontal_bias="0.764"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/Spinner_RegisterStation_Location" />
 
@@ -141,8 +106,7 @@
                 android:id="@+id/Btn__Filling_Station_Register_Cancel"
                 android:layout_width="173dp"
                 android:layout_height="51dp"
-                android:layout_marginTop="124dp"
-                android:layout_marginEnd="24dp"
+                android:layout_marginEnd="16dp"
                 android:background="@drawable/login_signup_button"
                 android:fontFamily="@font/lazy_dog"
                 android:text="@string/Cancel"
@@ -153,7 +117,74 @@
                 android:textStyle="bold"
                 app:backgroundTint="@color/red"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/Spinner_RegisterStation_Location" />
+                app:layout_constraintTop_toTopOf="@+id/Btn__Filling_Station_Register_Register" />
+
+            <TextView
+                android:id="@+id/Txt_RegisterStation_Name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="44dp"
+                android:fontFamily="@font/lazy_dog"
+                android:text="@string/StationName"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.084"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/Txt_StationRegister_Title" />
+
+            <TextView
+                android:id="@+id/Txt_RegisterStation_Type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:fontFamily="@font/lazy_dog"
+                android:text="@string/fuel_types"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/Edit_Add_Station_Name"
+                app:layout_constraintTop_toBottomOf="@+id/Edit_Add_Station_Name" />
+
+            <CheckBox
+                android:id="@+id/Checkbox_Diesel"
+                android:layout_width="182dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="64dp"
+                android:fontFamily="@font/lazy_dog"
+                android:onClick="onCheckboxClicked"
+                android:text="@string/Diesel"
+                android:textAlignment="center"
+                android:textSize="24sp"
+                app:layout_constraintStart_toStartOf="@+id/Txt_RegisterStation_Type"
+                app:layout_constraintTop_toBottomOf="@+id/Txt_RegisterStation_Type" />
+
+            <CheckBox
+                android:id="@+id/Checkbox_Petrol"
+                android:layout_width="186dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/lazy_dog"
+                android:onClick="onCheckboxClicked"
+                android:text="@string/petrol"
+                android:textAlignment="center"
+                android:textSize="24sp"
+                app:layout_constraintStart_toEndOf="@+id/Checkbox_Diesel"
+                app:layout_constraintTop_toTopOf="@+id/Checkbox_Diesel" />
+
+            <TextView
+                android:id="@+id/Txt_RegisterStation_Location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:fontFamily="@font/lazy_dog"
+                android:text="@string/location"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/Checkbox_Diesel"
+                app:layout_constraintTop_toBottomOf="@+id/Checkbox_Diesel" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

@@ -25,7 +25,7 @@ import java.util.List;
 
 public class QueueService {
 
-    public static final String QUEUE_API_URL = "http://10.0.2.2:5234/api/queues/";
+    public static final String QUEUE_API_URL = ConnectionSettings.CONNECTION_URL + "queues/";
 
     Context context;
 

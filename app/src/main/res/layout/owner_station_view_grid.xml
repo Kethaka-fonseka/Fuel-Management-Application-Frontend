@@ -46,6 +46,8 @@
         android:layout_marginEnd="12dp"
         android:fontFamily="@font/lazy_dog"
         android:text="@string/Add_New"
+        android:backgroundTint="@color/design_default_color_primary"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/Edt_Owner_Station_Search"

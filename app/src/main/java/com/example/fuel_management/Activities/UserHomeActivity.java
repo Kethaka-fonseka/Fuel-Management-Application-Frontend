@@ -74,7 +74,6 @@ public class UserHomeActivity extends AppCompatActivity {
         btn_logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(UserHomeActivity.this, "WWWWWW", Toast.LENGTH_SHORT).show();
                 sessionManager.removeSession();
                 Intent intent=new Intent(UserHomeActivity.this, LoginActivity.class);
                 startActivity(intent);

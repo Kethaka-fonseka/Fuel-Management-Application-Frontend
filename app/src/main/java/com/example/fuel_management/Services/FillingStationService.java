@@ -27,7 +27,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FillingStationService {
-    public static final String FILLING_STATION_API_URL = "http://10.0.2.2:5234/api/fillingStations/";
+    public static final String FILLING_STATION_API_URL = ConnectionSettings.CONNECTION_URL+"fillingStations/";
     public static final String STATIONS = "stations";
     public ZoneId zone = ZoneId.of("Asia/Colombo");
     Context context;
