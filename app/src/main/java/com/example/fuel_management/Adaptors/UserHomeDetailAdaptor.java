@@ -65,7 +65,6 @@ public class UserHomeDetailAdaptor extends RecyclerView.Adapter<UserHomeDetailAd
     public void onBindViewHolder(@NonNull UserHomeDetailAdaptor.ViewHolder holder, int position) {
         // Get the data model based on position
         FillingStationModel fillingStationModel = fillingStationModelList.get(position);
-        System.out.println("fillingStationModel==>"+fillingStationModel.getFuelTypes().get(0).getFuelName());
         if(fillingStationModel.getFuelTypes().size()>0){
             for(int i =0 ; i<fillingStationModel.getFuelTypes().size();i++){
                 System.out.println("dsff");
@@ -83,7 +82,6 @@ public class UserHomeDetailAdaptor extends RecyclerView.Adapter<UserHomeDetailAd
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(view.getContext(), "Clicked", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(context, UserEditFormActivity.class);
                 intent.putExtra("fillingStatName",fillingStationModel.getName());
                 context.startActivity(intent);
