@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:id="@+id/Owner_Station_Home_Screen"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
@@ -60,5 +61,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Edt_Owner_Station_Search"
         app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/Txt_EmptyView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/lazy_dog"
+        android:text="@string/empty"
+        android:textAlignment="center"
+        android:textSize="34sp"
+        android:gravity="center"
+        android:visibility="gone"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/background_img" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
