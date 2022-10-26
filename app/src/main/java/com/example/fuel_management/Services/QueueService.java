@@ -25,7 +25,7 @@ import java.util.List;
 
 public class QueueService {
 
-    public static final String QUEUE_API_URL = "https://94be-2402-d000-8104-fb5f-5c9b-d7bc-a6ed-7233.in.ngrok.io/api/queues/";
+    public static final String QUEUE_API_URL = "http://10.0.2.2:5234/api/queues/";
 
     Context context;
 
