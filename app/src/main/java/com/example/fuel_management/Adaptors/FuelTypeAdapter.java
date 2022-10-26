@@ -22,14 +22,21 @@ import com.example.fuel_management.Services.FillingStationService;
 
 import java.util.ArrayList;
 import java.util.List;
+/**
+ * Adapter class for the recycler view of the fuel types in the viewFuelStation interface .
+ *
+ * @version 1.0
+ */
 
 public class FuelTypeAdapter extends RecyclerView.Adapter<FuelTypeAdapter.ViewHolder>{
 
+    //Initialize variables
     private List<FuelModel> fuelTypes;
     private FillingStationModel fillingStation;
     private FillingStationService fillingStationService;
     private Context context;
 
+    //Constructor for the fuel type adapter
     public FuelTypeAdapter(List<FuelModel> fuelTypes, FillingStationModel fillingStation, Context context)
     {
         this.fuelTypes = fuelTypes;
@@ -38,6 +45,7 @@ public class FuelTypeAdapter extends RecyclerView.Adapter<FuelTypeAdapter.ViewHo
         this.fillingStationService = new FillingStationService(context);
     }
 
+    //Set card view for the recycler view
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -45,13 +53,14 @@ public class FuelTypeAdapter extends RecyclerView.Adapter<FuelTypeAdapter.ViewHo
         return  new FuelTypeAdapter.ViewHolder(view);
     }
 
+    //Set values for the properties in the card view
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         String name = fuelTypes.get(position).getFuelName();
         String status = fuelTypes.get(position).getStatus();
 
 
-
+      //When click on the radio button it wil trigger this methoid
         holder.radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -66,6 +75,7 @@ public class FuelTypeAdapter extends RecyclerView.Adapter<FuelTypeAdapter.ViewHo
 
     }
 
+    //When user clicks on radio button it will change the status according to that
     private void updateFuelTypeStatus(String name, String status) {
         FuelModel updatedFuel = new FuelModel();
         List<FuelModel> updatedList = new ArrayList<FuelModel>();
@@ -94,6 +104,7 @@ public class FuelTypeAdapter extends RecyclerView.Adapter<FuelTypeAdapter.ViewHo
     }
 
 
+    //Return Item count
     @Override
     public int getItemCount() {
         return fuelTypes.size();
@@ -101,12 +112,13 @@ public class FuelTypeAdapter extends RecyclerView.Adapter<FuelTypeAdapter.ViewHo
 
 
 
+    //This class set the recycler view with the card
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-
+  //Initialize variables
         public TextView fuelTypeName;
-        RadioGroup radioGroup;
+        public RadioGroup radioGroup;
         public RadioButton available;
         public  RadioButton finished;
 
@@ -114,12 +126,15 @@ public class FuelTypeAdapter extends RecyclerView.Adapter<FuelTypeAdapter.ViewHo
         public ViewHolder(View itemView) {
             super(itemView);
 
+
+            //Assign variables
             fuelTypeName = itemView.findViewById(R.id.Txt_FuelTypeCard_Name);
             available = itemView.findViewById(R.id.Radio_FuelTypeCard_Available);
             finished = itemView.findViewById(R.id.Radio_FuelTypeCard_Finish);
             radioGroup = itemView.findViewById(R.id.RadioGroup_FuelTypeCard);
         }
 
+        //This wil set radio button values according to previosly got values
         public void setData(String name,String status) {
             fuelTypeName.setText(name);
             available.setChecked(status.equals("Available"));

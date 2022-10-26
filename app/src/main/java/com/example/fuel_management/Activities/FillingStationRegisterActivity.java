@@ -25,7 +25,11 @@ import com.example.fuel_management.Session.SessionManager;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * All the activities related to filling station registration form  .
+ *
+ * @version 1.0
+ */
 public class FillingStationRegisterActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     //Initialize variables
     private CheckBox checkBox_Diesel;
@@ -45,13 +49,13 @@ public class FillingStationRegisterActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.filling_station_register_form);
 
+        //Assign variables
         locationSpinner = (Spinner) findViewById(R.id.Spinner_RegisterStation_Location);
         ArrayAdapter<String> locationSpinnerAdapter = new ArrayAdapter<String>(
                 FillingStationRegisterActivity.this,android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.locations));
         locationSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         locationSpinner.setAdapter(locationSpinnerAdapter);
 
-        //Assign variables
         sessionManager = new SessionManager(this);
         btn_register_station = findViewById(R.id.Btn__Filling_Station_Register_Register);
         checkBox_Diesel = findViewById(R.id.Checkbox_Diesel);
@@ -69,9 +73,11 @@ public class FillingStationRegisterActivity extends AppCompatActivity implements
         //validate  station name field
         awesomeValidation.addValidation(this, R.id.Edit_Add_Station_Name, RegexTemplate.NOT_EMPTY, R.string.invalid_station_name);
 
+        //Register the user to the application
         btn_register_station.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 //Adding selected fuel Fuel type array list
                 createFuelArray();
                if(!fuels.isEmpty() && awesomeValidation.validate()){
@@ -79,6 +85,7 @@ public class FillingStationRegisterActivity extends AppCompatActivity implements
                    fillingStation.setFuelTypes(fuels);
                    fillingStation.setOwner(sessionManager.getSessionID());
 
+                   //Calls service in FillingStationService class to add new user
                    fillingStationService.AddNewFillingStation(fillingStation, new FillingStationService.AddNewFillingStationResponse() {
                        @Override
                        public void onError(String message) {
@@ -98,8 +105,9 @@ public class FillingStationRegisterActivity extends AppCompatActivity implements
                }
             }
         });
-  //Cancel the activity
 
+
+     //Cancel the filling station activity
         btn_cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -119,9 +127,10 @@ public class FillingStationRegisterActivity extends AppCompatActivity implements
             fuel.setStatus("Available");
             fuels.add(fuel);
         }
-        Log.d("Ketaka",String.valueOf(fuels.size()));
+        Log.d("fuelList",String.valueOf(fuels.size()));
     }
 
+    //When checkbox clicks this method will trigger and set checked values to an array
     public void onCheckboxClicked(View view) {
         // Is the view now checked?
         boolean checked = ((CheckBox) view).isChecked();
@@ -147,11 +156,13 @@ public class FillingStationRegisterActivity extends AppCompatActivity implements
         }
     }
 
+    //Override method to listen spinner selection
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
       fillingStation.setLocation(parent.getItemAtPosition(position).toString());
     }
 
+    //Override method to listen spinner selection
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
   //Do Nothing

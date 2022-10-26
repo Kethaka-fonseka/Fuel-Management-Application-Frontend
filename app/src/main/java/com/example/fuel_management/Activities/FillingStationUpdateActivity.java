@@ -35,6 +35,11 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * All the activities related to filling station update form  .
+ *
+ * @version 1.0
+ */
 public class FillingStationUpdateActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     //Initialize variables
@@ -100,7 +105,7 @@ public class FillingStationUpdateActivity extends AppCompatActivity implements A
 
 
 
-        //On click event of set date and time for the fuel arrival and finish time
+        //Set fuel arrival date
         txt_fuelArrival_datePicker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -109,6 +114,7 @@ public class FillingStationUpdateActivity extends AppCompatActivity implements A
             }
         });
 
+        //Set fuel arrival time
         txt_fuelArrival_timePicker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -116,6 +122,7 @@ public class FillingStationUpdateActivity extends AppCompatActivity implements A
             }
         });
 
+        //Set fuel arrival date
         txt_fuelFinish_datePicker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -123,6 +130,7 @@ public class FillingStationUpdateActivity extends AppCompatActivity implements A
             }
         });
 
+        //Set fuel finish time
         txt_fuelFinish_timePicker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -241,6 +249,7 @@ public class FillingStationUpdateActivity extends AppCompatActivity implements A
         datePickerDialog.show();
     }
 
+    //This will pop a dialog to select time
     private void handleTime(TextView picker) {
      Calendar calendar =Calendar.getInstance();
 

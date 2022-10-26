@@ -18,6 +18,11 @@ import com.example.fuel_management.Models.UserModel;
 import com.example.fuel_management.R;
 import com.example.fuel_management.Services.UserService;
 
+/**
+ * All the activities related to user registration form  .
+ *
+ * @version 1.0
+ */
 public class RegisterActivity extends AppCompatActivity {
 
     //Initialize variables
@@ -73,6 +78,8 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
+
+      //Register user to the application
         btn_register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -35,9 +35,14 @@ import com.google.android.material.snackbar.Snackbar;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Station Owner home screen interface related activities handle by this class  .
+ *
+ * @version 1.0
+ */
+
 public class StationOwnerHomeActivity extends AppCompatActivity {
 
-   /* String stationList [] = {"Panadura","Kalutara","Piliyandala"};*/
 
     //Initialize variables
     private ListView listView;
@@ -64,11 +69,11 @@ public class StationOwnerHomeActivity extends AppCompatActivity {
         stationList = new ArrayList<FillingStationModel>();
         sessionManager = new SessionManager(this);
         edt_search =findViewById(R.id.Edt_Owner_Station_Search);
-
-
         //Button for adding new filling station
         btn_add_new = (Button) findViewById(R.id.Btn_Add_New);
 
+
+        //When user click the search bar this method will invoke
         edt_search.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -132,6 +137,8 @@ public class StationOwnerHomeActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
     }
+
+    //When user click back button this will pop up a dialog screen
     private void exitApplicationDialog(Context context) {
         // Create the object of AlertDialog Builder class
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
@@ -164,18 +171,23 @@ public class StationOwnerHomeActivity extends AppCompatActivity {
         alertDialog.show();
     }
 
+
+    //Life cycle method onStart
     @Override
     protected void onStart() {
         super.onStart();
         initData();
     }
 
+    //Life cycle method onBackPressed
     @Override
     public void onBackPressed() {
         exitApplicationDialog(this);
 
     }
 
+
+    //Create menu in the the action bar
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -183,6 +195,7 @@ public class StationOwnerHomeActivity extends AppCompatActivity {
         return true;
     }
 
+    //Control actions of menu in the action bar
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();

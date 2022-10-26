@@ -20,6 +20,12 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * SView station details screen interface related activities handle by this class  .
+ *
+ * @version 1.0
+ */
+
 public class ViewStationActivity extends AppCompatActivity {
 //Variable initialize
 private TextView txt_station_title,txt_stationName, txt_stationLocation, txt_fuelArrivalTime, txt_fuelFinishTime;
@@ -62,6 +68,7 @@ private FuelTypeAdapter adapter;
           initData();
           initRecyclerView();
 
+          //This button directed user to the update filling station page
           btn_updateDetail.setOnClickListener(new View.OnClickListener() {
               @Override
               public void onClick(View v) {
@@ -74,6 +81,7 @@ private FuelTypeAdapter adapter;
 
     }
 
+    //Setup recyclerview
     private void initRecyclerView() {
         recyclerView = findViewById(R.id.Txt_ViewStation_RecyclerView);
         layoutManager = new LinearLayoutManager(this);
@@ -84,6 +92,7 @@ private FuelTypeAdapter adapter;
         adapter.notifyDataSetChanged();
     }
 
+    //Add data to the fuel types recycler view
     private void initData() {
         fuelList.addAll(stationModel.getFuelTypes());
     }
