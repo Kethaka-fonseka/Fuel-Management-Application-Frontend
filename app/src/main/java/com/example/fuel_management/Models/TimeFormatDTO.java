@@ -1,5 +1,10 @@
 package com.example.fuel_management.Models;
 
+/**
+ * DTO class for store time format.
+ *
+ * @version 1.0
+ */
 public class TimeFormatDTO {
     public int hours;
     public int minutes;

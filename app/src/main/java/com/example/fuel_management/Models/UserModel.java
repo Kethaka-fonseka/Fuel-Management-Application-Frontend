@@ -1,6 +1,10 @@
 package com.example.fuel_management.Models;
 
-//This model contain information related to the user
+/**
+ * This model contain information related to the user
+ *
+ * @version 1.0
+ */
 public class UserModel {
 
     //User ID

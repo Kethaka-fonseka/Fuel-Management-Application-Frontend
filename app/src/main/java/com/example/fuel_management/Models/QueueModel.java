@@ -1,5 +1,10 @@
 package com.example.fuel_management.Models;
 
+/**
+ * Model class for Queue details.
+ *
+ * @version 1.0
+ */
 public class QueueModel {
     public String id;
     public String customer;
