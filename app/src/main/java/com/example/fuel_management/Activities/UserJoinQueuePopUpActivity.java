@@ -31,7 +31,7 @@ import java.util.Map;
  *
  * @version 1.0
  */
-public class UserJoinQueuePopUpActivity extends AppCompatActivity {
+public class UserJoinQueuePopUpActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     //Initialize variables
     private AlertDialog.Builder joinedQueueDialogBuilder;
@@ -59,9 +59,8 @@ public class UserJoinQueuePopUpActivity extends AppCompatActivity {
         vehicleTypeSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         vehicleTypeSpinner.setAdapter(vehicleTypeSpinnerAdapter);
 
-        selectedVehicle = vehicleTypeSpinner.getSelectedItem().toString();
+        vehicleTypeSpinner.setOnItemSelectedListener(this);
 
-        System.out.println("sdsdsds====>"+selectedVehicle);
 
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
@@ -127,5 +126,16 @@ public class UserJoinQueuePopUpActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        selectedVehicle = parent.getItemAtPosition(position).toString();
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+   //Do nothing
     }
 }

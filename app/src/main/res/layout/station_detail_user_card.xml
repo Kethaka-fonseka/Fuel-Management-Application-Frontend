@@ -1,28 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingTop="10dp"
-    android:paddingBottom="10dp"
-    >
+    android:paddingBottom="10dp">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/CardView_Station_Detail_User_card"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_width="397dp"
+        android:layout_height="188dp"
         app:cardCornerRadius="8dp"
         app:cardElevation="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        >
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="395dp"
+            android:layout_height="189dp"
             android:padding="5dp">
 
             <ImageView
@@ -111,4 +108,4 @@
 
     </androidx.cardview.widget.CardView>
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

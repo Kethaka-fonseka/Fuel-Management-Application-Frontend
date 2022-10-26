@@ -51,6 +51,7 @@
         <activity
             android:name=".Activities.UserHomeActivity"
             android:exported="true"
+            android:windowSoftInputMode="adjustPan"
             android:theme="@style/No_Action_Bar" />
         <activity
             android:name=".Activities.RegisterActivity"

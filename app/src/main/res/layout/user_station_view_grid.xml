@@ -6,17 +6,6 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <ImageView
-        android:id="@+id/background_img"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:scaleType="centerCrop"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/background"
-        tools:layout_editor_absoluteX="0dp" />
-
     <!--    <EditText-->
 <!--        android:id="@+id/Edt_Search_User_Station"-->
 <!--        android:layout_width="260dp"-->
@@ -53,14 +42,24 @@
 <!--        android:dividerHeight="5dp"-->
 <!--        app:layout_constraintVertical_bias="0.05" />-->
 
+    <ImageView
+        android:id="@+id/background_img"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/background"
+        tools:layout_editor_absoluteX="0dp" />
+
     <androidx.appcompat.widget.SearchView
         android:id="@+id/SearchView_Search_User_Station"
         android:layout_width="252dp"
         android:layout_height="48dp"
-        android:layout_marginStart="28dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:actionBarWidgetTheme="@color/black"
-        android:background="@drawable/search_view_txt_field"
         app:iconifiedByDefault="false"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/background_img"
@@ -70,25 +69,27 @@
         android:id="@+id/Btn_UserHome_Logout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
         android:fontFamily="@font/lazy_dog"
         android:text="@string/logout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.951"
         app:layout_constraintStart_toEndOf="@+id/SearchView_Search_User_Station"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/SearchView_Search_User_Station" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/ListView_User_Station_View_List"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="374dp"
+        android:layout_height="608dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.432"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/SearchView_Search_User_Station"
-        app:layout_constraintVertical_bias="0.042" />
+        app:layout_constraintTop_toBottomOf="@+id/SearchView_Search_User_Station" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
