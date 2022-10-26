@@ -65,6 +65,7 @@
     <string name="Heading_User_Join_Queue_Popup">Enter Your Vehicle Details</string>
     <string name="Txt_Vehicle_Selection_User_Join_Queue_Popup">Select Vehicle Type</string>
     <string name="Save">Save</string>
+    <string name="empty">No Filling Stations to display.</string>
     <string-array name="locations">
         <item>Colombo</item>
         <item>Kalutara</item>
