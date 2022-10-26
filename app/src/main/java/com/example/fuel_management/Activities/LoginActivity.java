@@ -20,7 +20,11 @@ import com.example.fuel_management.Session.SessionManager;
 
 import org.json.JSONException;
 
-
+/**
+ * All the activities related to user login form  .
+ *
+ * @version 1.0
+ */
 public class LoginActivity extends AppCompatActivity {
 
     //Initialize variables
@@ -64,6 +68,8 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+
+      //Login user to the application and store login credentials in sqlite database
        btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -97,6 +103,8 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+
+   //Authenticated user directed to the authorized home page
     private void loginOnUserType() {
      sessionManager = new SessionManager(LoginActivity.this);
        String type = sessionManager.getSessionType();

@@ -25,8 +25,14 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * This class  Includes all the services related filling station crud operations .
+ *
+ * @version 1.0
+ */
 public class FillingStationService {
+
+    //Initialize variables
     public static final String FILLING_STATION_API_URL = ConnectionSettings.CONNECTION_URL+"fillingStations/";
     public static final String STATIONS = "stations";
     public ZoneId zone = ZoneId.of("Asia/Colombo");
@@ -38,14 +44,14 @@ public class FillingStationService {
     }
 
 
-    //Add new filling station by the user
+    //Add new filling station by the user response
     public interface  AddNewFillingStationResponse{
         void onError(String message);
 
         void onResponse(String successMessage);
     }
 
-
+    //Add new filling station by the user
     public void AddNewFillingStation(FillingStationModel stationModel, AddNewFillingStationResponse addNewFillingStationResponse){
         String url = FILLING_STATION_API_URL;
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url,null, new Response.Listener<JSONObject>() {
@@ -109,7 +115,7 @@ public class FillingStationService {
         RequestHandler.getInstance(context).addToRequestQueue(request);
     }
 
-    //Get all filling station that particular owner created
+    //Get all filling station that particular owner created response
 
     public interface GetAllFillingStationsByOwnerResponse{
         void onError(String message);
@@ -118,7 +124,7 @@ public class FillingStationService {
     }
 
 
-
+    //Get all filling station that particular owner created
     public void GetAllFillingStationsByOwner(String owner, GetAllFillingStationsByOwnerResponse getAllFillingStationsByOwnerResponse){
         String url = FILLING_STATION_API_URL+"owner/"+owner;
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
@@ -177,13 +183,14 @@ public class FillingStationService {
 
     }
 
-    //Delete a selected filling station
+    //Delete a selected filling station response
     public interface  DeleteFillingStationResponse{
         void onError(String message);
 
         void onResponse(String successMessage);
     }
 
+    //Delete a selected filling station
     public void DeleteFillingStation(String Id,DeleteFillingStationResponse deleteFillingStationResponse){
         String url = FILLING_STATION_API_URL+Id;
         StringRequest request = new StringRequest(Request.Method.DELETE,url,new Response.Listener<String>() {
@@ -201,8 +208,7 @@ public class FillingStationService {
     }
 
 
-    //Update filling station details
-    //Add new filling station by the user
+    //Update filling station details response
     public interface  UpdateFillingStationDetailsResponse{
         void onError(String message);
 
@@ -210,6 +216,7 @@ public class FillingStationService {
     }
 
 
+    //Update filling station details
     public void UpdateFillingStationDetails(FillingStationModel stationModel, UpdateFillingStationDetailsResponse updateFillingStationDetailsResponse){
         String url = FILLING_STATION_API_URL+stationModel.getId();
         StringRequest request = new StringRequest(Request.Method.PUT, url, new Response.Listener<String>() {
@@ -275,12 +282,17 @@ public class FillingStationService {
         RequestHandler.getInstance(context).addToRequestQueue(request);
     }
 
+    //Get all  filling station details response
       public interface  GetAllFillingStationsByUserResponse{
         void onError(String message);
 
         void onResponse(ArrayList<FillingStationModel> fillingStationModelArrayList);
     }
 
+
+
+
+    //Get all  filling station details
     public void getFillingStationDetails(GetAllFillingStationsByUserResponse fillingStationNewResponse){
         String url = FILLING_STATION_API_URL;
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {

@@ -17,8 +17,11 @@ import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
 import java.util.Base64;
-
-//This class Includes All Methods related to access the API
+/**
+ * This class Includes All Methods related to access the API .
+ *
+ * @version 1.0
+ */
 public class UserService {
     public static final String USER_API_URL = ConnectionSettings.CONNECTION_URL+ "users/";
     Context context;
@@ -28,7 +31,7 @@ public class UserService {
         this.context = context;
     }
 
-    //New user register ot the application
+    //New user register ot the application response
 
     public interface  RegisterNewUserResponse{
         void onError(String message);
@@ -36,7 +39,7 @@ public class UserService {
         void onResponse(String successMessage);
     }
 
-
+    //New user register ot the application
     public void registerNewUserUser(UserModel user, String password, RegisterNewUserResponse registerNewUserResponse){
         String url = USER_API_URL+"register";
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url,null, new Response.Listener<JSONObject>() {
@@ -89,7 +92,7 @@ public class UserService {
         RequestHandler.getInstance(context).addToRequestQueue(request);
     }
 
-//Login to the application
+
 
  //This interface handle responses
  public interface  UserLoginResponse{
@@ -99,6 +102,7 @@ public class UserService {
      }
 
 
+    //Login to the application
     public void userLogin(String username, String password, UserLoginResponse userLoginResponse){
         String url = USER_API_URL+"login";
         StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {

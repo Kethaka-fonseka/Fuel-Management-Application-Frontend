@@ -30,10 +30,16 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Adapter class for the recycler view of the StationOwner interface .
+ *
+ * @version 1.0
+ */
 public class OwnerHomeAdapter extends RecyclerView.Adapter<OwnerHomeAdapter.ViewHolder> implements Filterable {
 
     //Store list of filling stations
 
+    //Initialize variables
     private List<FillingStationModel> stationList;
     private List<FillingStationModel> fullStationList;
     private FillingStationModel fillingStation;
@@ -44,6 +50,7 @@ public class OwnerHomeAdapter extends RecyclerView.Adapter<OwnerHomeAdapter.View
         this.fullStationList = new ArrayList<>(stationList);
     }
 
+    //Set Card view to set Recycler view to display items
     @NonNull
     @Override
     public OwnerHomeAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -51,6 +58,8 @@ public class OwnerHomeAdapter extends RecyclerView.Adapter<OwnerHomeAdapter.View
         return  new ViewHolder(view);
     }
 
+
+    //Bind values to the properties in the card view that display items in the recycler view
     @Override
     public void onBindViewHolder(@NonNull OwnerHomeAdapter.ViewHolder holder, int position) {
      String stationName = stationList.get(position).getName();
@@ -140,16 +149,19 @@ public class OwnerHomeAdapter extends RecyclerView.Adapter<OwnerHomeAdapter.View
         alertDialog.show();
     }
 
+    //Get count of the items
     @Override
     public int getItemCount() {
         return stationList.size();
     }
 
+    //Get filtered the items
     @Override
     public Filter getFilter() {
         return stationFilter;
     }
 
+    //Doing filter process based on the user search
     private Filter stationFilter = new Filter() {
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
@@ -170,6 +182,7 @@ public class OwnerHomeAdapter extends RecyclerView.Adapter<OwnerHomeAdapter.View
            return results;
         }
 
+        //Set filtered List of the station
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
             stationList.clear();
@@ -177,9 +190,11 @@ public class OwnerHomeAdapter extends RecyclerView.Adapter<OwnerHomeAdapter.View
             notifyDataSetChanged();
         }
     };
+
+    //This class set the recycler view with the card
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-
+        //Initialize variables
         public TextView stationName;
         public TextView stationLocation;
         private Button delete;
@@ -188,7 +203,7 @@ public class OwnerHomeAdapter extends RecyclerView.Adapter<OwnerHomeAdapter.View
 
         public ViewHolder(View itemView) {
             super(itemView);
-
+            //Assign variables
             stationName =  itemView.findViewById(R.id.Txt_Owner_Card_Station_Name);
             stationLocation = itemView.findViewById(R.id.Txt_Owner_Card_Location);
             delete = itemView.findViewById(R.id.Btn_Owner_Card_Delete_Station);

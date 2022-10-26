@@ -9,9 +9,14 @@ import android.database.sqlite.SQLiteOpenHelper;
 import androidx.annotation.Nullable;
 
 import java.io.IOException;
-
+/**
+ * This class cOperations of SQLLITE database .
+ *
+ * @version 1.0
+ */
 public class DatabaseHelper extends SQLiteOpenHelper {
 
+    //Initialize variables
     public static final String DATABASE_NAME = "FUEL_MANAGEMENT";
     public static final String USER_TABLE_NAME = "USER_TABLE";
     public static final String USER_TABLE_COLUMN_ID = "ID";
@@ -37,12 +42,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    //This will called when database data is changed
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS "+USER_TABLE_NAME);
         onCreate(db);
     }
 
+    //Insert operation to the local sqlite database
     public boolean insert(String username, String password) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
