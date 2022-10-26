@@ -13,6 +13,7 @@ import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.fuel_management.Adaptors.OwnerHomeAdapter;
 import com.example.fuel_management.Adaptors.StationDetailAdapter;
 import com.example.fuel_management.Adaptors.UserHomeDetailAdaptor;
 import com.example.fuel_management.Models.FillingStationModel;
@@ -40,37 +41,18 @@ public class UserHomeActivity extends AppCompatActivity {
     private Button btn_logout;
     private SearchView searchView;
     private SessionManager sessionManager;
+    private RecyclerView recyclerView;
+    private LinearLayoutManager layoutManager;
+    private UserHomeDetailAdaptor adapter;
+    private  FillingStationService fillingStationService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.user_station_view_grid);
 
-        FillingStationService fillingStationService = new FillingStationService(UserHomeActivity.this);
-        fillingStationService.getFillingStationDetails(new FillingStationService.GetAllFillingStationsByUserResponse() {
-            @Override
-            public void onError(String message) {
-                Toast.makeText(UserHomeActivity.this, message.toString(), Toast.LENGTH_SHORT).show();
-                System.out.println("message.toString()"+message.toString());
-            }
-
-            @Override
-            public void onResponse(ArrayList<FillingStationModel> fillingStationModelArrayList) {
-                RecyclerView recyclerView = findViewById(R.id.ListView_User_Station_View_List);
-                UserHomeDetailAdaptor adaptor = new UserHomeDetailAdaptor(UserHomeActivity.this,fillingStationModelArrayList,sessionManager);
-                recyclerView.setAdapter(adaptor);
-                recyclerView.setLayoutManager(new LinearLayoutManager(UserHomeActivity.this));
-//                adaptor.setOnItemClickListener(new UserHomeDetailAdaptor.OnItemClickListener() {
-//                    @Override
-//                    public void onItemClick(View itemView) {
-//                        Intent intent = new Intent(UserHomeActivity.this, UserEditFormActivity.class);
-//                        startActivity(intent);
-//                    }
-//                });
-                searchFillingStation(fillingStationModelArrayList,adaptor);
-
-            }
-        });
+        fillingStationService = new FillingStationService(UserHomeActivity.this);
+        initData();
 
         btn_logout = (Button) findViewById(R.id.Btn_UserHome_Logout);
         sessionManager = new SessionManager(UserHomeActivity.this);
@@ -84,6 +66,36 @@ public class UserHomeActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    private void initData() {
+        fillingStationService.getFillingStationDetails(new FillingStationService.GetAllFillingStationsByUserResponse() {
+            @Override
+            public void onError(String message) {
+                Toast.makeText(UserHomeActivity.this, message.toString(), Toast.LENGTH_SHORT).show();
+                System.out.println("message.toString()"+message.toString());
+            }
+
+            @Override
+            public void onResponse(ArrayList<FillingStationModel> fillingStationModelArrayList1) {
+                fillingStationModelArrayList =fillingStationModelArrayList1;
+
+                initRecycleView();
+                searchFillingStation(fillingStationModelArrayList,adapter);
+
+            }
+        });
+    }
+
+    private void initRecycleView() {
+        recyclerView = findViewById(R.id.ListView_User_Station_View_List);
+        layoutManager = new LinearLayoutManager(this);
+        layoutManager.setOrientation(RecyclerView.VERTICAL);
+        recyclerView.setLayoutManager(layoutManager);
+        adapter = new UserHomeDetailAdaptor(this,fillingStationModelArrayList);
+        recyclerView.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+
     }
 
     //search the filling station by name service called
@@ -118,5 +130,11 @@ public class UserHomeActivity extends AppCompatActivity {
         }else{
             adaptor.setFilteredList(filteredList);
         }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        initData();
     }
 }

@@ -81,31 +81,31 @@ public class SessionManager {
     }
 
     public String getQueueSessionID(){
-        return sharedPreferences.getString(SESSION_QUEUE_ID,"QUEUENO");
+        return sharedPreferences.getString(SESSION_QUEUE_ID,"NO");
     }
 
     public String getQueueSessionStatus(){
-        return sharedPreferences.getString(SESSION_QUEUE_STATUS,"QUEUESTATUS");
+        return sharedPreferences.getString(SESSION_QUEUE_STATUS,"NO");
     }
 
     public String getQueueCustomer(){
-        return sharedPreferences.getString(SESSION_CUSTOMER,"QUEUECUSTOMER");
+        return sharedPreferences.getString(SESSION_CUSTOMER,"NO");
     }
 
     public String getQueueFillingStation(){
-        return sharedPreferences.getString(SESSION_QUEUE_FILLING_STATION,"QUEUEFILLING");
+        return sharedPreferences.getString(SESSION_QUEUE_FILLING_STATION,"NO");
     }
 
     public String getQueueVehicleType(){
-        return sharedPreferences.getString(SESSION_QUEUE_VEHICLE_TYPE,"QUEUETYPE");
+        return sharedPreferences.getString(SESSION_QUEUE_VEHICLE_TYPE,"NO");
     }
 
     public String getQueueArrivalTime(){
-        return sharedPreferences.getString(SESSION_QUEUE_ARRIVAL_TIME,"QUEUEAT");
+        return sharedPreferences.getString(SESSION_QUEUE_ARRIVAL_TIME,"NO");
     }
 
     public String getQueueDepartTime(){
-        return sharedPreferences.getString(SESSION_QUEUE_DEPART_TIME,"QUEUEDT");
+        return sharedPreferences.getString(SESSION_QUEUE_DEPART_TIME,"NO");
     }
 
     public void removeQueueSession(){

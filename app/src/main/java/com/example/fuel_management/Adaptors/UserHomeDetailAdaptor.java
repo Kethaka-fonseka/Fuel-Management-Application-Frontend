@@ -38,10 +38,10 @@ public class UserHomeDetailAdaptor extends RecyclerView.Adapter<UserHomeDetailAd
     private SessionManager sessionManager;
 
     //constructor for initialize variables
-    public UserHomeDetailAdaptor(Context context,List<FillingStationModel> fillingStationModelList,SessionManager sessionManager) {
+    public UserHomeDetailAdaptor(Context context,List<FillingStationModel> fillingStationModelList) {
         this.context=context;
         this.fillingStationModelList = fillingStationModelList;
-        this.sessionManager=sessionManager;
+        this.sessionManager=new SessionManager(context);
     }
 
     //Method for set filtered filling station objects
