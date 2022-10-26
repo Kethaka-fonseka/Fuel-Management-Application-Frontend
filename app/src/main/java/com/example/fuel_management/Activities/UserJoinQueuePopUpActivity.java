@@ -26,8 +26,14 @@ import org.json.JSONObject;
 
 import java.util.Map;
 
+/**
+ * Pop up window to add user vehicle detail to join the queue
+ *
+ * @version 1.0
+ */
 public class UserJoinQueuePopUpActivity extends AppCompatActivity {
 
+    //Initialize variables
     private AlertDialog.Builder joinedQueueDialogBuilder;
     private AlertDialog dialogQue;
     private String selectedVehicle;
@@ -39,6 +45,7 @@ public class UserJoinQueuePopUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.user_join_queue_popup);
 
+        //assigned variables
         Intent intent = getIntent();
         String statName = intent.getStringExtra("fillingStatName");
         sessionManager = new SessionManager(this);
@@ -73,6 +80,7 @@ public class UserJoinQueuePopUpActivity extends AppCompatActivity {
 
         QueueService queueService = new QueueService(UserJoinQueuePopUpActivity.this);
 
+        //save button call for join queue details
         btn_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -83,6 +91,7 @@ public class UserJoinQueuePopUpActivity extends AppCompatActivity {
             }
         });
 
+        //cancel button call for join queue details
         btn_cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -94,6 +103,7 @@ public class UserJoinQueuePopUpActivity extends AppCompatActivity {
 
     }
 
+    //method for save queue details
     private void joinToQueue(QueueService queueService, String customer, String fillingStation, String vehicleType, String status) {
         QueueModel queueModel = new QueueModel();
         queueModel.setCustomer(customer);
@@ -111,35 +121,13 @@ public class UserJoinQueuePopUpActivity extends AppCompatActivity {
             public void onResponse(JSONObject response) {
                 try {
                     Toast.makeText(UserJoinQueuePopUpActivity.this, "You Joined to the Queue", Toast.LENGTH_LONG).show();
-//                    QueueModel queueModel1 = new QueueModel();
-//                    queueModel1.setId(response.getString("id"));
-//                    queueModel1.setCustomer(response.getString("customer"));
-//                    queueModel1.setFillingStation(response.getString("fillingStation"));
-//                    queueModel1.setVehicleType(response.getString("vehicleType"));
-//                    queueModel1.setArrivalTime(response.getString("arrivalTime"));
-//                    queueModel1.setDeparTime(response.getString("deparTime"));
                     sessionManager.saveQueueDetails(response);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-//                Toast.makeText(UserJoinQueuePopUpActivity.this, successMessage.toString(), Toast.LENGTH_LONG).show();
             }
         });
     }
 
-//    public void createNewJoinedQueueDialog(Context context){
-////        joinedQueueDialogBuilder = new AlertDialog.Builder(this);
-////        final View joinedQueuePopUp = getLayoutInflater().inflate(R.layout.user_join_queue_popup,null);
-//
-//        Spinner vehicleTypeSpinner = (Spinner) findViewById(R.id.Spinner_User_Join_Queue_Popup);
-//        ArrayAdapter<String> vehicleTypeSpinnerAdapter = new ArrayAdapter<String>(
-//                this,android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.vehicleType));
-//        vehicleTypeSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        vehicleTypeSpinner.setAdapter(vehicleTypeSpinnerAdapter);
-//
-////        joinedQueueDialogBuilder.setView(joinedQueuePopUp);
-////        dialogQue = joinedQueueDialogBuilder.create();
-////        dialogQue.show();
-//    }
 
 }

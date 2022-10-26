@@ -1,5 +1,10 @@
 package com.example.fuel_management.Models;
 
+/**
+ * This DTO class contain information vehicle details
+ *
+ * @version 1.0
+ */
 public class VehicleTypeDTO {
 
     String vehicleType;

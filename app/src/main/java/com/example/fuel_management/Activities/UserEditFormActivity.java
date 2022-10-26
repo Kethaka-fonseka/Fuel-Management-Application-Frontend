@@ -23,8 +23,14 @@ import com.example.fuel_management.Session.SessionManager;
 
 import java.util.List;
 
+/**
+ * Edit details of the queue that user joined .
+ *
+ * @version 1.0
+ */
 public class UserEditFormActivity extends AppCompatActivity {
 
+    //Assign variables
     TextView heading_txt,time_txt,txt_car_count,txt_van_count,txt_bike_count,txt_wheel_count;
     Button btn_joined_to_queue,btn_exit_from_queue,btn_exit_after_queue;
     private SessionManager sessionManager;
@@ -58,7 +64,7 @@ public class UserEditFormActivity extends AppCompatActivity {
 
         heading_txt.setText(statName);
 
-        // Vehicle count
+        // get Vehicle count in filling station
         QueueService queueService = new QueueService(this);
         queueService.getQueueLengthByStation(statName, new QueueService.GetQueueLengthByStationResponse() {
             @Override
@@ -92,7 +98,7 @@ public class UserEditFormActivity extends AppCompatActivity {
             }
         });
 
-        // time count
+        //a method call time count that queue exist
         queueService.getTimeWaitingAtQueueByStation(statName, new QueueService.GetTimeWaitingAtQueueByStationResponse() {
             @Override
             public void onError(String message) {
@@ -105,7 +111,7 @@ public class UserEditFormActivity extends AppCompatActivity {
             }
         });
 
-        //Join buttons
+        //Join to the queue buttons call
         btn_joined_to_queue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -125,6 +131,7 @@ public class UserEditFormActivity extends AppCompatActivity {
             }
         });
 
+        //exit from the queue buttons call
         btn_exit_from_queue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -132,6 +139,7 @@ public class UserEditFormActivity extends AppCompatActivity {
             }
         });
 
+        //exit after the queue buttons call
         btn_exit_after_queue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -143,7 +151,7 @@ public class UserEditFormActivity extends AppCompatActivity {
     //method to call exit queue service
     private void exitQueue(SessionManager sessionManager,QueueService queueService, String status) {
         String queueSessionID = sessionManager.getQueueSessionID();
-        if (queueSessionID != null) {
+        if (!queueSessionID.contains("NO")) {
             String fillingStation = sessionManager.getQueueFillingStation();
             String sessionStatus = sessionManager.getQueueSessionStatus();
             String vehicleType = sessionManager.getQueueVehicleType();
@@ -166,6 +174,7 @@ public class UserEditFormActivity extends AppCompatActivity {
         }
     }
 
+    //back button press method
     @Override
     public void onBackPressed() {
         String sessionStatus = sessionManager.getQueueSessionStatus();
@@ -176,6 +185,7 @@ public class UserEditFormActivity extends AppCompatActivity {
         }
     }
 
+    //back button press dialog box
     private void exitApplicationDialog(Context context) {
         android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(context);
         builder.setMessage(R.string.Want_to_exit_this_queue);
@@ -192,6 +202,7 @@ public class UserEditFormActivity extends AppCompatActivity {
         alertDialog.show();
     }
 
+    //get the queue details by id
     private QueueModel getQueueById(QueueService queueService,String queueId){
         QueueModel resQueueModel = null;
         queueService.getQueueByIdService(queueId,new QueueService.QetQueueByIdResponse(){
@@ -228,21 +239,4 @@ public class UserEditFormActivity extends AppCompatActivity {
         });
     }
 
-
-
-    public void createNewJoinedQueueDialog(){
-        joinedQueueDialogBuilder = new AlertDialog.Builder(this);
-        final View joinedQueuePopUp = getLayoutInflater().inflate(R.layout.user_join_queue_popup,null);
-
-//        Spinner vehicleTypeSpinner = (Spinner) findViewById(R.id.Spinner_User_Join_Queue_Popup);
-//        ArrayAdapter<String> vehicleTypeSpinnerAdapter = new ArrayAdapter<String>(
-//                UserEditFormActivity.this,android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.vehicleType));
-//        vehicleTypeSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        vehicleTypeSpinner.setAdapter(vehicleTypeSpinnerAdapter);
-//        UserJoinQueuePopUpActivity userJoinQueuePopUpActivity = new UserJoinQueuePopUpActivity();
-//        userJoinQueuePopUpActivity.createNewJoinedQueueDialog(UserEditFormActivity.this);
-//        joinedQueueDialogBuilder.setView(joinedQueuePopUp);
-//        dialogQue = joinedQueueDialogBuilder.create();
-//        dialogQue.show();
-    }
 }

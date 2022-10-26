@@ -23,6 +23,11 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * service for get Queue details
+ *
+ * @version 1.0
+ */
 public class QueueService {
 
     public static final String QUEUE_API_URL = ConnectionSettings.CONNECTION_URL + "queues/";
@@ -33,12 +38,14 @@ public class QueueService {
         this.context = context;
     }
 
+
     public interface GetQueueLengthByStationResponse{
         void onError(String message);
 
         void onResponse(List<VehicleTypeDTO> VehicleTypes);
     }
 
+    //get vehicle type details service
     public void getQueueLengthByStation(String name,GetQueueLengthByStationResponse getQueueLengthByStationResponse){
         String url = QUEUE_API_URL+"getcount/"+name;
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
@@ -75,6 +82,7 @@ public class QueueService {
         void onResponse(TimeFormatDTO timeFormat);
     }
 
+    //get time that how long people waiting at the queue details service
     public void getTimeWaitingAtQueueByStation(String name,GetTimeWaitingAtQueueByStationResponse getTimeWaitingAtQueueByStationResponse){
         String url = QUEUE_API_URL+"gettime/"+name;
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
@@ -105,6 +113,7 @@ public class QueueService {
         void onResponse(JSONObject response);
     }
 
+    //add user details when user join to the queue
     public void addCustomerToQueueByStation(QueueModel queueModel, AddCustomerToQueueResponse addCustomerToQueueResponse){
         String url = QUEUE_API_URL;
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, null, new Response.Listener<JSONObject>() {
@@ -149,6 +158,7 @@ public class QueueService {
         void onResponse(String successMessage);
     }
 
+    //update user details when user exit to the queue
     public void updateCustomerToQueueByStation(QueueModel queueModel, UpdateCustomerToQueueResponse updateCustomerToQueueResponse){
         String url = QUEUE_API_URL+queueModel.id;
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.PUT, url, null, new Response.Listener<JSONObject>() {
@@ -195,6 +205,7 @@ public class QueueService {
         void onResponse(QueueModel queueModel);
     }
 
+    //get the queue details by id
     public void getQueueByIdService(String id,QetQueueByIdResponse getQueueByIdResponse){
         String url = QUEUE_API_URL + id;
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {

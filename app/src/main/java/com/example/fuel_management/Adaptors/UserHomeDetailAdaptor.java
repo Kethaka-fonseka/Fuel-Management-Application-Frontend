@@ -23,13 +23,20 @@ import com.example.fuel_management.Session.SessionManager;
 
 import java.util.List;
 
+/**
+ * Adaptor class for filling station display for user
+ *
+ * @version 1.0
+ */
 public class UserHomeDetailAdaptor extends RecyclerView.Adapter<UserHomeDetailAdaptor.ViewHolder> {
 
+    //Initialize variables
     private List<FillingStationModel> fillingStationModelList;
     private FillingStationService fillingStationService;
     private Context context;
     private SessionManager sessionManager;
 
+    //constructor for initialize variables
     public UserHomeDetailAdaptor(Context context,List<FillingStationModel> fillingStationModelList,SessionManager sessionManager) {
         this.context=context;
         this.fillingStationModelList = fillingStationModelList;
@@ -49,11 +56,13 @@ public class UserHomeDetailAdaptor extends RecyclerView.Adapter<UserHomeDetailAd
 //        this.listener = listener;
 //    }
 
+    //Method for set filtered filling station objects
     public void setFilteredList(List<FillingStationModel> filteredList){
         this.fillingStationModelList = filteredList;
         notifyDataSetChanged();
     }
 
+    //Method for set details to card
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -61,6 +70,7 @@ public class UserHomeDetailAdaptor extends RecyclerView.Adapter<UserHomeDetailAd
         return  new UserHomeDetailAdaptor.ViewHolder(view);
     }
 
+    // set the details to view properties by id
     @Override
     public void onBindViewHolder(@NonNull UserHomeDetailAdaptor.ViewHolder holder, int position) {
         // Get the data model based on position
@@ -89,11 +99,13 @@ public class UserHomeDetailAdaptor extends RecyclerView.Adapter<UserHomeDetailAd
         });
     }
 
+    // get the count of filling station objects
     @Override
     public int getItemCount() {
         return fillingStationModelList.size();
     }
 
+    // get the view properties by id
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         public TextView stationName,locationName,petrolStatus,dieselStatus;

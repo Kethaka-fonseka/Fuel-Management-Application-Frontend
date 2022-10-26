@@ -27,11 +27,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+/**
+ * The class for display all filling station details with fuel availability
+ *
+ * @version 1.0
+ */
 public class UserHomeActivity extends AppCompatActivity {
 
-    ArrayList<FillingStationModel> fillingStationModelArrayList;
-
     //Initialize variables
+    ArrayList<FillingStationModel> fillingStationModelArrayList;
     private ListView listView;
     private Button btn_logout;
     private SearchView searchView;
@@ -41,6 +45,7 @@ public class UserHomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.user_station_view_grid);
+
         FillingStationService fillingStationService = new FillingStationService(UserHomeActivity.this);
         fillingStationService.getFillingStationDetails(new FillingStationService.GetAllFillingStationsByUserResponse() {
             @Override
@@ -71,6 +76,7 @@ public class UserHomeActivity extends AppCompatActivity {
         btn_logout = (Button) findViewById(R.id.Btn_UserHome_Logout);
         sessionManager = new SessionManager(UserHomeActivity.this);
 
+        //user logout button calling method
         btn_logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,6 +87,7 @@ public class UserHomeActivity extends AppCompatActivity {
         });
     }
 
+    //search the filling station by name service called
     private void searchFillingStation(ArrayList<FillingStationModel> fillingStationModelArrayList,UserHomeDetailAdaptor adaptor) {
         searchView = findViewById(R.id.SearchView_Search_User_Station);
         searchView.clearFocus();
@@ -98,6 +105,7 @@ public class UserHomeActivity extends AppCompatActivity {
         });
     }
 
+    //send data to that filtered to adaptor
     private void filterList(String newText,ArrayList<FillingStationModel> fillingStationModelArrayList,UserHomeDetailAdaptor adaptor) {
 
         List<FillingStationModel>  filteredList = new ArrayList<>();
