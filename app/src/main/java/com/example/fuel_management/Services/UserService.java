@@ -190,10 +190,11 @@ public void createUserSession(String token) throws JSONException {
                     JSONArray jsonArray = jsonObject.getJSONArray("users");
 
                     JSONObject receivedUserData = (JSONObject) jsonArray.get(0);
-
                     user.setId(receivedUserData.getString("id"));
                     user.setFirstName(receivedUserData.getString("firstName"));
                     user.setLastName(receivedUserData.getString("lastName"));
+                    user.setUserName(receivedUserData.getString("userName"));
+                    user.setEmail(receivedUserData.getString("email"));
                     user.setType(receivedUserData.getString("type"));
                     getUserByIdResponse.onResponse(user);
                 } catch (JSONException e) {
