@@ -67,6 +67,7 @@
     <string name="Save">Save</string>
     <string name="empty">No Filling Stations to display.</string>
     <string name="Want_to_exit_this_queue">Are you want to exit from this queue?</string>
+    <string name="edit_details">Update Details</string>
     <string-array name="locations">
         <item>Colombo</item>
         <item>Kalutara</item>

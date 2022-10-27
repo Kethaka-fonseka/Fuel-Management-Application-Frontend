@@ -55,8 +55,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/RecyclerView_Owner_Home"
-        android:layout_width="361dp"
-        android:layout_height="512dp"
+        android:layout_width="380dp"
+        android:layout_height="649dp"
         android:layout_marginTop="20dp"
         app:layout_constraintBottom_toBottomOf="@+id/background_img"
         app:layout_constraintEnd_toEndOf="parent"
