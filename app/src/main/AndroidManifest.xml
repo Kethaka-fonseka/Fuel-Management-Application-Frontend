@@ -19,6 +19,7 @@
         <activity
            android:name=".Activities.QueueHistoryActivity"
             android:exported="false"
+            android:noHistory="true"
             android:theme="@style/No_Action_Bar"
             />
 
