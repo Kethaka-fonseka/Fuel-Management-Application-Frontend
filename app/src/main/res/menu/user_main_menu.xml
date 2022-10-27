@@ -4,6 +4,9 @@
     <item android:title="User Profile"
         android:id="@+id/UserMenu_UserProfile"/>
 
+    <item android:title="My Current Queue"
+        android:id="@+id/UserMenu_Current_Queue"/>
+
     <item android:title="History"
         android:id="@+id/UserMenu_History"/>
 

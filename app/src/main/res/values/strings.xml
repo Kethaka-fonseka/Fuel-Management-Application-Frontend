@@ -82,5 +82,9 @@
         <item>Bike</item>
         <item>Three Wheeler</item>
     </string-array>
+    <string name="Profile_First_Name">First Name</string>
+    <string name="Profile_Last_Name">Last Name</string>
+    <string name="Profile_Username">Username</string>
+    <string name="Profile_Email">Email</string>
 
 </resources>

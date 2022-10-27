@@ -222,15 +222,10 @@ public void createUserSession(String token) throws JSONException {
 
     public void updateExitingUser(UserModel user, UpdateUserResponse updateUserResponse){
         String url = USER_API_URL+user.getId();
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.PUT, url,null, new Response.Listener<JSONObject>() {
+        StringRequest request = new StringRequest(Request.Method.PUT, url, new Response.Listener<String>() {
             @Override
-            public void onResponse(JSONObject response) {
-                try {
-                    JSONObject message = new JSONObject(response.toString());
-                    updateUserResponse.onResponse(message.toString());
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+            public void onResponse(String response) {
+                updateUserResponse.onResponse(response.toString());
             }
         }, new Response.ErrorListener() {
             @Override
@@ -250,7 +245,8 @@ public void createUserSession(String token) throws JSONException {
                     jsonBody.put("id",user.getId());
                     jsonBody.put("firstName",user.getFirstName());
                     jsonBody.put("lastName",user.getLastName());
-                    jsonBody.put("type",user.getType());
+                    jsonBody.put("userName",user.getUserName());
+                    jsonBody.put("email",user.getEmail());
                     requestBody = jsonBody.toString();
 
                     return requestBody == null ? null : requestBody.getBytes("utf-8");
