@@ -139,6 +139,10 @@ public class UserHomeActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
 
+        if(id == R.id.UserMenu_UserProfile){
+            Intent intent=new Intent(UserHomeActivity.this, UserProfileActivity.class);
+            startActivity(intent);
+        }
         if(id == R.id.UserMenu_History) {
             Intent intent=new Intent(UserHomeActivity.this, QueueHistoryActivity.class);
             startActivity(intent);
