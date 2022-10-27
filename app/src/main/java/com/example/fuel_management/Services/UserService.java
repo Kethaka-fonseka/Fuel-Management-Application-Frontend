@@ -167,7 +167,7 @@ public void createUserSession(String token) throws JSONException {
 
     //Get a user by ID
 
-    interface GetUserByIdResponse{
+    public interface GetUserByIdResponse{
         void onError(String message);
 
         void onResponse(UserModel user);
@@ -212,5 +212,55 @@ public void createUserSession(String token) throws JSONException {
 
     }
 
+    //Update user Details
+    public interface UpdateUserResponse{
+        void onError(String message);
+
+        void onResponse(String successMessage);
+    }
+
+    public void updateExitingUser(UserModel user, UpdateUserResponse updateUserResponse){
+        String url = USER_API_URL+user.getId();
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.PUT, url,null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    JSONObject message = new JSONObject(response.toString());
+                    updateUserResponse.onResponse(message.toString());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                updateUserResponse.onError(error.toString());
+            }
+        }){
+            @Override
+            public String getBodyContentType() {
+                return "application/json; charset=utf-8";
+            }
+            @Override
+            public byte[] getBody() {
+                String requestBody = null;
+                JSONObject jsonBody = new JSONObject();
+                try {
+                    jsonBody.put("id",user.getId());
+                    jsonBody.put("firstName",user.getFirstName());
+                    jsonBody.put("lastName",user.getLastName());
+                    jsonBody.put("type",user.getType());
+                    requestBody = jsonBody.toString();
+
+                    return requestBody == null ? null : requestBody.getBytes("utf-8");
+                } catch (JSONException | UnsupportedEncodingException e) {
+                    VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", requestBody, "utf-8");
+                    return null;
+                }
+
+            }
+        };
+        RequestHandler.getInstance(context).addToRequestQueue(request);
+    }
 
 }
