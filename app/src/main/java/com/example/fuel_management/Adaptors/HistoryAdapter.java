@@ -102,8 +102,8 @@ public class HistoryAdapter  extends RecyclerView.Adapter<HistoryAdapter.ViewHol
         public void setData(String name, String vehicle_type, String arrival_time, String depart_time) {
             stationName.setText(name);
             vehicleType.setText(vehicle_type);
-            arrivalTime.setText(arrival_time.substring(0,10)+"   "+arrival_time.substring(12,16));
-            departTime.setText(depart_time.substring(0,10)+"   "+depart_time.substring(12,16));
+            arrivalTime.setText(arrival_time.substring(0,10)+"   "+arrival_time.substring(11,16));
+            departTime.setText(depart_time.substring(0,10)+"   "+depart_time.substring(11,16));
 
 
         }
