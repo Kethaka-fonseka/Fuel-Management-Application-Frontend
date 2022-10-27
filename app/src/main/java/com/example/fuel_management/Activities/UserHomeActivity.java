@@ -48,6 +48,7 @@ public class UserHomeActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private LinearLayoutManager layoutManager;
     private UserHomeDetailAdaptor adapter;
+    private FillingStationModel fillingStationModel;
     private  FillingStationService fillingStationService;
 
     @Override
@@ -55,11 +56,31 @@ public class UserHomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.user_station_view_grid);
 
+        fillingStationModel = new FillingStationModel();
         fillingStationService = new FillingStationService(UserHomeActivity.this);
         initData();
 
 
+
         sessionManager = new SessionManager(UserHomeActivity.this);
+
+    }
+
+    private void getQueueStationDetails() {
+        String stationName  = sessionManager.getQueueFillingStation();
+        if(!stationName.equals("NO")){
+            fillingStationService.GetFillingStationByName(stationName, new FillingStationService.GetFillingStationByNameResponse() {
+                @Override
+                public void onError(String message) {
+                    Toast.makeText(UserHomeActivity.this, message, Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void onResponse(FillingStationModel station) {
+                   fillingStationModel = station;
+                }
+            });
+        }
 
     }
 
@@ -134,11 +155,24 @@ public class UserHomeActivity extends AppCompatActivity {
         return true;
     }
 
+
+
+
     //Control actions of menu in the action bar
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
+        if( id == R.id.UserMenu_Current_Queue) {
+            if(!sessionManager.getQueueFillingStation().equals("NO")){
+                Intent intent = new Intent(this, UserEditFormActivity.class);
+                intent.putExtra("fillingStatName",fillingStationModel.getName());
+                startActivity(intent);
+            }
+            else{
+                Toast.makeText(this, "Join to a queue first to view current queue!!", Toast.LENGTH_SHORT).show();
+            }
 
+        }
         if(id == R.id.UserMenu_UserProfile){
             Intent intent=new Intent(UserHomeActivity.this, UserProfileActivity.class);
             startActivity(intent);
@@ -163,5 +197,8 @@ public class UserHomeActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         initData();
+        if( !sessionManager.getQueueFillingStation().equals("No")){
+            getQueueStationDetails();
+        }
     }
 }

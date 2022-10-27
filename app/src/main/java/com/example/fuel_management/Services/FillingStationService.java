@@ -335,4 +335,64 @@ public class FillingStationService {
         RequestHandler.getInstance(context).addToRequestQueue(request);
     }
 
+    //Get filling station by name
+
+    public interface  GetFillingStationByNameResponse{
+        void onError(String message);
+
+        void onResponse(FillingStationModel fillingStationModel);
+    }
+
+    public void GetFillingStationByName(String name, GetFillingStationByNameResponse getFillingStationByNameResponse){
+
+        String url = FILLING_STATION_API_URL+"fillingStation/"+name;
+
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    FillingStationModel station =new FillingStationModel();
+                    String jsonData = "{\"stations\" : ["+response+"]}";
+                    JSONObject jsonObject = new JSONObject(jsonData);
+                    JSONArray jsonArray = jsonObject.getJSONArray("stations");
+                    JSONObject receivedUserData = (JSONObject) jsonArray.get(0);
+
+                    FillingStationModel fillingStationModel =new FillingStationModel();
+                    fillingStationModel.setId(receivedUserData.getString("id"));
+                    fillingStationModel.setName(receivedUserData.getString("name"));
+                    fillingStationModel.setOwner(receivedUserData.getString("owner"));
+                    fillingStationModel.setLocation(receivedUserData.getString("location"));
+
+                    JSONArray fuelTypesInJsonArray = receivedUserData.getJSONArray("fuelTypes");
+                    List<FuelModel> fuelTypes = new ArrayList<>();
+
+
+                    for(int j=0; j<fuelTypesInJsonArray.length();j++){
+                        JSONObject fuelType = (JSONObject) fuelTypesInJsonArray.get(j);
+                        FuelModel fuel =new FuelModel();
+                        fuel.setFuelName(fuelType.getString("fuelName"));
+                        fuel.setStatus(fuelType.getString("status"));
+                        fuelTypes.add(fuel);
+                    }
+
+                    fillingStationModel.setFuelTypes(fuelTypes);
+                    getFillingStationByNameResponse.onResponse(fillingStationModel);
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                String errorData = new String(error.networkResponse.data);
+
+                getFillingStationByNameResponse.onError(errorData);
+            }
+        });
+        RequestHandler.getInstance(context).addToRequestQueue(request);
+    }
+
 }
