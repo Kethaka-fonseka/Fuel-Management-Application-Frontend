@@ -2,12 +2,16 @@ package com.example.fuel_management.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -54,18 +58,9 @@ public class UserHomeActivity extends AppCompatActivity {
         fillingStationService = new FillingStationService(UserHomeActivity.this);
         initData();
 
-        btn_logout = (Button) findViewById(R.id.Btn_UserHome_Logout);
+
         sessionManager = new SessionManager(UserHomeActivity.this);
 
-        //user logout button calling method
-        btn_logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                sessionManager.removeSession();
-                Intent intent=new Intent(UserHomeActivity.this, LoginActivity.class);
-                startActivity(intent);
-            }
-        });
     }
 
     private void initData() {
@@ -129,6 +124,35 @@ public class UserHomeActivity extends AppCompatActivity {
         }else{
             adaptor.setFilteredList(filteredList);
         }
+    }
+
+    //Create menu in the the action bar
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.user_main_menu, menu);
+        return true;
+    }
+
+    //Control actions of menu in the action bar
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+
+        if(id == R.id.UserMenu_History) {
+            Intent intent=new Intent(UserHomeActivity.this, QueueHistoryActivity.class);
+            startActivity(intent);
+        }
+
+        if (id == R.id.UserMenu_Logout) {
+            sessionManager.removeSession();
+            Intent intent=new Intent(UserHomeActivity.this, LoginActivity.class);
+            startActivity(intent);
+        }
+        if (id == R.id.UserMenu_Exit) {
+            finish();
+        }
+        return  super.onOptionsItemSelected(item);
     }
 
     @Override
