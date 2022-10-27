@@ -12,6 +12,7 @@ import com.example.fuel_management.Activities.RequestHandler;
 import com.example.fuel_management.Session.SessionManager;
 import com.example.fuel_management.Models.UserModel;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -163,5 +164,53 @@ public void createUserSession(String token) throws JSONException {
     sessionManager.saveSession(payload);
 
 }
+
+    //Get a user by ID
+
+    interface GetUserByIdResponse{
+        void onError(String message);
+
+        void onResponse(UserModel user);
+    }
+
+
+    public void getUserByID(String Id, GetUserByIdResponse getUserByIdResponse){
+        String url = USER_API_URL+Id;
+        //get the json object
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url,null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+
+                //get the array of json objects
+                try {
+                    UserModel user =new UserModel();
+                    String jsonData = "{\"users\" : ["+response+"]}";
+
+                    JSONObject jsonObject = new JSONObject(jsonData);
+                    JSONArray jsonArray = jsonObject.getJSONArray("users");
+
+                    JSONObject receivedUserData = (JSONObject) jsonArray.get(0);
+
+                    user.setId(receivedUserData.getString("id"));
+                    user.setFirstName(receivedUserData.getString("firstName"));
+                    user.setLastName(receivedUserData.getString("lastName"));
+                    user.setType(receivedUserData.getString("type"));
+                    getUserByIdResponse.onResponse(user);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                getUserByIdResponse.onError(error.toString());
+            }
+        });
+
+        RequestHandler.getInstance(context).addToRequestQueue(request);
+
+    }
+
 
 }
