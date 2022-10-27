@@ -18,7 +18,7 @@ public class SessionManager {
     private static final String SESSION_CUSTOMER ="customer";
     private static final String SESSION_QUEUE_FILLING_STATION = "filling_Station";
     private static final String SESSION_QUEUE_VEHICLE_TYPE = "vehicle_Type";
-    private static final String SESSION_QUEUE_ARRIVAL_TIME = "vehicle_Type";
+    private static final String SESSION_QUEUE_ARRIVAL_TIME = "arrival_Time";
     private static final String SESSION_QUEUE_DEPART_TIME = "depart_Time";
 
     SharedPreferences sharedPreferences;
