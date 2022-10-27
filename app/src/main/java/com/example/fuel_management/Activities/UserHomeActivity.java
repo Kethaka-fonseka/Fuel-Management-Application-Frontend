@@ -68,7 +68,6 @@ public class UserHomeActivity extends AppCompatActivity {
             @Override
             public void onError(String message) {
                 Toast.makeText(UserHomeActivity.this, message.toString(), Toast.LENGTH_SHORT).show();
-                System.out.println("message.toString()"+message.toString());
             }
 
             @Override
