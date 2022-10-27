@@ -92,7 +92,7 @@ public class UserEditFormActivity extends AppCompatActivity {
                         } else if (vehicleTypes.get(i).getVehicleType().contains("Bike")) {
                             System.out.println("3");
                             txt_bike_count.setText(String.valueOf(vehicleTypes.get(i).getTotal()));
-                        } else if (vehicleTypes.get(i).getVehicleType().contains("ThreeWheel")) {
+                        } else if (vehicleTypes.get(i).getVehicleType().contains("Three Wheeler")) {
                             System.out.println("4");
                             txt_wheel_count.setText(String.valueOf(vehicleTypes.get(i).getTotal()));
                         }
