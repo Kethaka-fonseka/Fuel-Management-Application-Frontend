@@ -1,6 +1,7 @@
 package com.example.fuel_management.Services;
 
 import android.content.Context;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -8,11 +9,13 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.example.fuel_management.Activities.RequestHandler;
 import com.example.fuel_management.Models.FillingStationModel;
 import com.example.fuel_management.Models.QueueModel;
 import com.example.fuel_management.Models.TimeFormatDTO;
 import com.example.fuel_management.Models.VehicleTypeDTO;
+import com.example.fuel_management.Session.SessionManager;
 import com.google.gson.JsonObject;
 
 import org.json.JSONArray;
@@ -22,6 +25,7 @@ import org.json.JSONObject;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Queue;
 
 /**
  * service for get Queue details
@@ -235,4 +239,86 @@ public class QueueService {
         RequestHandler.getInstance(context).addToRequestQueue(request);
     }
 
+
+    //Get queue history based on the user
+
+    public interface GetUserQueueHistoryResponse{
+        void onError(String message);
+
+        void onResponse(List<QueueModel> queueList);
+    }
+
+
+    public void GetUserQueueHistory(String username, GetUserQueueHistoryResponse getUserQueueHistoryResponse){
+        String url = QUEUE_API_URL+"history/"+username;
+        //get the json object
+        JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                try {
+                    List<QueueModel> queue_list = new ArrayList<>();
+                    String jsonData = "{\"queues\" : "+response+"}";
+                    JSONObject jsonObject = new JSONObject(jsonData);
+                    JSONArray jsonArray = jsonObject.getJSONArray("queues");
+
+                    for(int i=0; i< jsonArray.length();i++){
+                        QueueModel queue = new QueueModel();
+                        JSONObject responseData = (JSONObject) jsonArray.get(i);
+
+                        queue.setId(responseData.getString("id"));
+                        queue.setCustomer(responseData.getString("customer"));
+                        queue.setFillingStation(responseData.getString("fillingStation"));
+                        queue.setVehicleType(responseData.getString("vehicleType"));
+                        queue.setArrivalTime(responseData.getString("arrivalTime"));
+                        queue.setDeparTime(responseData.getString("deparTime"));
+                        queue.setStatus(responseData.getString("status"));
+                        queue_list.add(queue);
+                    }
+                    getUserQueueHistoryResponse.onResponse(queue_list);
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                String errorData = new String(error.networkResponse.data);
+
+                getUserQueueHistoryResponse.onError(errorData);
+            }
+        });
+
+        RequestHandler.getInstance(context).addToRequestQueue(request);
+
+    }
+
+
+    //Delete a record from the history
+    //Delete a selected filling station response
+    public interface  DeleteUserHistoryRecordResponse{
+        void onError(String message);
+
+        void onResponse(String successMessage);
+    }
+
+    //Delete a selected filling station
+    public void DeleteUserHistoryRecord(String stationID, DeleteUserHistoryRecordResponse deleteUserHistoryRecordResponse){
+
+        String url = QUEUE_API_URL+"remove/"+stationID;
+        StringRequest request = new StringRequest(Request.Method.DELETE,url,new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                deleteUserHistoryRecordResponse.onResponse(response.toString());
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                deleteUserHistoryRecordResponse.onError(error.toString());
+            }
+        });
+        RequestHandler.getInstance(context).addToRequestQueue(request);
+    }
 }

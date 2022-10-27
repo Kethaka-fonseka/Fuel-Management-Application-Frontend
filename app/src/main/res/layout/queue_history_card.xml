@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/CardView_Station_Detail_User_card"
+        android:layout_width="397dp"
+        android:layout_height="188dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="395dp"
+            android:layout_height="189dp"
+            android:padding="5dp">
+
+
+            <TextView
+                android:id="@+id/Txt_QueueHisotryCard_StationName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/StationName"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/Txt_QueueHisotryCard_StationNameValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
+                android:text="TextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.005"
+                app:layout_constraintStart_toEndOf="@+id/Txt_QueueHisotryCard_StationName"
+                app:layout_constraintTop_toTopOf="@+id/Txt_QueueHisotryCard_StationName" />
+
+            <TextView
+                android:id="@+id/Txt_QueueHisotryCard_VehicleType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/VehicleType"
+                app:layout_constraintStart_toStartOf="@+id/Txt_QueueHisotryCard_StationName"
+                app:layout_constraintTop_toBottomOf="@+id/Txt_QueueHisotryCard_StationName" />
+
+            <TextView
+                android:id="@+id/Txt_QueueHisotryCard_VehicleTypeValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
+                android:layout_marginEnd="104dp"
+                android:text="TextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.063"
+                app:layout_constraintStart_toEndOf="@+id/Txt_QueueHisotryCard_VehicleType"
+                app:layout_constraintTop_toTopOf="@+id/Txt_QueueHisotryCard_VehicleType" />
+
+            <TextView
+                android:id="@+id/Txt_QueueHisotryCard_ArrivalTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/arrival_time"
+                app:layout_constraintStart_toStartOf="@+id/Txt_QueueHisotryCard_VehicleType"
+                app:layout_constraintTop_toBottomOf="@+id/Txt_QueueHisotryCard_VehicleType" />
+
+            <TextView
+                android:id="@+id/Txt_QueueHisotryCard_DepartTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                android:text="@string/depart_time"
+                app:layout_constraintStart_toStartOf="@+id/Txt_QueueHisotryCard_ArrivalTime"
+                app:layout_constraintTop_toBottomOf="@+id/Txt_QueueHisotryCard_ArrivalTime" />
+
+            <TextView
+                android:id="@+id/Txt_QueueHisotryCard_ArrivalTimeValue"
+                android:layout_width="202dp"
+                android:layout_height="18dp"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="4dp"
+                android:text="TextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.177"
+                app:layout_constraintStart_toEndOf="@+id/Txt_QueueHisotryCard_ArrivalTime"
+                app:layout_constraintTop_toTopOf="@+id/Txt_QueueHisotryCard_ArrivalTime" />
+
+            <TextView
+                android:id="@+id/Txt_QueueHisotryCard_DepartTimeValue"
+                android:layout_width="203dp"
+                android:layout_height="19dp"
+                android:layout_marginStart="50dp"
+                android:text="TextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.159"
+                app:layout_constraintStart_toEndOf="@+id/Txt_QueueHisotryCard_DepartTime"
+                app:layout_constraintTop_toTopOf="@+id/Txt_QueueHisotryCard_DepartTime" />
+
+            <ImageView
+                android:id="@+id/Btn_QueueHisotryCard_Delete"
+                android:layout_width="24dp"
+                android:layout_height="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.988"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0"
+                app:srcCompat="@android:drawable/ic_delete" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
