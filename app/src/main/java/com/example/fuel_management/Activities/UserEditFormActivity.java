@@ -21,7 +21,10 @@ import com.example.fuel_management.R;
 import com.example.fuel_management.Services.QueueService;
 import com.example.fuel_management.Session.SessionManager;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Edit details of the queue that user joined .
@@ -107,7 +110,7 @@ public class UserEditFormActivity extends AppCompatActivity {
 
             @Override
             public void onResponse(TimeFormatDTO timeFormat) {
-                time_txt.setText("* Queue time is Hour "+timeFormat.getHours()+" Minute "+timeFormat.getMinutes()+" Seconds "+timeFormat.getSeconds());
+                time_txt.setText("* People waiting at the queue Hours"+timeFormat.getHours()+" Minute "+timeFormat.getMinutes()+" Seconds "+timeFormat.getSeconds());
             }
         });
 
@@ -115,12 +118,7 @@ public class UserEditFormActivity extends AppCompatActivity {
         btn_joined_to_queue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                joinToQueue(queueService,username,statName,"car","Waiting");
-//                createNewJoinedQueueDialog();
-//                UserJoinQueuePopUpActivity userJoinQueuePopUpActivity = new UserJoinQueuePopUpActivity();
-//                userJoinQueuePopUpActivity.createNewJoinedQueueDialog(UserEditFormActivity.this);
                 String status = sessionManager.getQueueSessionStatus();
-                System.out.println("status===>"+status);
                 if(status.contains("NO")){
                     Intent intent = new Intent(UserEditFormActivity.this,UserJoinQueuePopUpActivity.class);
                     intent.putExtra("fillingStatName",statName);
@@ -158,6 +156,7 @@ public class UserEditFormActivity extends AppCompatActivity {
             String customer = sessionManager.getQueueCustomer();
             String arrivalTime = sessionManager.getQueueArrivalTime();
             String departTime = sessionManager.getQueueDepartTime();
+
             QueueModel queueModel = new QueueModel();
             queueModel.setId(queueSessionID);
             queueModel.setStatus(status);
@@ -165,7 +164,11 @@ public class UserEditFormActivity extends AppCompatActivity {
             queueModel.setCustomer(customer);
             queueModel.setVehicleType(vehicleType);
             queueModel.setArrivalTime(arrivalTime);
-            queueModel.setDeparTime(departTime);
+            //stackoverflow reference
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.ENGLISH);
+            LocalDateTime now = LocalDateTime.now();
+            queueModel.setDeparTime(dtf.format(now));
+
             if (sessionStatus.contains("NO")) {
                 Toast.makeText(UserEditFormActivity.this, "You are not joined to queue", Toast.LENGTH_LONG).show();
             } else {
