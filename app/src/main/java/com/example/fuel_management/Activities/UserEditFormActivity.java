@@ -38,6 +38,8 @@ public class UserEditFormActivity extends AppCompatActivity {
     Button btn_joined_to_queue,btn_exit_from_queue,btn_exit_after_queue;
     private SessionManager sessionManager;
     private QueueService queueService;
+    private  String statName;
+    private Intent intent;
 
     private AlertDialog.Builder joinedQueueDialogBuilder;
     private AlertDialog dialogQue;
@@ -48,8 +50,8 @@ public class UserEditFormActivity extends AppCompatActivity {
         setContentView(R.layout.user_queue_edit_form);
 
         //get intent details
-        Intent intent = getIntent();
-        String statName = intent.getStringExtra("fillingStatName");
+         intent = getIntent();
+         statName = intent.getStringExtra("fillingStatName");
         sessionManager = new SessionManager(this);
         String username = sessionManager.getSessionUsername();
 
@@ -214,4 +216,9 @@ public class UserEditFormActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+    }
 }
