@@ -183,6 +183,7 @@ public class UserHomeActivity extends AppCompatActivity {
         }
 
         if (id == R.id.UserMenu_Logout) {
+            sessionManager.removeQueueSession();
             sessionManager.removeSession();
             Intent intent=new Intent(UserHomeActivity.this, LoginActivity.class);
             startActivity(intent);

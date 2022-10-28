@@ -7,171 +7,189 @@
     android:layout_height="match_parent"
     tools:context=".Activities.ViewStationActivity">
 
-    <ImageView
-        android:id="@+id/background_img"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/background" />
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/Txt_ViewStation_Title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:fontFamily="@font/lazy_dog"
-        android:text="@string/title_placeholder"
-        android:textAlignment="center"
-        android:textAllCaps="true"
-        android:textColor="#17043A"
-        android:textSize="34sp"
-        android:textStyle="bold"
-        android:typeface="normal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/background_img"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"
+                app:srcCompat="@drawable/background" />
 
-    <TextView
-        android:id="@+id/Txt_ViewStation_Name_Key"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="24dp"
-        android:fontFamily="@font/lazy_dog"
-        android:text="@string/StationName"
-        android:textAlignment="textStart"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Txt_ViewStation_Title" />
+            <TextView
+                android:id="@+id/Txt_ViewStation_Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                android:fontFamily="@font/lazy_dog"
+                android:text="@string/title_placeholder"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:textColor="#17043A"
+                android:textSize="34sp"
+                android:textStyle="bold"
+                android:typeface="normal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/Txt_ViewStation_Name_Value"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:fontFamily="@font/lazy_dog"
-        android:text="@string/StationName"
-        android:textColor="#7C7777"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.104"
-        app:layout_constraintStart_toEndOf="@+id/Txt_ViewStation_Name_Key"
-        app:layout_constraintTop_toTopOf="@+id/Txt_ViewStation_Name_Key" />
+            <TextView
+                android:id="@+id/Txt_ViewStation_Name_Key"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/lazy_dog"
+                android:text="@string/StationName"
+                android:textAlignment="textStart"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/Txt_ViewStation_Title" />
 
-    <TextView
-        android:id="@+id/Txt_ViewStation_Location_Key"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:fontFamily="@font/lazy_dog"
-        android:text="@string/location"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/Txt_ViewStation_Name_Key"
-        app:layout_constraintTop_toBottomOf="@+id/Txt_ViewStation_Name_Key" />
+            <TextView
+                android:id="@+id/Txt_ViewStation_Name_Value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
+                android:layout_marginEnd="5dp"
+                android:fontFamily="@font/lazy_dog"
+                android:text="@string/StationName"
+                android:textColor="#7C7777"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.104"
+                app:layout_constraintStart_toEndOf="@+id/Txt_ViewStation_Name_Key"
+                app:layout_constraintTop_toTopOf="@+id/Txt_ViewStation_Name_Key" />
 
-    <TextView
-        android:id="@+id/Txt_ViewStation_Location_Value"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/lazy_dog"
-        android:text="@string/location"
-        android:textColor="#7C7777"
-        android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="@+id/Txt_ViewStation_Name_Value"
-        app:layout_constraintTop_toTopOf="@+id/Txt_ViewStation_Location_Key" />
+            <TextView
+                android:id="@+id/Txt_ViewStation_Location_Key"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:fontFamily="@font/lazy_dog"
+                android:text="@string/location"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/Txt_ViewStation_Name_Key"
+                app:layout_constraintTop_toBottomOf="@+id/Txt_ViewStation_Name_Key" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/Txt_ViewStation_RecyclerView"
-        android:layout_width="369dp"
-        android:layout_height="175dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Txt_ViewStation_FuelStatus" />
+            <TextView
+                android:id="@+id/Txt_ViewStation_Location_Value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/lazy_dog"
+                android:text="@string/location"
+                android:textColor="#7C7777"
+                android:textSize="24sp"
+                app:layout_constraintStart_toStartOf="@+id/Txt_ViewStation_Name_Value"
+                app:layout_constraintTop_toTopOf="@+id/Txt_ViewStation_Location_Key" />
 
-    <TextView
-        android:id="@+id/Txt_ViewStation_ArivalTime_Key"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="36dp"
-        android:fontFamily="@font/lazy_dog"
-        android:text="@string/arrival_time"
-        android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Txt_ViewStation_Location_Key" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/Txt_ViewStation_RecyclerView"
+                android:layout_width="369dp"
+                android:layout_height="175dp"
+                android:layout_marginTop="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/Txt_ViewStation_FuelStatus"
+                app:layout_constraintVertical_bias="0.152" />
 
-    <TextView
-        android:id="@+id/Txt_ViewStation_ArivalTime_Value"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="44dp"
-        android:fontFamily="@font/lazy_dog"
-        android:text="@string/Fuel_Arrival_Time"
-        android:textColor="#7C7777"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/Txt_ViewStation_Location_Value"
-        app:layout_constraintTop_toTopOf="@+id/Txt_ViewStation_ArivalTime_Key" />
+            <TextView
+                android:id="@+id/Txt_ViewStation_ArivalTime_Key"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="36dp"
+                android:fontFamily="@font/lazy_dog"
+                android:text="@string/arrival_time"
+                android:textSize="24sp"
+                app:layout_constraintStart_toStartOf="@+id/Txt_ViewStation_Location_Key"
+                app:layout_constraintTop_toBottomOf="@+id/Txt_ViewStation_Location_Key" />
 
-    <TextView
-        android:id="@+id/Txt_ViewStation_FinishTime_Key"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:fontFamily="@font/lazy_dog"
-        android:text="@string/finish_time"
-        android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="@+id/Txt_ViewStation_ArivalTime_Key"
-        app:layout_constraintTop_toBottomOf="@+id/Txt_ViewStation_ArivalTime_Key" />
+            <TextView
+                android:id="@+id/Txt_ViewStation_ArivalTime_Value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="44dp"
+                android:fontFamily="@font/lazy_dog"
+                android:text="@string/Fuel_Arrival_Time"
+                android:textColor="#7C7777"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/Txt_ViewStation_Location_Value"
+                app:layout_constraintTop_toTopOf="@+id/Txt_ViewStation_ArivalTime_Key" />
 
-    <TextView
-        android:id="@+id/Txt_ViewStation_FinishTime_Value"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/lazy_dog"
-        android:text="@string/finish_time"
-        android:textColor="#7C7777"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/Txt_ViewStation_ArivalTime_Value"
-        app:layout_constraintTop_toTopOf="@+id/Txt_ViewStation_FinishTime_Key" />
+            <TextView
+                android:id="@+id/Txt_ViewStation_FinishTime_Key"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="36dp"
+                android:fontFamily="@font/lazy_dog"
+                android:text="@string/finish_time"
+                android:textSize="24sp"
+                app:layout_constraintStart_toStartOf="@+id/Txt_ViewStation_ArivalTime_Key"
+                app:layout_constraintTop_toBottomOf="@+id/Txt_ViewStation_ArivalTime_Key" />
 
-    <Button
-        android:id="@+id/Btn_ViewStation_Update"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="68dp"
-        android:backgroundTint="@color/green"
-        android:fontFamily="@font/lazy_dog"
-        android:text="@string/Filling_Station_Update"
-        android:textSize="34sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Txt_ViewStation_FinishTime_Value" />
+            <TextView
+                android:id="@+id/Txt_ViewStation_FinishTime_Value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/lazy_dog"
+                android:text="@string/finish_time"
+                android:textColor="#7C7777"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/Txt_ViewStation_ArivalTime_Value"
+                app:layout_constraintTop_toTopOf="@+id/Txt_ViewStation_FinishTime_Key" />
 
-    <TextView
-        android:id="@+id/Txt_ViewStation_FuelStatus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
-        android:fontFamily="@font/lazy_dog"
-        android:text="@string/fuel_status"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.283"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Btn_ViewStation_Update" />
+            <Button
+                android:id="@+id/Btn_ViewStation_Update"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="68dp"
+                android:backgroundTint="@color/green"
+                android:fontFamily="@font/lazy_dog"
+                android:text="@string/Filling_Station_Update"
+                android:textSize="34sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/Txt_ViewStation_FinishTime_Value" />
+
+            <TextView
+                android:id="@+id/Txt_ViewStation_FuelStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="56dp"
+                android:fontFamily="@font/lazy_dog"
+                android:text="@string/fuel_status"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.283"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/Btn_ViewStation_Update" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </ScrollView>
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
